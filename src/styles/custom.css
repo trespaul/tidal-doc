@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sl-font: 'Inter Variable', sans-serif;
+	--sl-font-mono: 'Fira Code Variable', monospace;
+  font-feature-settings:
+	  "liga" 1,
+	  "calt", /* Contextual Alternates */
+	  "dlig", /* Discretionary Ligatures */
+	  "ss02", /* Disambiguation */
+}
+
+.bento {
+  @apply grid grid-cols-1 md:grid-cols-5 gap-6 content-center;
+}
+
+.bento > * {
+  @apply p-6 border-2 dark:border-gray-800 border-gray-300 shadow-xl rounded mt-0
+}
+
+/* remove author picture border */
+.author img {
+	border: none;
+}

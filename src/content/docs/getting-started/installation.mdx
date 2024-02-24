@@ -1,0 +1,640 @@
+---
+title: Installation
+tableOfContents:
+  maxHeadingLevel: 3
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+As mentioned in the [Introduction](/introduction/what-is-tidal), TidalCycles consists of a stack of components.
+Specifically, the stack contains, from the bottom up:
+- [SuperCollider](https://supercollider.github.io/), the backend audio server that makes the sound, with the additional [SC3 plugins](https://github.com/supercollider/sc3-plugins);
+- [SuperDirt](https://github.com/musikinformatik/SuperDirt), the sample library and synth engine used by Tidal, installed in SuperCollider;
+- the Tidal pattern engine (TidalCycles itself), which runs on [the Haskell Language](https://www.haskell.org/) (usually installed with [ghcup](https://www.haskell.org/ghcup/)), and which can be installed through [cabal](https://www.haskell.org/cabal/), Haskell's package manager;
+- and a code editor such as [Pulsar](https://pulsar-edit.dev/), which talks to Tidal via a [plugin](https://github.com/tidalcycles/pulsar-tidalcycles).
+
+On this page you will find guides for building up this stack for [Linux](#linux), [macOS](#macos), and [Windows](#windows).
+This can possibly be done automatically, so use whichever method suits your situation best.
+Don't be afraid to reach out for help via the community if you get stuck!
+
+
+## Automatic installation
+
+<Tabs>
+
+<TabItem label="Linux">
+
+  On Linux, you can use the [Ansible playbook by Bernard Gray](https://github.com/cleary/ansible-tidalcycles).
+  For more information, see the linked repository, as well as the [Tidal Club thread](https://club.tidalcycles.org/t/install-manage-upgrades-to-tidal-environment-with-a-single-command-on-ubuntu-debian-linux-mint-ansible-method/544).
+
+</TabItem>
+
+<TabItem label="macOS">
+
+  For macOS there is an installation script, [tidal-bootstrap](https://github.com/tidalcycles/tidal-bootstrap).
+  This method is recommended if you are new to Tidal and don't already have SuperCollider and SuperDirt.
+  If you have these or if you are well versed in managing command line installations, then use the manual installation steps below.
+
+</TabItem>
+
+<TabItem label="Windows">
+
+  Using the package manager [Chocolatey](https://chocolatey.org/) and will install everything you need, including required dependencies.
+  The installer assumes that these aren't installed already. If you do have some components (SuperCollider, SuperDirt, etc) it is recommended to use Manual installation steps for the remaining components.
+
+  After installing Chocolatey, you can run the following command to install TidalCycles:
+
+  ```bash
+  choco install tidalcycles
+  ```
+
+  :::note
+  The full install will take time (30+ minutes). It is best to let it run to the end, but if it exits without completion or if you need to abort, you can try running this command again. Choco will skip over any package dependencies that are already complete.
+  :::
+
+  {/* TODO: link to tidalcycles choco package definition and where support can be found */}
+
+</TabItem>
+
+</Tabs>
+
+
+## Manual installation
+
+<Tabs>
+
+<TabItem label="Linux">
+
+Most modern distros will have all or most of the components of a Tidal installation available via their respective package managers.
+
+#### Preparation
+
+Make sure your user is a a member of the `audio` group:
+
+```bash
+sudo usermod -a -G audio $USER
+```
+    
+Logout and log back in for it to take effect. You can check if it worked with:
+
+```bash
+groups | grep audio
+```
+
+Next, install the necessary dependencies.
+
+<Tabs>
+  <TabItem label="Debian">
+    ```bash
+    sudo apt update && sudo apt install \
+      git jackd2 qjackctl zlib1g-dev gcc g++ ghc cabal-install
+    ```
+  </TabItem>
+
+  <TabItem label="Arch">
+    ```bash
+    sudo pacman -Syu && sudo pacman -Sy git jack2 qjackctl
+    sudo pacman -R lib32-mesa-demos mesa-demos # remove conflicts
+    ```
+  </TabItem>
+
+  <TabItem label="Fedora">
+    ```bash
+    sudo dnf install git-core qjackctl gcc-c++ cabal-install
+    ```
+  </TabItem>
+</Tabs>
+
+    
+#### SuperCollider Installation
+
+Install SuperCollider and the SC3-Plugins
+
+<Tabs>
+  <TabItem label="Debian">
+    ```bash
+      sudo apt install supercollider sc3-{plugins,plugins-language,plugins-server}
+    ```
+  </TabItem>
+
+  <TabItem label="Arch">
+    ```bash
+      sudo pacman -Sy supercollider sc3-plugins
+    ```
+  </TabItem>
+
+  <TabItem label="Fedora">
+    ```bash
+      sudo dnf install supercollider
+      # sc3-plugins for Fedora is provided by a 3rd party repo
+      sudo dnf copr enable ycollet/audinux
+      sudo dnf install supercollider-sc3-plugins
+      sudo dnf copr disable ycollet/audinux # (you may choose to leave it enabled)
+    ```
+  </TabItem>
+</Tabs>
+
+#### SuperDirt Installation
+
+SuperDirt is a plugin or "Quark" for SuperCollider, and functions as the audio engine for TidalCycles. It also provides the default set of samples.
+    
+Get the version number of the latest SuperDirt release by checking the [GitHub releases page](https://github.com/musikinformatik/SuperDirt/releases) or by running
+
+```bash
+git ls-remote https://github.com/musikinformatik/SuperDirt.git | grep tags | tail -n1 | awk -F/ '{print $NF}'
+```
+
+Install SuperDirt by starting the SuperCollider shell with the `sclang` command, then running the following (update the version number if required):
+
+```c
+Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.3"); thisProcess.recompile()})
+```
+
+The command returns immediately but processes in the background. Wait for it to finish and, once completed, press `Ctrl+d` to exit `sclang`.
+
+#### Tidal Installation
+
+Install Tidal:
+
+<Tabs>
+  <TabItem label="Debian & Fedora">
+    ```bash
+      cabal update && cabal install tidal --lib
+    ```
+  </TabItem>
+
+  <TabItem label="Arch">
+    ```bash
+      sudo pacman -Sy ghc ghc-libs haskell-{tidal,bifunctors,colour,hosc,mwc-random,network,primitive,random,vector,microspec}
+    ```
+  </TabItem>
+</Tabs>
+
+Almost done! The final installation step is to choose and install a [text editor (see below)](#get-a-text-editor) to interact with TidalCycles.
+
+</TabItem>
+
+<TabItem label="macOS">
+
+{/* TODO: Add links to instructions for supercollider, SC3 plugins, and ghcup */}
+
+#### SuperCollider and SuperDirt
+
+Install SuperCollider.
+
+Start your freshly installed version of SuperCollider and paste the following line of code in the text editor. Press `Cmd+Return` to evaluate it.
+
+```c
+Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.3"); thisProcess.recompile()})
+```
+
+It'll take a while to install. You will know when the installation process is done by looking at the logs window. You'll see something like the following:
+
+```
+Installing SuperDirt
+Installing Vowel
+Vowel installed
+Installing Dirt-Samples
+Dirt-Samples installed
+SuperDirt installed
+compiling class library...
+
+...
+
+<!--T:31-->
+*** Welcome to SuperCollider 3.11.2. *** For help press Ctrl-D.
+```
+
+#### Tidal
+
+Install Haskell via `ghcup`.
+
+Then, in a terminal window, we will add the path to our GHC installation to a file that is executed by our terminal every time it loads.
+
+For macOS10.15 Catalina, the terminal uses `zsh`, so the file we need to modify is `.zshrc`:
+
+```bash
+. "$HOME/.ghcup/env"
+echo '. $HOME/.ghcup/env' >> "$HOME/.zshrc"
+```
+
+For macOS 10.14 or before, the terminal uses `bash`, so the file we need to modify is `.bashrc`.
+Replace `.zshrc` in the above command with `.bashrc`.
+
+After this, we will use `cabal` to install the TidalCycles library.
+We will also run these two commands every time we want to update our TidalCycles library to the latest version.
+
+```bash
+cabal update
+cabal v1-install tidal
+```
+
+If you've never installed TidalCycles before, then the `cabal v1-install tidal` step may take some time.
+At the end of the command output, it should say `Installed tidal-x.x.x` (where `x.x.x` is the latest version number) without any errors.
+
+Almost done! The final installation step is to choose and install a [text editor (see below)](#get-a-text-editor) to interact with TidalCycles.
+
+</TabItem>
+
+<TabItem label="Windows">
+
+#### SuperCollider
+
+See [SuperCollider Downloads](https://supercollider.github.io/downloads),
+the [SuperCollider README](https://github.com/supercollider/supercollider),
+and the [Windows README](https://github.com/supercollider/supercollider/blob/develop/README_WINDOWS.md).
+
+The [SC3 Plugins](https://supercollider.github.io/sc3-plugins/) are also needed if you want to use any of the synthesizers included with TidalCycles.
+Follow the linked instructions to install them.
+
+#### SuperDirt
+
+To install SuperDirt, open SuperCollider and run the following command in the interactive editor (press Ctrl+Return to evaluate):
+
+```c
+Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.3"); thisProcess.recompile()})
+```
+
+The installation will take a little while. You will know when the installation process is done by looking at the logs window. It will likely print something like the following:
+
+```
+Installing SuperDirt
+Installing Vowel
+Vowel installed
+Installing Dirt-Samples
+Dirt-Samples installed
+SuperDirt installed
+compiling class library...
+
+...
+
+*** Welcome to SuperCollider 3.12.1. *** For help press Ctrl-D.
+```
+
+#### Haskell
+
+Install `ghcup` — see [Haskell `ghcup`](https://www.haskell.org/ghcup/) for info.
+For assistance, see the [Windows ghcup install](https://www.youtube.com/watch?v=bB4fmQiUYPw) YouTube video.
+
+Run this command in Windows PowerShell (as admin):
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; try { Invoke-Command -ScriptBlock ([ScriptBlock]::Create((Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing))) -ArgumentList $true } catch { Write-Error $_ }
+```
+
+This should install GHCi v9.25. But Tidal 1.9.3+ is best with GHC 9.6.1 and `cabal` 3.10.1.0.
+Run these commands from PowerShell (as admin) to get the correct GHC and `cabal` versions:
+
+```powershell
+ghcup install ghc 9.6.1
+ghcup install cabal 3.10.1.0
+ghcup set ghc 9.6.1
+ghcup set cabal 3.10.1.0
+```
+
+To verify that the above commands worked, run
+
+```powershell
+ghci --version  
+cabal --version
+```
+
+#### TidalCycles
+
+In PowerShell, run the following commands:
+
+```powershell
+cabal update
+cabal v1-install tidal
+```
+
+Make sure to use `v1-install`, as `v2-install tidal` may not work.
+
+Almost done! The final installation step is to choose and install a [text editor (see below)](#get-a-text-editor) to interact with TidalCycles.
+
+{/* TODO: Tidal install? */}
+
+</TabItem>
+
+</Tabs>
+
+## Get a text editor
+
+### Pulsar
+
+[Pulsar](https://pulsar-edit.dev/) is a code editor that is open-source and community-led.
+It is based on Atom and was started after the announcement that Atom will be [sunset](https://github.blog/2022-06-08-sunsetting-atom/).
+Pulsar has a Package Manager which provides for community contributions, including our TidalCycles package.
+
+:::caution
+Known issues
+- macOS performance issues may be resolved by disabling the `github` package
+- Auto-complete with default settings can be slower and more intrusive for livecoding. Possble workarounds include increasing "Delay Before Suggestions are Shown" to 100 or 1000 in the `autocomplete-plus package`, or disabling the package entirely.
+:::
+
+See the [`#pulsar` channel on Discord](https://discord.com/channels/779427371270275082/1047429699346903132) for support and discussion.
+
+### VS Code
+
+[VSCode](https://code.visualstudio.com/) is a popular general purpose text/code editor published by Microsoft, with some open-source components.
+TidalCycles code can be written in VS Code through the [TidalCycles Extension](https://marketplace.visualstudio.com/items?itemName=tidalcycles.vscode-tidalcycles).
+Also see the [extension repository on GitHub](https://github.com/kindohm/vscode-tidalcycles) if you want to report an issue or contribute to its development.
+
+The VS Code TidalCycles extension features an audio file browser.
+After installation, click on the TidalCycles logo in the left pane to see all the samples currently available for Tidal.
+From there you can preview them, and insert them directly in your code.
+
+### Vim / Neovim
+
+[Vim](https://www.vim.org) is the [classic and ubiquitous](https://en.wikipedia.org/wiki/Vim_(text_editor)) text editor.
+This editor is famous for its minimalistic approach, flexibility, and for its unique approach to [modal editing](https://en.wikipedia.org/wiki/Vi#Interface).
+Vim and [Neovim](https://neovim.io/), a version with new and updated features, are free, cross-platform, and open-source.
+They can be extended through the help of plugins, and are generally more configurable than other text editors.
+Vim has a very long history and has the reputation of being very stable and fast.
+It does, however, have a steep learning curve, and is mostly used by experienced users, but fluency allows the user to edit text very fast.
+
+[Vim-Tidal](https://github.com/tidalcycles/vim-tidal) is the recommended plugin to interact with TidalCycles.
+It will work for both [Vim](https://www.vim.org/) and [Neovim](https://neovim.io/), and will adapt to your setup.
+You can use Neovim's native `terminal` functionality, as well as `tmux` or other multiplexers.
+Check the [README](https://github.com/tidalcycles/vim-tidal#readme) file for more information about the installation process.
+
+Other Vim plugins can add functionality that could be useful for livecoding.
+For example — as suggested by `@guiot` on the [Tidal Club Forum](https://club.tidalcycles.org) — you can keep track of your improvisations using the [undotree](https://github.com/mbbill/undotree).
+Using the undotree wisely is a great way to backtrack in time or to keep a `plaintext` trace of your improvisations.
+By default, `undotree` will record every little tiny changes in your text file.
+Activate the `undotree` for a file by entering the `:UndotreeToggle` command.
+
+### Emacs
+
+{/* TODO: clean up emacs section */}
+
+Emacs is, like Vim, a classic programmer's editor with a long history.
+Emacs is much more than just a text editor, but it (also) has the reputation of being a little difficult to use at first.
+For a while, Emacs was the only editor that worked with Tidal!  
+
+Emacs has packages for both [Tidal](https://github.com/tidalcycles/Tidal/blob/main/tidal.el) and [SuperCollider](https://github.com/supercollider/scel).
+Learning Emacs can be intimidating at first, but it is also a very rewarding experience.
+Emacs is actually a whole computing environment, and you can do pretty much everything you can imagine with this software (including sending emails and reading books).
+The heart of Emacs is customization: there is a fully-fledged programming language (Emacs-Lisp) to do so.
+
+Depending on your OS, you might have to install it in very different ways.
+Check what is the recommended distribution for your system.
+Once installed, be sure to check out one of the most popular configuration frameworks if you want to make things easier:
+- [Doom Emacs](https://github.com/hlissner/doom-emacs)
+- [Spacemacs](https://github.com/syl20bnr/spacemacs)
+
+The `tidal.el` file can be found here: [tidal.el](https://raw.github.com/tidalcycles/Tidal/master/tidal.el).
+
+To install the Emacs interface to Tidal, you’ll need to edit the configuration file in your home folder called `.emacs`.
+If it doesn’t exist, create it. Then, add the following, replacing `\~/projects/tidal` with the location of the `tidal.el` file:
+
+```lisp
+(add-to-list 'load-path "~/projects/tidal")
+(require 'haskell-mode)
+(require 'tidal)
+```
+
+If you are using the Spacemacs custom distribution for Emacs, you should be able to use a layer made for it by `rbino`.
+If you are using the develop branch, you just need to add `tidalcycles` to `dotspacemacs-configuration-layers`, and it should work out of the box.
+Reload the configuration with `SPC f e R` or restart Spacemacs for the changes to take effect. 
+The Tidal mode will load automatically whenever you open a `.tidal` file. Press `Ctrl/Cmd+Return` to evaluate a line. Explore the other shortcuts or map them to your liking.
+
+If you are using Doom Emacs, edit your `packages.el` file (enter `space f p` and select `packages.el`) and add `(package! tidal)` in a new line.
+In your terminal, go to `~/.emacs.d/bin` and run `./doom sync`.
+Wait until the update process is done and relaunch Doom Emacs.
+Edit your `BootTidal.hs` path by typing `space f p`, and selecting `config.el`.
+Anywhere in this file, enter the following line:
+
+```lisp
+(setq tidal-boot-script-path "~/.cabal/share/x86_64-osx-ghc-8.8.4/tidal-1.7.4/BootTidal.hs")
+```
+
+You can now open any `.tidal` file you want.
+If the highlighting is not showing up, run `tidal-mode`.
+Launch Haskell with `C-c C-s`, and eval regions with `C-c C-e`.
+
+A MELPA package is also provided for TidalCycles integration within Emacs.
+You must first make sure you have MELPA installed on your machine ([instructions](https://melpa.org/#/getting-started);
+basically modifying your `init.el` or `.emacs` files with the first code snippet and then executing `M-x package-refresh-contents` in Emacs.
+Simply run `M-x package-install`, followed by `tidal`.
+This extension provides a major mode for `*.tidal` files.
+Once the package is installed, you can just open a Tidal script and press `C-c C-s` to start Tidal in Emacs, then `C-return` to run the statement under your cursor.
+
+#### Test Tidal with Emacs
+
+You should now have installed the Tidal Mode for Emacs. Open a new file, and give it a random name like `helloworld.tidal`. Once the file is opened, you still have to start Tidal. Enter `Ctrl-C` and then `Ctrl-S` to start. Check if Emacs and Tidal are working correctly by entering the following line and by pressing `Ctrl+Enter` to evaluate the single-line block:
+
+```haskell
+d1 $ brak $ sound "bd sn/2"
+```
+
+:::tip
+`Ctrl+Enter`: evaluate a single line.
+
+`Ctrl+C Ctrl+E`: evaluate multiple lines.
+
+For more shortcuts, look inside the `tidal.el` file.
+:::
+
+:::note
+Advanced Users: please notice that the location of the `BootTidal.hs` file is defined in the `tidal.el` file to be:
+```shell
+ghc-pkg describe $(ghc-pkg latest tidal) | grep data-dir | cut -f2 -d ' '
+```
+You might need to override this, e.g. with the following setting (replace the path with the actual location of the BootTidal.hs file).
+```lisp
+(setq tidal-boot-script-path "~/.cabal/share/x86_64-linux-ghc-8.6.5/tidal-1.4.8/BootTidal.hs")
+```
+You only need to actually change this file if you want to tweak the
+`superdirtTarget`, e. g. to use SuperCollider on a remote host.
+:::
+
+### Helix
+
+[Helix](https://helix-editor.com) is a code editor — written in Rust — with a fast-growing community.
+It takes inspiration from other modal editors like Vim, but aims to be vastly simplified while just as capable.
+Helix also aims to have things "just work", and features such as LSPs work out of the box.
+It does not, however, have a plugin system yet.
+
+To send text from Helix to Tidal, you can use `tmux`: run the Tidal command line, and use the Helix "pipe to command" feature to run a `tmux` command to input the keystrokes in the Tidal command line.
+See [this post by `@trespaul` on the Tidal Club forum](https://club.tidalcycles.org/t/language-server-protocol/1525/12) for more details.
+
+### Sublime Text
+
+[Sublime Text](https://club.tidalcycles.org/t/language-server-protocol/1525/12) is a popular cross-platform text editor.
+It is closed source and costs $70 USD. You can still use Sublime Text without buying it but be ready to deal with an ominous pop-up window that remind you to buy it every few minutes.
+Sublime Text is very lightweight and highly configurable.
+
+To do live coding in Sublime Text, you need to install the *Sublime REPL* package via *Package Control*.
+To avoid fiddling with the existing *Haskell REPL* supplied by *Sublime REPL*, clone this modified version of it into the *Sublime REPL* config folder (which is found in e.g., `~/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/config`):
+
+```bash
+git clone https://gist.github.com/lvm/e0943b0d42507af60eee174ed263adde Tidal
+```
+:::caution
+The boot up code used by the *Sublime REPL* is currently broken.
+A simple fix is to copy and paste the code from [this link](https://github.com/tidalcycles/Tidal/blob/main/BootTidal.hs)
+into `config/Tidal/ghci-tidal.conf`, replacing whatever was already there.
+:::
+
+
+## Getting Help
+
+If you are having trouble with installation, here are options:
+- Review this page carefully and make sure you are following all instructions.  
+- For individual component problems - such as SuperCollider and SuperDirt - check their ReadMe pages in GitHub:  
+    - [SuperCollider Readme](https://github.com/supercollider/supercollider)
+    - [SuperDirt Readme](https://github.com/musikinformatik/SuperDirt)
+- [TidalCycles Discord - Installation Help Channel](https://discord.com/channels/779427371270275082/779487905822801930)
+    - Try searching this channel to see if your problem has been experienced by others
+    - Be sure to post details - what exact problem, error messages, what Windows version, etc.
+    - See the "how to ask" channel for more about getting help from our community
+- [Forums - Tidal Club](https://club.tidalcycles.org/)  A lot of smart people hang out here.
+- Don't get discouraged! Tidal has a complex stack, but these components are all proven, robust and stable. Once it is all working, it rarely needs to have any attention.
+
+
+{/* TODO: clean up upgrading, downgrading, and uninstallation sections */}
+
+## Upgrading
+
+TidalCycles is a composite software. To upgrade it, it is *highly* recommended to upgrade everything along with the pattern library (the text editor and the SuperDirt audio engine as well). Each time a new version of Tidal is released, a new version of SuperDirt will likely follow, etc...
+
+### Ghc
+
+If you are using windows, you will need at least version 9.4.2 of ghc installed, e.g. [via chocolatey](https://community.chocolatey.org/packages/ghc). 
+
+For linux and mac, you don't need to upgrade ghc.
+
+### Library 
+
+Upgrade tidal with the following from a terminal window (Linux/MacOS/Windows):
+
+``` shell
+cabal update
+cabal v1-install tidal
+```
+
+If you originally installed tidal with 'cabal install' rather than 'cabal v1-install', you might have to run the following command instead. However this tends to be less reliable than the above method.
+```shell
+cabal update
+cabal install tidal --lib
+```
+
+If things get messed up, under linux and macos you can remove the folders `.ghc` and `.cabal` from your home folder, and try again. Under windows, you can try the same but by deleting the `c:\Users\<user>\AppData\Roaming\cabal` where `<user>` is your username.
+
+### Editor plugin
+
+Your text editor might refer to the TidalCycles plugin as an *extension* or as a *package*. Check the sidebar to get more information about ways to update your favorite text editor. 
+
+### SuperDirt
+
+To upgrade the SuperDirt sound synthesiser/sampler, open SuperCollider,
+and paste the following command in the interactive editor. Select the text and press Shift+Enter:
+
+``` c
+Quarks.update("SuperDirt")
+```
+
+You'll need to recompile the class library. You can do this either by simply restarting the software or via the *Recompile class library* entry on the *Language* top-bar menu.
+
+
+## Downgrading
+
+Sometimes, you might want to return to an earlier version of Tidal. Use the `ghc-pkg` command to do so. Enter the following commands in your terminal (or Powershell for Windows users) to downgrade your Tidal installation.
+
+
+### Listing all the currently installed versions
+
+This command will list the versions of Tidal you have installed. If there is more than one, the most recent will be used: 
+
+```bash
+ghc-pkg list tidal
+```
+
+### Uninstalling a version 
+
+To uninstall a version, you can do, for example:
+
+```bash
+ghc-pkg unregister tidal-1.0.6
+```
+
+Do this for each version until the most recent is the one you want.
+
+### Choosing a specific version
+
+If you don't have the one you want installed, you can select the desired version:
+
+```bash
+cabal install tidal-0.9.10
+```
+
+
+## Uninstallation
+
+TidalCycles does not provide an easy uninstaller. To uninstall Tidal, you will need to:
+* Uninstall SuperDirt and/or SuperCollider if you are not already using it for another purpose.
+* Uninstall the Tidal library and the GHC compiler.
+
+### Linux
+
+Uninstalling TidalCycles on Linux can be tricky. There are multiple ways of installing it depending on the distribution you are using. Here are some tips you can use to locate all the components that are part of the Tidal install.
+
+#### Using whereis
+
+Type `whereis scide sclang scsynth` in a terminal path to get the path to SuperCollider binaries.
+
+#### SuperDirt Quark
+
+Open SuperCollider. In the `File` menu, click on `Open user support directory`. This menu will take you where SuperDirt is currently installed on your computer. Check in the `downloaded-quarks` for SuperDirt. Don't forget to uninstall the `Dirt-Samples` folder as well. It can be quite heavy (all the samples are located here).
+
+#### Uninstall stack
+
+If you installed Tidal using Stack, you can use a dirty but simple solution to uninstall it. Run `rm -rf $HOME/.stack`. This command will delete the hidden stack folder located in your root directory.
+
+
+Stack will sometimes install a binary located here: `$HOME/.local/bin`. Delete it if you want.
+
+:::caution
+Double-check or triple-check the `rm -rf` command. This is a powerful tool that will delete things definitively. Use it with caution as it can be quite dangerous if you mess with it.
+:::
+
+#### Clean up cabal and GHC
+
+To clean up `cabal` and `GHC` (user-installed packages), try running the following command in a terminal window:
+```bash
+rm ~/.cabal ~/.ghc
+```
+
+:::caution
+Double-check or triple-check the `rm -rf` command. This is a powerful tool that will delete things definitively. Use it with caution as it can be quite dangerous if you mess with it.
+:::
+
+### Windows
+For chocolatey installs, see the instructions for [Windows Chocolatey Cleanup](https://tidalcycles.org/docs/getting-started/windows-choco-cleanup). 
+
+### MacOS
+
+#### Using uninstall-hs
+
+Open a terminal window and type `uninstall-hs`. This command will delete many things Haskell related from your computer.
+
+#### Uninstalling ghcup
+
+If you installed Tidal using `ghcup`, you can try a hacky solution. Open a terminal window and paste `rm -rf ~/.ghcup`. This will delete the `.ghcup` hidden directory that was living in your root directory.
+
+:::caution
+Double-check or triple-check the `rm -rf` command. This is a powerful tool that will delete things definitively. Use it with caution as it can be quite dangerous if you mess with it.
+:::
+
+#### Clean up cabal and GHC
+
+To clean up `cabal` and `GHC` (user-installed packages), try running the following command in a terminal window:
+```bash
+rm ~/.cabal ~/.ghc
+```
+
+:::caution
+Double-check or triple-check the `rm -rf` command. This is a powerful tool that will delete things definitively. Use it with caution as it can be quite dangerous if you mess with it.
+:::
+
