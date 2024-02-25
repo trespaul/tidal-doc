@@ -57,10 +57,14 @@ tailwind.config.mjs         --- tailwind config, theming
   - Connect MIDI devices
   - Visualise events
   - etc.
-- **Explanation** [more in-depth theoretical explanation of internals; Haskell stuff [TODO: identify topics]]
-  - ...
+- **Explanation** [more in-depth theoretical explanation of internals; Haskell stuff [TODO: identify topics]; these suggestions by ninioArtillero on Discord]
+  - Haskell syntax for Tidal [use of `$`, `#`, and `.`; left and right associativity, layout rules]
+  - The Pattern data type
+  - Types and typeclasses [crash course]
+  - FRP and pattern semantics
+  - The SuperDirt OSC interface
 - **Reference**
-  - Tidal functions [technical documentation, lists of functions]
+  - Tidal functions [technical documentation, lists of functions; autogenerate?]
     - Tempo
     - Time
     - etc.
