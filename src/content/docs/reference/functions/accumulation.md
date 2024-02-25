@@ -9,7 +9,7 @@ This page will present you all the functions that can be used to pile up things:
 * **Examples**: a small list of examples that you can copy/paste in your editor.
 
 ## Superposition
-### overlay
+### `overlay`
 
 ```haskell
 Type: overlay :: Pattern a -> Pattern a -> Pattern a
@@ -27,19 +27,19 @@ d1 $ sound (overlay "bd sn:2" "cp*3")
 d1 $ sound "[bd sn:2, cp*3]"
 ```
 
-### \<\>
+### `<>`
 
 ```haskell
 Type: (<>) :: Pattern a -> Pattern a -> Pattern a
 ```
 
-`\<\>` is the same as overlay described above but in operator form. For example:
+`<>` is the same as overlay described above but in operator form. For example:
 
 ```haskell
 d1 $ sound ("bd sn:2" <> "cp*3")
 ```
 
-### stack
+### `stack`
 
 ```haskell
 Type: stack :: [Pattern a] -> Pattern a
@@ -65,7 +65,7 @@ d1 $ whenmod 5 3 (striate 3) $ stack [
 ] # speed "[[1 0.8], [1.5 2]*2]/3"
 ```
 
-### superimpose
+### `superimpose`
 
 ```haskell
 Type: superimpose :: (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -85,7 +85,7 @@ d1 $ stack [sound "bd sn [cp ht] hh",
            ]
 ```
 
-### layer
+### `layer`
 
 ```haskell
 Type: [a -> Pattern b] -> a -> Pattern b
@@ -101,7 +101,7 @@ If you want to include the original version of the pattern in the layering, use 
 d1 $ layer [id, rev, fast 2] $ sound "arpy [~ arpy:4]"
 ```
 
-### steps
+### `steps`
 
 ```haskell
 Type: steps :: [(String,String)] -> Pattern String
@@ -114,7 +114,7 @@ d1 $ s (steps [("cp","x  x x  x x  x"),("bd", "xxxx")])
 
 ## Building iterations
 
-### iter
+### `iter`
 
 ```haskell
 Type: iter :: Pattern Int -> Pattern a -> Pattern a
@@ -134,7 +134,7 @@ sn cp bd hh
 cp bd hh sn
 ```
 
-### iter'
+### `iter'`
 
 `iter'` does the same as `iter` but in the other direction. So this:
 

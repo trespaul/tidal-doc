@@ -10,7 +10,7 @@ This page will present you all the functions that can be used to add conditions 
 
 ## Conditions on cycle numbers
 
-### every
+### `every`
 ```haskell
 Type: every :: Pattern Int -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
 ```
@@ -29,7 +29,7 @@ d1 $ every 3 (fast 2) $ n "0 1 [~ 2] 3" # sound "arpy"
 
 Otherwise, the `every` function will think it is being passed too many parameters.
 
-### every'
+### `every'`
 
 ```haskell
 Type: every' :: Int -> Int -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -51,7 +51,7 @@ d1 $ every 3 (mask "~") $ n "2 9 10 2" # s "hh27"
 d1 $ every 3 (mask "0 0 0 0") $ n "2 9 11 2" # s "hh27"
 ```
 
-### foldEvery
+### `foldEvery`
 
 ```haskell
 Type: foldEvery :: [Int] -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -65,7 +65,7 @@ d1 $ foldEvery [5,3] (|+ n 1) $ s "moog" # legato 1
 
 The first `moog` samples are tuned to C2, C3 and C4. Note how on cycles multiple of 3 or 5 the pitch is an octave higher, and on multiples of 15 the pitch is two octaves higher, as the transformation is applied twice.
 
-### when
+### `when`
 
 ```haskell
 Type: when :: (Int -> Bool) -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -79,7 +79,7 @@ d1 $ when ((elem '4').show) (striate 4) $ sound "hh hc"
 
 The above will only apply striate `4` to the pattern if the current cycle number contains the number `4`. So the fourth cycle will be striated and the fourteenth and so on. Expect lots of striates after cycle number `399`.
 
-### whenT
+### `whenT`
 
 ```haskell
 Type: whenT :: (Time -> Bool) -> (Pattern a -> Pattern a) ->  Pattern a -> Pattern a
@@ -93,7 +93,7 @@ d1 $ whenT ((< 0.5).(flip Data.Fixed.mod' 2)) (# speed 2) $ sound "hh(4,8) hc(3,
 
 The above will apply `# speed 2` only when the remainder of the current `Time` divided by `2` is less than `0.5`.
 
-### whenmod
+### `whenmod`
 
 ```haskell
 Type: whenmod :: Int -> Int -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -104,7 +104,7 @@ Type: whenmod :: Int -> Int -> (Pattern a -> Pattern a) -> Pattern a -> Pattern 
 d1 $ whenmod 8 4 (fast 2) (sound "bd sn kurt")
 ```
 
-### ifp
+### `ifp`
 
 ```haskell
 Type: ifp :: (Int -> Bool) -> (Pattern a -> Pattern a) -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -125,7 +125,7 @@ The test function does not rely on anything Tidal-specific, it uses plain Haskel
 
 ## Conditions on ControlPatterns
 
-### fix
+### `fix`
 
 ```haskell
 Type: fix :: (ControlPattern -> ControlPattern) -> ControlPattern -> ControlPattern -> ControlPattern
@@ -145,11 +145,11 @@ fix (hurry 2) (s "drum" # n "1")
 ```
 to apply the function `hurry 2` to sample `1` of the drum sample set, and leave the rest as they are.
 
-### unfix
+### `unfix`
 
 `unfix` is `fix` but only applies when the testing pattern is *not* a match.
 
-### contrast
+### `contrast`
 
 ```haskell
 Type: contrast :: (ControlPattern -> ControlPattern) -> (ControlPattern -> ControlPattern) -> ControlPattern -> ControlPattern -> ControlPattern
@@ -171,7 +171,7 @@ d1 $ contrast (|+ n 12) (|- n 12) (s "<superpiano superchip>") $ s "superpiano s
 
 If you listen to this you'll hear that which instrument is shifted up and which instrument is shifted down alternates between cycles.
 
-### contrastBy
+### `contrastBy`
 
 ```haskell
 Type: contrastBy :: (a -> Value -> Bool) -> (ControlPattern -> Pattern b) -> (ControlPattern -> Pattern b) -> Pattern (Map.Map String a) -> Pattern (Map.Map String Value) -> Pattern b
@@ -187,7 +187,9 @@ d2 $ contrastBy (>=) (|+ n 12) (|- n 12) (n "2") $ n "0 1 2 [3 4]" # s "superpia
 In the latter example, we test for "greater than or equals to" instead of simple equality.
 
 ## Choosing patterns and functions
-### choose
+
+### `choose`
+
 ```haskell
 Type: choose :: [a] -> Pattern a
 ```
@@ -198,7 +200,7 @@ d1 $ sound "drum ~ drum drum" # n (choose [0,2,3])
 
 As with all continuous patterns, you have to be careful to give them structure; in this case choose gives you an infinitely detailed stream of random choices.
 
-### chooseby
+### `chooseby`
 
 ```haskell
 Type: chooseBy :: Pattern Double -> [a] -> Pattern a
@@ -209,7 +211,7 @@ chooseBy "0 0.25 0.5" ["a","b","c","d"]
 ```
 will result in the pattern `"a b c" `.
 
-### wchoose
+### `wchoose`
 
 ```haskell
 Type: wchoose :: [(a, Double)] -> Pattern a
@@ -224,7 +226,7 @@ d1 $ sound "drum ~ drum drum" # n (wchoose [(0,0.25),(2,0.5),(3,0.25)])
 Prior to version `1.0.0` of Tidal, the weights had to add up to `1`, but this is no longer the case.
 :::
 
-### wchooseby
+### `wchooseby`
 
 ```haskell
 Type: wchooseBy :: Pattern Double -> [(a,Double)] -> Pattern a
@@ -232,35 +234,35 @@ Type: wchooseBy :: Pattern Double -> [(a,Double)] -> Pattern a
 
 The `wchooseBy` function is like `wchoose` but instead of selecting elements of the list randomly, it uses the given pattern to select elements.
 
-### select
+### `select`
 
 ```haskell
 select :: Pattern Double -> [Pattern a] -> Pattern a
 ```
 Chooses between a list of patterns, using a pattern of floats (from `0` to `1`).
 
-### selectF
+### `selectF`
 
 ```haskell
 selectF :: Pattern Double -> [Pattern a -> Pattern a] -> Pattern a -> Pattern a
 ```
 Chooses between a list of functions, using a pattern of floats (from `0` to `1`)
 
-### pickF
+### `pickF`
 
 ```haskell
 pickF :: Pattern Int -> [Pattern a -> Pattern a] -> Pattern a -> Pattern a
 ```
 Chooses between a list of functions, using a pattern of integers.
 
-### squeeze
+### `squeeze`
 
 ```haskell
 squeeze :: Pattern Int -> [Pattern a] -> Pattern a
 ```
 Chooses between a list of patterns, using a pattern of integers.
 
-### inhabit
+### `inhabit`
 
 ```haskell
 inhabit :: [(String, Pattern a)] -> Pattern String -> Pattern a
@@ -279,7 +281,7 @@ do
 
 ## Boolean conditions
 
-### struct
+### `struct`
 
 ```haskell
 Type: struct :: Pattern Bool -> Pattern a -> Pattern a
@@ -313,7 +315,7 @@ d1 $ struct (every 3 inv "t(3,8)") $ sound "cp"
 
 In the above, the euclidean pattern creates `"t f t f t f f t"` which gets inverted to `"f t f t f t t f"` every third cycle. Note that if you prefer you can use `1` and `0` instead of `t` and `f`.
 
-### mask
+### `mask`
 
 ```haskell
 Type: mask :: Pattern Bool -> Pattern a -> Pattern a
@@ -340,7 +342,8 @@ d1 $ mask "1 ~ 1 ~ 1 1 ~ 1"
   # n (run 8)
 ```
 
-### sew
+### `sew`
+
 ```haskell
 Type: Pattern Bool -> Pattern a -> Pattern a -> Pattern a
 ```
@@ -361,7 +364,7 @@ You can also use Euclidean rhythm syntax in the boolean sequence:
 d1 $ sew "t(11,16)" (n "0 .. 15" # s "future") (s "cp:3*16" # speed sine + 1.5)
 ```
 
-### stitch
+### `stitch`
 
 ```haskell
 Type: Pattern Bool -> Pattern a -> Pattern a -> Pattern a
@@ -375,7 +378,7 @@ d1 $ ccv (stitch "t(7,16)" 127 0) # ccn 0  # "midi"
 
 ## Euclidians
 
-### euclid
+### `euclid`
 
 ```haskell
 Type: euclid :: Pattern Int -> Pattern Int -> Pattern a -> Pattern a
@@ -397,7 +400,8 @@ d1 $ sound "cp(3,8)"
 d1 $ euclid "<3 5>" "[8 16]/4" $ s "bd"
 ```
 
-### euclidInv
+### `euclidInv`
+
 ```haskell
 Type: euclidInv :: Pattern Int -> Pattern Int -> Pattern a -> Pattern a
 ```
@@ -409,7 +413,7 @@ d1 $ stack [euclid 5 8 $ s "bd",
 ```
 to hear that the hi-hat event fires on every one of the eight even beats that the bass drum does not.
 
-### euclidFull
+### `euclidFull`
 
 ```
 Type: euclidFull :: Pattern Int -> Pattern Int -> Pattern a -> Pattern a ->Pattern a
@@ -424,7 +428,8 @@ is equivalent to our above example.
 
 ## ControlPattern conditions
 
-### fix
+### `fix`
+
 ```haskell
 Type: fix :: (ControlPattern -> ControlPattern) -> ControlPattern -> ControlPattern -> ControlPattern
 ```
@@ -434,7 +439,8 @@ With `fix` you can apply a ControlPattern as a condition and apply a function wi
 d1 $ fix (ply 2) (s "hh") $ s "bd hh sn hh"
 ```
 
-### fixRange
+### `fixRange`
+
 ```haskell
 fixRange :: (ControlPattern -> Pattern ValueMap) -> Pattern (Map.Map String (Value, Value)) -> ControlPattern -> ControlPattern
 ```
@@ -444,7 +450,7 @@ The `fixRange` function isn't very user-friendly at the moment but you can creat
 d1 $ (fixRange ((# distort 1) . (# gain 0.8)) (pure $ Map.singleton "note"  ((VN 0, VN 7)))) $ s "superpiano" <| note "1 12 7 11"
 ```
 
-## ifp
+## `ifp`
 
 ```haskell
 Type: ifp :: (Int -> Bool) -> (Pattern a -> Pattern a) -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a

@@ -8,7 +8,9 @@ This page will present you all the functions that can be used to deal with harmo
 * **Examples**: a small list of examples that you can copy/paste in your editor.
 
 ## Scales
-### scale
+
+### `scale`
+
 ```haskell
 Type: scale :: Num a => Pattern String -> Pattern Int -> Pattern a
 ```
@@ -24,7 +26,7 @@ d1 $ jux rev $ chunk 4 (fast 2 . (|- n 12)) $ off 0.25 (|+ 7) $ struct (iter 4 "
 Prior to Tidal version 1.0.0, scale had a very different function as a `range` operator. Veteran users will need to switch to using `range` for this functionality.
 :::
 
-### scaleList
+### `scaleList`
 
 ```haskell
 Type: scaleList :: String
@@ -44,7 +46,7 @@ messiaen4 messiaen5 messiaen6 messiaen7 chromatic bayati hijaz sikah rast
 saba iraq
 ```
 
-### scaleTable
+### `scaleTable`
 
 ```haskell
 Type: scaleTable :: Fractional a => [(String, [a])]
@@ -68,7 +70,7 @@ filter (\(_,x)->take 3 x==[0,2,4]) scaleTable
 
 The above example will output all scales, the first three notes of which are the root, the major second (`2` semitones above the fundamental), and the major third (`4` semitones above the root).
 
-### getScale
+### `getScale`
 
 ```haskell
 Type: getScale :: Num a => [(String, [a])] -> Pattern String -> Pattern Int -> Pattern a
@@ -87,7 +89,7 @@ The above takes the standard `scaleTable` as a starting point, and adds two cust
 d1 $ n (scale "techno" "0 1 2 3 4 5 6 7") # sound "superpiano"
 ```
 
-### toScale
+### `toScale`
 
 ```haskell
 Type: toScale :: Num a => [a] -> Pattern Int -> Pattern a
@@ -102,7 +104,7 @@ d1 $ n (toScale [0,2,3,5,7,8,10] "0 1 2 3 4 5 6 7") # sound "superpiano"
 
 ## Chords
 
-### chordList
+### `chordList`
 
 ```haskell
 Type: chordList :: String
@@ -125,7 +127,7 @@ elevenSharp 11s minor11sharp m11sharp m11s
 You'll need to run `import Sound.Tidal.Chords` before using this function.
 :::
 
-### chordTable
+### `chordTable`
 
 ```haskell
 Type: chordTable :: Num a => [(String, [a])]
@@ -155,7 +157,7 @@ You'll need to run `import Sound.Tidal.Chords` before using this function.
 
 ## Arpeggios
 
-### arpeggiate
+### `arpeggiate`
 
 ```haskell
 Type: arpeggiate :: Pattern a -> Pattern a
@@ -167,7 +169,7 @@ The `arpeggiate` (alias `arpg`) function spreads chords of note numbers over tim
 d1 $ n (arpg "'major7 [0,4,7,11]") # sound "superpiano"
 ```
 
-### arp
+### `arp`
 
 ```haskell
 Type: arp :: Pattern String -> Pattern a -> Pattern a
@@ -186,7 +188,7 @@ diverge disconverge pinkyup pinkyupdown
 thumbup thumbupdown
 ```
 
-### rolled
+### `rolled`
 
 ```haskell
 Type: rolled :: Pattern a -> Pattern a
@@ -198,7 +200,7 @@ The `rolled` function takes no arguments, and simulates a downward strum pattern
 d1 $ rolled $ n "<a'm9'8 e'7sus4'8>" # sound "superpiano"
 ```
 
-### rolledBy
+### `rolledBy`
 
 ```haskell
 Type: rolledBy :: Pattern (Ratio Integer) -> Pattern a -> Pattern a
@@ -210,7 +212,7 @@ The `rolledBy` function works the same as `rolled`, but allows you to specify th
 d1 $ rolledBy 0.45 $ n "<a'm9'8 e'7sus4'8>" # sound "superpiano"
 ```
 
-## Chord Modifiers/Voicings
+## Chord Modifiers / Voicings
 
 There are a variety of different chord modifiers available, designed to change the way a chord is "voiced" (note ordering, octave choices, etc). A significant amount of discussion on what these should be and how they should work was covered in this [forum thread](https://club.tidalcycles.org/t/rfc-working-on-making-chord-naming-chordlist-more-consistent/2717/52), and (largely) implemented by [polymorphic.engine](https://github.com/tidalcycles/Tidal/pull/931).
 

@@ -10,7 +10,8 @@ This page will present you all the functions that can be used to slice, cut, rev
 
 
 ## Audio sampling
-### chop
+
+### `chop`
 
 ```haskell
 Type: chop :: Pattern Int -> ControlPattern -> ControlPattern
@@ -59,7 +60,7 @@ The `loopAt` takes care of changing the speed of sample playback so that the sam
 d1 $ loopAt 8 $ rev $ chop 32 $ sound "bev"
 ```
 
-### striate
+### `striate`
 
 ```haskell
 Type: striate :: Pattern Int -> ControlPattern -> ControlPattern
@@ -83,7 +84,7 @@ You can hear that the striate version 'interlaces' the cut up bits of samples to
 d1 $ slow 4 $ sound "numbers:0 numbers:1 numbers:2 numbers:3"
 ```
 
-### striateBy
+### `striateBy`
 
 ```haskell
 Type: striateBy :: Pattern Int -> Pattern Double -> ControlPattern -> ControlPattern
@@ -96,7 +97,7 @@ d1 $ slow 32 $ striateBy 32 (1/16) $ sound "bev"
 
 Note that striate uses the `begin` and `end` parameters internally. This means that if you’re using `striate` or `striateBy` you probably shouldn’t also specify begin or end.
 
-### slice
+### `slice`
 
 ```haskell
 Type: Pattern Int -> Pattern Int -> ControlPattern -> ControlPattern
@@ -118,7 +119,7 @@ d1 $ slice 8 "[<0*8 0*2> 3*4 2 4] [4 .. 7]" $ sound "breaks165"
 
 Note that the order of the first two parameters changed since tidal version `1.0.0`.
 
-### splice
+### `splice`
 
 ```haskell
 Type: splice :: Pattern Int -> Pattern Int -> ControlPattern -> ControlPattern
@@ -129,7 +130,7 @@ Type: splice :: Pattern Int -> Pattern Int -> ControlPattern -> ControlPattern
 d1 $ splice 8 "[<0*8 0*2> 3*4 2 4] [4 .. 7]" $ sound "breaks165"
 ```
 
-### randslice
+### `randslice`
 
 ```haskell
 Type: randslice :: Pattern Int -> ControlPattern -> ControlPattern
@@ -145,7 +146,7 @@ Use `fast` to get more than one per cycle;
 d1 $ fast 4 $ randslice 32 $ sound "bev"
 ```
 
-### chew
+### `chew`
 
 ```haskell
 Type: chew :: Int -> Pattern Int -> Pattern a -> Pattern a
@@ -160,7 +161,7 @@ d1 $ bite 4 "0 1*2 2*2 [~ 3]" $ n "0 .. 7" # sound "drum"
 d1 $ chew 4 "0 1*2 2*2 [~ 3]" $ n "0 .. 7" # sound "drum"
 ```
 
-### loopAt
+### `loopAt`
     
 ```haskell
 Type: loopAt :: Pattern Time -> ControlPattern -> ControlPattern
@@ -183,7 +184,7 @@ Like all Tidal functions, you can mess about with this considerably. The below e
 d1 $ juxBy 0.6 (|* speed "2") $ loopAt "<4 6 2 3>" $ chop 12 $ sound "fm:14"
 ```
 
-### smash
+### `smash`
 
 ```haskell
 Type: smash :: Pattern Int -> [Pattern Time] -> ControlPattern -> ControlPattern
@@ -200,7 +201,7 @@ Is a bit like this:
 d1 $ slow "<2 3 4>" $ striate 3 $ sound "ho ho:2 ho:3 hc"
 ```
 
-### smash'
+### `smash'`
 
 ```haskell
 Type: smash' :: Int -> [Pattern Time] -> ControlPattern -> ControlPattern
@@ -228,7 +229,8 @@ d1 $ smash' 12 [2,3,4] $ s "bev*4"
 for a dramatic difference.
 
 ## Signal sampling 
-### segment
+
+### `segment`
 
 ```haskell
 Type: segment :: Pattern Time -> Pattern a -> Pattern a
@@ -240,11 +242,11 @@ Type: segment :: Pattern Time -> Pattern a -> Pattern a
 d1 $ n (slow 2 $ segment 16 $ range 0 32 $ sine) # sound "amencutup"
 ```
 
-### discretise
+### `discretise`
 
 `segment` used to be known as `discretise`. The old name remains as an alias and will still work, but may be removed or repurposed in a future version of Tidal. 
 
-### sig
+### `sig`
 
 ```haskell
 Type: sig :: (Time -> a) -> Pattern a

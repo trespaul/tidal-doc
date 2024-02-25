@@ -10,7 +10,7 @@ This page will present you all the functions that can be used to manipulate and 
 
 ## Scaling
 
-### range
+### `range`
 
 ```haskell
 Type: range :: Num a => Pattern a -> Pattern a -> Pattern a -> Pattern a
@@ -28,7 +28,7 @@ d1 $ jux (iter 4) $ sound "arpy arpy:2*2"
   |+ speed (slow 4 $ sine * 0.5 + 1)
 ```
 
-### rangex
+### `rangex`
 
 ```haskell
 Type: rangex :: (Floating b, Functor f) => b -> b -> f b -> f b
@@ -36,7 +36,7 @@ Type: rangex :: (Floating b, Functor f) => b -> b -> f b -> f b
 
 `rangex` is an exponential version of `range` described above, good to use for frequencies. For example, `range 20 2000 "0.5"` will give `1010` - halfway between `20` and `2000`. But `rangex 20 2000 0.5` will give `200` - halfway between on a logarithmic scale. This usually sounds better if you’re using the numbers as pitch frequencies. Since rangex uses logarithms, don’t try to scale things to zero or less!
 
-### quantise
+### `quantise`
 
 ```haskell
 Type: quantise :: (Functor f, RealFrac b) => b -> f b -> f b
@@ -59,7 +59,7 @@ all the releases selected be rounded to the nearest `0.1` and the notes selected
 
 ## Degrade
 
-### degrade
+### `degrade`
 
 ```haskell
 Type: degrade :: Pattern a -> Pattern a
@@ -73,7 +73,7 @@ d1 $ slow 2 $ degrade $ sound "[[[feel:5*8,feel*3] feel:3*8], feel*4]"
    # speed "2"
 ```
 
-### degradeBy
+### `degradeBy`
 
 ```haskell
 Type: degradeBy :: Double -> Pattern a -> Pattern a
@@ -87,7 +87,7 @@ d1 $ slow 2 $ degradeBy 0.9 $ sound "[[[feel:5*8,feel*3] feel:3*8], feel*4]"
    # speed "2"
 ```
 
-### unDegradeBy
+### `unDegradeBy`
 
 ```haskell
 Type: unDegradeBy :: Double -> Pattern a -> Pattern a
@@ -96,7 +96,7 @@ Type: unDegradeBy :: Double -> Pattern a -> Pattern a
 `unDegradeBy` is `degradeBy` but with the percentage describing how many events to keep on average not remove.
 
 ## Repetitions
-### ply
+### `ply`
 
 ```haskell
 Type: ply :: Pattern Int -> Pattern a -> Pattern a
@@ -129,7 +129,7 @@ Here is an example of it being used conditionally:
 d1 $ every 3 (ply 4) $ s "bd ~ sn cp"
 ```
 
-### stutter
+### `stutter`
 ```haskell
 Type: stutter :: Integral i => i -> Time -> Pattern a -> Pattern a
 ```
@@ -155,7 +155,7 @@ quad   = stutter (4 :: Int)
 double = echo
 ```
 
-### stripe
+### `stripe`
 
 ```haskell
 Type: stripe :: Pattern Int -> Pattern a -> Pattern a
@@ -171,7 +171,7 @@ d1 $ stripe 3 $ sound "bd sd ~ [mt ht]"
 d2 $ sound "cp"
 ```
 
-### slowstripe
+### `slowstripe`
 
 ```haskell
 Type: slowstripe :: Pattern Int -> Pattern a -> Pattern a
@@ -185,7 +185,7 @@ d1 $ slowstripe 3 $ sound "bd sd ~ [mt ht]"
 d2 $ sound "cp"
 ```
 
-### palindrome
+### `palindrome`
 
 ```haskell
 Type: palindrome :: Pattern a -> Pattern a
@@ -209,7 +209,7 @@ d1 $ every 2 rev $ sound "arpy:0 arpy:1 arpy:2 arpy:3"
 ```
 
 ## Truncation
-### trunc
+### `trunc`
 
 ```haskell
 Type: trunc :: Pattern Time -> Pattern a -> Pattern a
@@ -227,7 +227,7 @@ You can also pattern the first parameter, for example to cycle through three val
 d1 $ trunc "<0.75 0.25 1>" $ sound "bd sn:2 [mt rs] hc"
 ```
 
-### linger
+### `linger`
 
 ```haskell
 Type: linger :: Pattern Time -> Pattern a -> Pattern a
@@ -260,7 +260,7 @@ d1 $ linger "<0.75 0.25 1>" $ sound "bd sn:2 [mt rs] hc"
 d1 $ linger "<0.25 0.5 1>" $ loopAt 2 $ chop 8 $ sound "breaks125"
 ```
 
-### chunk
+### `chunk`
 
 ```haskell
 Type: chunk :: Int -> (Pattern b -> Pattern b) -> Pattern b -> Pattern b
@@ -284,11 +284,11 @@ Another example:
 d1 $ chunk 4 (hurry 2) $ sound "bd sn:2 [~ bd] sn:2"
 ```
 
-### chunk'
+### `chunk'`
 
 `chunk'` does the same as chunk but cycles through the parts in the reverse direction.
 
-### loopFirst
+### `loopFirst`
 
 `loopFirst` is a function that takes a pattern and loops only the first cycle of the pattern. For example, in the following code will only play the bass drum sample.
 ```haskell
@@ -302,7 +302,7 @@ d1 $ sometimes loopFirst $ s "<<bd*4 ht*8> cp*4>"
 
 ## Shuffling and scrambling
 
-### bite
+### `bite`
 
 ```haskell
 Type: bite :: Int -> Pattern Int -> Pattern a -> Pattern a
@@ -323,7 +323,7 @@ The slices bits of pattern will be squeezed or contracted to fit:
 d1 $ bite 4 "2 [0 3] 1*4 1" $ n "0 .. 7" # sound "arpy"
 ```
 
-### shuffle
+### `shuffle`
 
 ```haskell
 Type: shuffle :: Int -> Pattern a -> Pattern a
@@ -336,7 +336,7 @@ d1 $ sound $ shuffle 3 "bd sn hh"
 ```
 ... will sometimes play `"sn bd hh"` or `"hh sn bd"`, but will never play `"bd sn bd"` or `"hh hh hh"`, because that isn't a permutation of the three parts.
 
-### scramble
+### `scramble`
 
 ```haskell
 Type: scramble :: Int -> Pattern a -> Pattern a
@@ -348,7 +348,7 @@ d1 $ sound $ scramble 3 "bd sn hh"
 ```
 ... will sometimes play `"sn bd hh"` or `"hh sn bd"`, but can also play `"bd sn bd"` or `"hh hh hh"`, because it can make any random combination of the three parts.
 
-### rot
+### `rot`
 
 ```haskell
 Type: rot :: Ord a => Pattern Int -> Pattern a -> Pattern a
@@ -370,7 +370,7 @@ The above will not rotate the pattern for the first two cycles, will rotate it b
 
 
 ## Step sequencers
-### step
+### `step`
 
 ```haskell
 Type: step :: String -> String -> Pattern String
@@ -384,7 +384,7 @@ In other words, `step` generates a pattern of strings in exactly the syntax you'
 d1 $ s (step "sn" "x x 12 ")
 ```
 
-### step'
+### `step'`
 ```haskell
 Type: step' :: [String] -> String -> Pattern String
 ```
@@ -404,7 +404,7 @@ d1 $ s "superpiano ~ supermandolin ~ superpiano!3 ~ supermandolin" # sustain 4 #
 There is also `steps`. You can take a look at this function in the `Accumulation` section
 :::
 
-### lindenmayer
+### `lindenmayer`
 
 ```haskell
 Type: Num b => Int -> String -> String -> [b]
@@ -422,7 +422,7 @@ Complex L-system trees with many rules and iterations can sometimes result in un
 
 ## Higher-order
 
-### spread
+### `spread`
 
 ```haskell
 Type: spread :: (a -> t -> Pattern b) -> [a] -> t -> Pattern b
@@ -470,11 +470,11 @@ After `(# speed "0.8")`, the transforms will repeat and start at `density 2` aga
 
 (This is the same as `slowspread` in earlier versions of TidalCycles.)
 
-### spreadf
+### `spreadf`
 
 A convenient shorthand for spread (`$`).
 
-### fastspread
+### `fastspread`
 
 `fastspread` works the same as `spread`, but the result is squashed into a single cycle. If you gave four values to `spread`, then the result would seem to speed up by a factor of four. Compare these two:
 
@@ -483,7 +483,7 @@ d1 $ spread ($) [gap 4, striate 4] $ sound "ho ho:2 ho:3 hc"
 d1 $ fastspread ($) [gap 4, striate 4] $ sound "ho ho:2 ho:3 hc"
 ```
 
-### spreadChoose
+### `spreadChoose`
 
 `spreadChoose` (alias `spreadr`) works the same as spread, but the values are selected at random, one cycle at a time. For example:
 

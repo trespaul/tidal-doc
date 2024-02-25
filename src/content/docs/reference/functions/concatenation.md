@@ -9,7 +9,7 @@ This page will present you all the functions that can be used to concatenate (e.
 
 ## Many cats
 
-### cat
+### `cat`
 ```haskell
 Type: cat :: [Pattern a] -> Pattern a
 ```
@@ -28,7 +28,7 @@ d1 $ cat [sound "bd*2 sn", sound "jvbass*3", sound "drum*2", sound "ht mt"]
 There is also a `slowcat` function, perfectly similar to `cat`. This function exists as a mirror of `fastcat`.
 :::
 
-### fastcat
+### `fastcat`
 ```haskell
 Type: fastcat :: [Pattern a] -> Pattern a
 ```
@@ -43,7 +43,7 @@ d1 $ fastcat [sound "bd*2 sn", sound "arpy jvbass*2", sound "drum*2"]
 d1 $ fastcat [sound "bd*2 sn", sound "jvbass*3", sound "drum*2", sound "ht mt"]
 ```
 
-### timeCat
+### `timeCat`
 ```haskell
 Type: timeCat :: [(Time, Pattern a)] -> Pattern a
 ```
@@ -58,7 +58,7 @@ d1 $ timeCat [(1, s "bd*4"),
               (1, s "superpiano" # n 0)]
 ```
 
-### randcat
+### `randcat`
 ```haskell
 Type: randcat :: [Pattern a] -> Pattern a
 ```
@@ -75,7 +75,7 @@ Or the more compact, equivalent, version:
 d1 $ sound (randcat ["bd*2 sn", "jvbass*3", "drum*2", "ht mt"])
 ```
 
-### wrandcat
+### `wrandcat`
 
 ```haskell
 Type: wrandcat :: [(Pattern a, Double)] -> Pattern a
@@ -95,7 +95,8 @@ Here, the first pattern is the most likely and will play about half the times, a
 
 ## Append family
 
-### append
+### `append`
+
 ```haskell
 Type: append :: Pattern a -> Pattern a -> Pattern a
 ```
@@ -107,7 +108,8 @@ d1 $ append (sound "bd*2 sn") (sound "arpy jvbass*2")
 
 It has the alias `slowAppend`, in sympathy with `fastAppend`, described below.
 
-### fastAppend
+### `fastAppend`
+
 ```haskell
 Type: fastAppend :: Pattern a -> Pattern a -> Pattern a
 ```
@@ -118,7 +120,8 @@ Type: fastAppend :: Pattern a -> Pattern a -> Pattern a
 d1 $ fastAppend (sound "bd*2 sn") (sound "arpy jvbass*2")
 ```
 
-## wedge
+## `wedge`
+
 ```haskell
 Type: wedge :: Time -> Pattern a -> Pattern a -> Pattern a
 ```
@@ -129,7 +132,7 @@ Type: wedge :: Time -> Pattern a -> Pattern a -> Pattern a
 d1 $ wedge (1/4) (sound "bd*2 arpy*3 cp sn*2") (sound "odx [feel future]*2 hh hh")
 ```
 
-## brak
+## `brak`
 
 ```haskell
 Type: brak :: Pattern a -> Pattern a
@@ -141,7 +144,7 @@ Type: brak :: Pattern a -> Pattern a
 d1 $ brak $ sound "[feel feel:3, hc:3 hc:2 hc:4 ho:1]"
 ```
 
-## listToPat
+## `listToPat`
 
 ```haskell
 Type: listToPat :: [a] -> Pattern a
@@ -158,7 +161,7 @@ is equivalent to
 d1 $ n "[0 1 2]" # s "superpiano"
 ```
 
-## fromList
+## `fromList`
 
 `fromList` takes a list of things and turns them into a pattern where each item in the list has a duration of one cycle, looping back around at the end of the list.
 
@@ -172,7 +175,7 @@ is equivalent to
 d1 $ n "<0 1 2>" # s "superpiano"
 ```
 
-## fromMaybes
+## `fromMaybes`
 
 ```haskell
 Type: fromMaybes :: [Maybe a] -> Pattern a
@@ -190,7 +193,7 @@ is equivalent to
 d1 $ n "0 ~ 2" # s "superpiano"
 ```
 
-## flatpat
+## `flatpat`
 
 ```haskell
 Type: flatpat :: Pattern [a] -> Pattern a
@@ -206,7 +209,7 @@ This code is equivalent to:
 d1 $ n ("[0,4,7] [-12,-8,-5]") # s "superpiano" # sustain 2
 ```
 
-## run
+## `run`
 
 ```haskell
 Type: run :: (Num a, Enum a) => Pattern a -> Pattern a
@@ -222,7 +225,7 @@ The first parameter to run can be given as a pattern:
 d1 $ n (run "<4 8 4 6>") # sound "amencutup"
 ```
 
-## scan
+## `scan`
 
 ```haskell
 Type: scan :: (Num a, Enum a) => Pattern a -> Pattern a

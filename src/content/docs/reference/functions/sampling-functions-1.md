@@ -13,7 +13,7 @@ Each function will be presented following the same model:
 
 ## Basic sample manipulation
 
-### amp
+### `amp`
 
 ```haskell
 Type: amp :: Pattern Double -> ControlPattern
@@ -34,7 +34,7 @@ d1 $ s "arpy" # amp "<0.4 0.8 0.2>"
 
 In the above example, the volume changes at each cycle.
 
-### begin
+### `begin`
 
 ```haskell
 Type: begin :: Pattern Double -> ControlPattern
@@ -54,7 +54,7 @@ d1 $ n "0 1 2" # s "ade" # begin "<0 0.25 0.5 0.75>" # legato 1
 
 In this other example, the first `3` `ade` samples are playied on every cycle, but the start point from which they are playied changes on each cycle.
 
-### end
+### `end`
 
 ```haskell
 Type: end :: Pattern Double -> ControlPattern
@@ -74,7 +74,7 @@ d1 $ s "bev" >| begin 0.5 >| end "[0.65 0.55]"
 
 The example above will play the sample two times for cycle, but the second time will play a shorter segment than the first time, creating some kind of canon effect.
 
-### gain
+### `gain`
 
 ```haskell
 Type: gain :: Pattern Double -> ControlPattern
@@ -96,7 +96,7 @@ d1 $ s "ab*16" # gain (range 0.8 1.3 $ sine)
 
 This plays a hihat sound, `16` times per cycle, with a `gain` moving from `0.8` to `1.3` following a sine wave.
 
-### grain
+### `grain`
 
 ```haskell
 Type: grain :: Pattern Double -> Pattern Double -> ControlPattern
@@ -116,7 +116,7 @@ is equivalent to:
 d1 $ slow 2 $ s "bev" # begin 0.2 # end 0.3 # legato 1
 ```
 
-### grain'
+### `grain'`
 
 ```haskell
 Type: grain' :: Pattern String -> ControlPattern
@@ -136,7 +136,7 @@ d1 $ slow 2 $ s "bev" # begin 0.2 # end 0.3 # legato 1
 
 ## Sample effects
 
-### accelerate
+### `accelerate`
 
 ```haskell
 Type: accelerate :: Pattern Double -> ControlPattern
@@ -156,7 +156,7 @@ d1 $ arp "up" $ note "c'maj'4" # s "arpy" # accelerateTake "susan" [0.2,1,-1]
 
 Using [state values](https://tidalcycles.org/docs/reference/state_values/#introduction-to-state-values), in this example we apply a different acceleration to each played note.
 
-### speed
+### `speed`
 
 ```haskell
 Type: speed :: Pattern Double -> ControlPattern
@@ -176,7 +176,7 @@ d1 $ fast 2 $ s "breaks125:1" # cps (125/60/4) # speed (-2)
 
 In the above example, the break (which lasts for exactly one bar at 125 BPM), will be played backwards, and at double speed (so, we use `fast 2` to fill the whole cycle).
 
-### sustain
+### `sustain`
 
 ```haskell
 Type: sustain :: Pattern Double -> ControlPattern
@@ -200,7 +200,7 @@ d1 $ s "breaks125:2!3" # cps (120/60/4) # sustain "0.4 0.2 0.4" # begin "0 0 0.4
 
 Here, we take advantage that `sustain` receives a pattern to build a different break from the original sample.
 
-### unit
+### `unit`
 
 ```haskell
 Type: unit :: Pattern String -> ControlPattern
@@ -225,7 +225,7 @@ According to Wikipedia, *time stretching* is the process of changing the speed o
 
 This section presents the functions available in TidalCycles that let us time-stretch our samples at real time.
 
-### timescale
+### `timescale`
 
 ```haskell
 Type: timescale :: Pattern Double -> ControlPattern
@@ -241,7 +241,7 @@ d1 $ slow 2 $ s "breaks152" # legato 1 # timescale (152/130) # cps (130/60/4)
 
 In the example above, we set tempo at 130 beats per minute. But we want to play one of the `breaks152` samples, which are, as indicated, at 152 BPM. So, the ratio we want is 152 over 130. This will slow down the sample to fit in our 130 BPM tempo.
 
-### timescalewin
+### `timescalewin`
 
 ```haskell
 Type: timescalewin :: Pattern Double -> ControlPattern

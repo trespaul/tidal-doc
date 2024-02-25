@@ -9,7 +9,8 @@ This page will present you all the functions that will be useful during the perf
 * **Examples**: a small list of examples that you can copy/paste in your editor.
 
 ## Tempo
-### resetCycles / setCycle
+
+### `resetCycles` / `setCycle`
 
 ```haskell
 Type: resetCycles :: IO ()
@@ -39,7 +40,7 @@ do
 
 :::
 
-### setcps
+### `setcps`
 
 ```haskell
 Type: setcps :: Pattern Double -> IO ()
@@ -75,7 +76,7 @@ setcps (130/60/1)
 d1 $ n "1" # s "kick"
 ```
 
-### trigger
+### `trigger`
 
 ```haskell
 Type: trigger :: Pattern a -> Pattern a
@@ -91,7 +92,7 @@ d1 $ s "bd sn bd sn"
 d2 $ trigger $ s "clap*2"
 ```
 
-### qtrigger
+### `qtrigger`
 
 ```haskell
 Type: qtrigger :: Pattern a -> Pattern a
@@ -115,7 +116,7 @@ Alternatively, you can use [wait](/reference/transitions/#wait-1) to achieve the
 wait 1 1 $ s "bd hh hh hh"
 ```
 
-### qt
+### `qt`
 
 ```haskell
 Type: qt :: Pattern a -> Pattern a
@@ -123,7 +124,7 @@ Type: qt :: Pattern a -> Pattern a
 
 This is simply an alias for `qtrigger`.
 
-### mtrigger
+### `mtrigger`
 
 ```haskell
 Type: mtrigger :: Int -> Pattern a -> Pattern a
@@ -141,7 +142,7 @@ do
 d1 $ mtrigger 4 $ filterWhen (>=0) $ s "arpy"
 ```
 
-### mt
+### `mt`
 
 ```haskell
 Type: mt :: Int -> Pattern a -> Pattern a
@@ -149,7 +150,7 @@ Type: mt :: Int -> Pattern a -> Pattern a
 
 This is simply an alias for `mtrigger`.
 
-### triggerWith
+### `triggerWith`
 
 ```haskell
 Type: triggerWith :: (Time -> Time) -> Pattern a -> Pattern a
@@ -175,6 +176,6 @@ d2 $ rotR 0.1 $ s "clap"
 
 ## Tracks
 
-## all
+## `all`
 
-## once
+## `once`

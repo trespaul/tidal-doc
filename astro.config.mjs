@@ -36,57 +36,55 @@ export default defineConfig({
       },
       sidebar: [
         { label: 'Introduction',
-          // translations: {
-          //   'fr': 'Introduction',
-          // },
+          // translations: { 'fr': 'Introduction', },
           items: [
-            { label: 'What is Tidal?',
-              link: '/introduction/what-is-tidal',
-            },
-            { label: 'Community',
-              link: '/introduction/community',
-            },
-            { label: 'Showcase',
-              link: '/introduction/showcase',
-            },
+            { label: 'What is Tidal?', link: '/introduction/what-is-tidal', },
+            { label: 'The concept', link: '/introduction/concept', },
+            { label: 'Showcase', link: '/introduction/showcase', },
+            { label: 'Community', link: '/introduction/community', },
+            { label: 'Related projects', link: '/introduction/related', },
           ],
         },
         { label: 'Getting started',
-          // translations: {
-          //   'fr': 'Commencer',
-          // },
+          // translations: { 'fr': 'Commencer', },
           items: [
-            { label: 'Installation',
-              link: '/getting-started/installation'
-            },
-            { label: 'Usage: Launching Tidal',
-              link: '/getting-started/usage'
-            },
-            { label: 'Tutorial: Making sound [REMOVE?]',
-              link: '/getting-started/tutorial'
-            },
+            { label: 'Installation', link: '/getting-started/installation' },
+            { label: 'Launching Tidal', link: '/getting-started/launching' },
+            { label: 'Making sound', link: '/getting-started/making-sound' },
+            { label: '[etc.]', link: '#' },
           ]
         },
-        { label: 'Basics',
-          autogenerate: {
-            directory: 'basics'
-          },
-        },
         { label: 'Guides',
-          // translations: {
-          //   'fr': 'Guides',
-          // },
-          autogenerate: {
-            directory: 'guides'
-          },
+          // translations: { 'fr': 'Guides', },
+          autogenerate: { directory: 'guides' },
+        },
+        { label: 'Explanation',
+          // translations: { 'fr': 'Explication', },
+          items: [
+            { label: 'Haskell syntax for Tidal', link: '/explanation/syntax' },
+            { label: 'The Pattern data type', link: '/explanation/pattern' },
+            { label: 'Types and typeclasses', link: '/explanation/types' },
+            { label: 'FRP and pattern semantics', link: '/explanation/frp' },
+            { label: 'The SuperDirt OSC interface', link: '/explanation/osc' },
+          ],
         },
         { label: 'Reference',
-          // translations: {
-          //   'fr': 'Référence',
-          // },
-          autogenerate: {
-            directory: 'reference'
-          },
+          // translations: { 'fr': 'Référence', },
+          items: [
+            { label: 'Tidal functions',
+              autogenerate: { directory: 'reference/functions' }
+            },
+            { label: 'Configuration',
+              items: [
+                { label: 'Tidal', link: '/reference/config/tidal' },
+                { label: 'SuperDirt', link: '/reference/config/superdirt' }
+              ]
+            },
+            { label: 'Mini-notation',
+              autogenerate: { directory: 'mini-notation' }
+            },
+        ],
+          
         },
       ],
       locales: {
@@ -94,10 +92,7 @@ export default defineConfig({
           label: 'English',
           lang: 'en'
         }
-        // fr: {
-        //   label: 'French',
-        //   lang: 'fr',
-        // },
+        // fr: { label: 'French', lang: 'fr', },
       },
       editLink: {
         baseUrl: 'https://github.com/tidalcycles/tidal-doc/edit/main/'

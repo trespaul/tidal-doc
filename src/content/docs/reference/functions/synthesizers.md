@@ -14,6 +14,7 @@ Some undocumented parameters are included without descriptions.
 
 
 ### Additive synthesis
+
 #### Supergong
 
 An example of additive synthesis, building up a gong-like noise from a sum of sine-wave harmonics. Notice how the envelope timescale and amplitude can be scaled as a function of the harmonic frequency.
@@ -30,6 +31,7 @@ d1 $ n (slow 2 $ fmap (*7) $ run 8)
 ```
 
 ### Substractive synthesis
+
 #### Supersquare
 
 A moog-inspired square-wave synth; variable-width pulses with filter frequency modulated by an LFO:
@@ -144,6 +146,7 @@ Impulse noise with a fadein/fadeout.
 * `pitch1` (1): filter frequency scaling multiplier, the frequency itself follows the pitch set by “n”
 
 ### Physical modelling
+
 #### Supermandolin
 
 Physical modeling of a vibrating string, using a delay line (`CombL`) excited by an intial pulse (`Impulse`). To make it a bit richer, I’ve combined two slightly detuned delay lines:
@@ -201,6 +204,7 @@ Vibraphone simulation, adapted with some help from Kevin Larke’s thesis Real T
 * `detune` (0): adjusts a high harmonic to give the sound a different character
 
 ### FM synthesis
+
 #### Superfm
 
 6 operator FM synth (DX7-like). Works a bit different from the original DX7. Instead of algorithms, you set the amount of modulation every operator receives from other operators and itself (feedback), virtually providing an endless number of possible combinations (algorithms).
@@ -343,6 +347,7 @@ d1 $ freq "<200 300> <400 800>" #s "superfm"
 
 
 ### Drum synthesis
+
 #### Superhex
 
 Waveguide mesh, hexagonal drum-like membrane:
@@ -424,6 +429,7 @@ Kick drum synth. Increase `pitch1` and `voice` for interesting electronic percus
 `freq` (405): frequency
 
 ### Audio Input
+
 #### in
 
 Live audio input:

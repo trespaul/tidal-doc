@@ -9,7 +9,7 @@ This page will present you all the functions that can be used to compose long fo
 * **Examples**: a small list of examples that you can copy/paste in your editor.
 
 
-## ur
+## `ur`
 ```haskell
 Type: ur :: Time -> Pattern String -> [(String, Pattern a)] -> [(String, Pattern a -> Pattern a)] -> Pattern a
 ```
@@ -78,7 +78,7 @@ d1 $ ur 8 "[drums, melody] [drums,craziness,melody] melody:higher" pats fx
 ```
 
 
-## seqP
+## `seqP`
 
 ```haskell
 Type: seqP :: [(Time, Time, Pattern a)] -> Pattern a
@@ -106,7 +106,7 @@ d1 $ qtrigger $ seqP [
 ]
 ```
 
-## seqPLoop
+## `seqPLoop`
 
 ```haskell
 Type: seqPLoop :: [(Time, Time, Pattern a)] -> Pattern a

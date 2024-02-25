@@ -1,5 +1,5 @@
 ---
-title: "Usage: Launching Tidal"
+title: "Launching Tidal"
 ---
 
 ## Launching Tidal 

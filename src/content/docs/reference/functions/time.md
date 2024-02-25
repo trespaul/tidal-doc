@@ -10,7 +10,7 @@ This page will present you all the functions that can be used to play with time:
 
 ## Speeding up, slowing down
 
-### fast
+### `fast`
 
 ```haskell
 Type: fast :: Pattern Time -> Pattern a -> Pattern a
@@ -30,7 +30,7 @@ d1 $ fast "2 4" $ sound "bd sn kurt cp"
 
 You can also use this function by its older alias, `density`.
 
-### fastGap
+### `fastGap`
 
 ```haskell
 Type: fastGap :: Pattern Time -> Pattern a -> Pattern a
@@ -41,7 +41,7 @@ Type: fastGap :: Pattern Time -> Pattern a -> Pattern a
 d1 $ sound (fastGap 2 "bd sn")
 ```
 
-### slow
+### `slow`
 
 ```haskell
 Type: slow :: Pattern Time -> Pattern a -> Pattern a
@@ -52,11 +52,12 @@ d1 $ sound (slow 2 "bd sn kurt")
    # slow 3 (vowel "a e o")
 ```
 
-### sparsity
+### `sparsity`
 
 `sparsity` is a synonym of `slow`.
 
-### hurry
+### `hurry`
+
 ```haskell
 Type: hurry :: Pattern Time -> Pattern a -> Pattern a
 ```
@@ -67,7 +68,7 @@ Type: hurry :: Pattern Time -> Pattern a -> Pattern a
 d1 $ every 2 (hurry 2) $ sound "bd sn:2 ~ cp"
 ```
 
-### slowSqueeze
+### `slowSqueeze`
 
 ```haskell
 Type: slowSqueeze :: Pattern Time -> Pattern a -> Pattern a
@@ -99,7 +100,7 @@ is equivalent to:
 ```haskell
 d1 $ s "bd*4 bd*2 [bd bd/2]"
 ```
-### fastSqueeze
+### `fastSqueeze`
 
 ```haskell
 Type: fastSqueeze :: Pattern Time -> Pattern a -> Pattern a
@@ -145,7 +146,7 @@ d1 $ s "[bd sn]*2"
 
 ## Zooming in, Zooming Out
 
-### compress
+### `compress`
 
 ```haskell
 Type: compress :: (Time, Time) -> Pattern a -> Pattern a
@@ -169,7 +170,7 @@ d1 $ compress (1/4, 3/4) $ n (run 4) # s "arpy"
 
 It differs from `zoom` in that it preserves the original pattern but it speeds up its events so to match with the new time period.
 
-### zoom
+### `zoom`
 
 ```haskell
 Type: zoom :: (Time, Time) -> Pattern a -> Pattern a
@@ -192,7 +193,7 @@ Here’s an example of it being used with a conditional:
 d1 $ every 4 (zoom (0.25, 0.75)) $ sound "bd*2 hh*3 [sn bd]*2 drum"
 ```
 
-### within
+### `within`
 
 ```haskell
 Type: within :: Arc -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -211,7 +212,7 @@ Or, to apply `(# speed "0.5")` to only the last quarter of a pattern:
 d1 $ within (0.75, 1) (# speed "0.5") $ sound "bd*2 sn lt mt hh hh hh hh"
 ```
 
-### stretch
+### `stretch`
 
 ```haskell
 Type: stretch :: Pattern a -> Pattern a
@@ -234,7 +235,7 @@ d1 $ note (stretch "~ <0 ~> 1 5 8*4 ~") # s "superpiano"
 ## Shifting time
 
 
-### off
+### `off`
 
 ```haskell
 Type: off :: Pattern Time -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -256,7 +257,7 @@ d1 $ slow 2 $
   # sound "superpiano"
 ```
 
-### press
+### `press`
 
 ```haskell
 Type: press :: Pattern a -> Pattern a
@@ -287,7 +288,7 @@ do
 
 Here, the C major chord plays before the G major. As the slot that occupies the C chord is that of one eighth note, it is displaced by `press` only a sixteenth note.
 
-### pressBy
+### `pressBy`
 
 ```haskell
 Type: pressBy :: Pattern Time -> Pattern a -> Pattern a
@@ -311,7 +312,7 @@ pressBy "<0 0.25 0.5 0.75>" $ s "cp"
 ]
 ```
 
-### rotL
+### `rotL`
 
 ```haskell
 Type: rotL :: Time -> Pattern a -> Pattern a -> Pattern a
@@ -333,11 +334,11 @@ do
 
 Useful when building and testing out longer sequences.
 
-### rotR
+### `rotR`
 
 `rotR` is the opposite of `rotL` as it shifts the pattern forwards in time.
 
-### spin
+### `spin`
 
 ```haskell
 Type: spin :: Pattern Int -> ControlPattern -> ControlPattern
@@ -349,7 +350,7 @@ Type: spin :: Pattern Int -> ControlPattern -> ControlPattern
 d1 $ slow 3 $ spin 4 $ sound "drum*3 tabla:4 [arpy:2 ~ arpy] [can:2 can:3]"
 ```
 
-### weave
+### `weave`
 
 ```haskell
 Type: weave :: Time -> ControlPattern -> [ControlPattern] -> ControlPattern
@@ -379,7 +380,7 @@ d1 $ weave 16 (sound "arpy" >| n (run 8))
   ]
 ```
 
-### weaveWith
+### `weaveWith`
 
 ```haskell
 Type: weaveWith :: Time -> Pattern a -> [Pattern a -> Pattern a] -> Pattern a
@@ -395,7 +396,8 @@ d1 $ weaveWith 3 (sound "bd [sn drum:2*2] bd*2 [sn drum:1]")
 ```
 
 ## Reversing time
-### rev
+
+### `rev`
 
 ```haskell
 Type: rev :: Pattern a -> Pattern a
@@ -418,7 +420,7 @@ or `jux`:
 d1 $ jux rev $ n (iter 4 "0 1 [~ 2] 3") # sound "arpy"
 ```
 
-### jux
+### `jux`
 
 ```haskell
 Type: jux :: (ControlPattern -> ControlPattern) -> ControlPattern -> ControlPattern
@@ -436,7 +438,7 @@ When passing functions to functions like `jux` and `every`, it’s possible to c
 d1 $ slow 32 $ jux ((# speed "0.5") . rev) $ striate' 32 (1/16) $ sound "bev"
 ```
 
-### juxBy
+### `juxBy`
 
 ```haskell
 Type: juxBy :: Pattern Double -> (ControlPattern -> ControlPattern) -> ControlPattern -> ControlPattern
@@ -451,7 +453,7 @@ In the above, the two versions of the pattern would be panned at `0.25` and `0.7
 
 ## Swing
 
-### swingBy
+### `swingBy`
 
 ```haskell
 Type: swingBy :: Pattern Time -> Pattern Time -> Pattern a -> Pattern a
@@ -465,7 +467,7 @@ d1 $ swingBy (1/3) 4 $ sound "hh*8"
 
 will delay every other `"hh" 1/3` of the way to the next `"hh"`.
 
-### swing
+### `swing`
 
 ```haskell
 Type: swing :: Pattern Time -> Pattern a -> Pattern a
@@ -473,7 +475,7 @@ Type: swing :: Pattern Time -> Pattern a -> Pattern a
 
 `swing` is an alias for `swingBy (1/3)`.
 
-### ghost
+### `ghost`
 
 ```haskell
 Type: ghost :: Pattern ValueMap -> Pattern ValueMap
@@ -487,7 +489,7 @@ d1 $ stack [ ghost $ sound "~ sn", sound "bd*2 [~ bd]" ]
 
 The example above creates a kick snare pattern with ghost notes applied to the snare hit.
 
-### ghost'
+### `ghost'`
 
 ```haskell
 Type: ghost' :: Time -> Pattern ValueMap -> Pattern ValueMap
@@ -501,7 +503,7 @@ d1 $ stack [ ghost' (1/16) $ sound "~ sn", sound "bd*2 [~ bd]" ]
 
 The example above creates a kick snare pattern with ghost notes applied to the snare hit. The 1/16 is a sixteenth of a cycle, but that doesn't mean ghost notes will be displaced exactly by this amount: this is just the base value from where repetitions are calculated.
 
-### ghostWith
+### `ghostWith`
 
 ```haskell
 Type: ghostWith :: Time -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -523,7 +525,7 @@ The example above applies ghost notes to the snare hit, but these notes will be 
 
 ## Inside and outside
 
-### inside
+### `inside`
 
 ```haskell
 Type: inside :: Pattern Time -> (Pattern a -> Pattern b) -> Pattern a -> Pattern b
@@ -541,7 +543,8 @@ fast 2 $ rev $ slow 2 "0 1 2 3 4 5 6 7"
 
 .. so rather than whole cycles, each half of a cycle is reversed.
 
-### outside
+### `outside`
+
 ```haskell
 Type: outside :: Pattern Time -> (Pattern a -> Pattern b) -> Pattern a -> Pattern b
 ```
@@ -575,7 +578,7 @@ This compresses the idea into a single cycle before `rev` operates and then slow
 
 See also: [Effects/Delay](https://tidalcycles.org/docs/reference/audio_effects#delay)
 
-### echo
+### `echo`
 
 ```haskell
 Type: echo :: Pattern Integer -> Pattern Rational -> Pattern Double -> ControlPattern -> ControlPattern
@@ -596,7 +599,7 @@ It is possible to reverse the echo:
 d1 $ echo 4 (-0.2) 0.5 $ sound "bd sn"
 ```
 
-### echoWith
+### `echoWith`
 
 ```haskell
 Type: echoWith :: Pattern Int -> Pattern Time -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -613,14 +616,14 @@ d1 $ echoWith 4 (1/6) (|* speed "1.5") $ sound "arpy arpy:2"
 ```
 In the above, three versions are put on top, with each step getting higher in pitch as `|* speed "1.5"` is successively applied.
 
-### stut
+### `stut`
 
 ```haskell
 Type: stut :: Pattern Integer -> Pattern Double -> Pattern Rational -> ControlPattern -> ControlPattern
 ```
 _Deprecated_: use [echo](https://tidalcycles.org/docs/reference/time#echo) instead.
 
-### stutWith
+### `stutWith`
 
 ```haskell
 Type: stutWith :: Pattern Int -> Pattern Time -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a

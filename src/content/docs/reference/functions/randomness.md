@@ -8,7 +8,8 @@ This page will present you all the functions that can be used to introduce some 
 * **Examples**: a small list of examples that you can copy/paste in your editor.
 
 ## Pseudo-randomisation
-### rand
+
+### `rand`
 
 ```haskell
 Type: rand :: Fractional a => Pattern a
@@ -25,7 +26,8 @@ Or to enjoy a randomised speed from `0.5` to `1.5`, you can add `0.5` to it.
 d1 $ sound "arpy*4" # speed (rand + 0.5)
 ```
 
-### irand
+### `irand`
+
 ```haskell
 Type: irand :: Num a => Int -> Pattern a
 ```
@@ -37,7 +39,8 @@ d1 $ sound "amencutup*8" # n (irand 8)
 ```
 
 ## Perlin noise
-### perlin
+
+### `perlin`
 
 ```haskell
 Type: perlin :: Pattern Double
@@ -56,7 +59,7 @@ d1 $ sound "bd*32" # speed (fast 4 $ perlin + 0.5)
 d1 $ sound "bd*32" # speed (slow 4 $ perlin + 0.5)
 ```
 
-### perlinWith
+### `perlinWith`
 
 `perlinWith` allows you to specify a pattern as input to generate random values instead of using the default cycle count:
 
@@ -64,7 +67,7 @@ d1 $ sound "bd*32" # speed (slow 4 $ perlin + 0.5)
 d1 $ s "arpy*32" # cutoff (perlinWith (saw * 4) * 2000)
 ```
 
-### perlin2
+### `perlin2`
 
 `perlin2` creates 2D noise by allowing you to specify a custom pattern as a second dimension (cycle number remains as the first dimension):
 
@@ -72,7 +75,7 @@ d1 $ s "arpy*32" # cutoff (perlinWith (saw * 4) * 2000)
 d1 $ s "bd*32" # speed (perlin2 (sine*4) + 1)
 ```
 
-### perlin2With
+### `perlin2With`
 
 `perlin2With` is the same as `perlinWith` except allows you to provide two functions for 2D noise:
 
@@ -85,7 +88,7 @@ d1
 
 ## The "sometimes" family
 
-### sometimes
+### `sometimes`
 
 ```haskell
 Type: sometimes :: (Pattern a -> Pattern a) -> Pattern a -> Pattern a
@@ -111,7 +114,7 @@ d1 $ sometimes (# crush 2) $ n "0 1 [~ 2] 3" # sound "arpy"
 | never        | 0%          |
 
 
-### sometimesBy
+### `sometimesBy`
 
 If you want to be specific, you can use `sometimesBy` and a number, for example:
 ```haskell
@@ -121,7 +124,7 @@ sometimesBy 0.93 (# speed 2)
 to apply the speed control on average 93 times out of a hundred.
 
 
-### someCycles
+### `someCycles`
 
 `someCycles` is similar to `sometimes`, but instead of applying the given function to random events, it applies it to random cycles. For example the following will either distort all of the events in a cycle, or none of them:
 
@@ -129,7 +132,7 @@ to apply the speed control on average 93 times out of a hundred.
 d1 $ someCycles (# crush 2) $ n "0 1 [~ 2] 3" # sound "arpy"
 ```
 
-### someCyclesBy
+### `someCyclesBy`
 
 As with `sometimesBy`, if you want to be specific, you can use `someCyclesBy` and a number. For example:
 
@@ -141,7 +144,8 @@ will apply the speed control on average `93` cycles out of a hundred.
 
 ## Choosing randomly
 
-### choose
+### `choose`
+
 ```haskell
 Type: choose :: [a] -> Pattern a
 ```
@@ -152,7 +156,7 @@ d1 $ sound "drum ~ drum drum" # n (choose [0,2,3])
 
 As with all continuous patterns, you have to be careful to give them structure; in this case choose gives you an infinitely detailed stream of random choices. 
 
-### chooseby
+### `chooseby`
 
 ```haskell
 Type: chooseBy :: Pattern Double -> [a] -> Pattern a
@@ -163,7 +167,7 @@ chooseBy "0 0.25 0.5" ["a","b","c","d"]
 ```
 will result in the pattern `"a b c" `.
 
-### wchoose
+### `wchoose`
 
 ```haskell
 Type: wchoose :: [(a, Double)] -> Pattern a
@@ -178,7 +182,7 @@ d1 $ sound "drum ~ drum drum" # n (wchoose [(0,0.25),(2,0.5),(3,0.25)])
 Prior to version `1.0.0` of Tidal, the weights had to add up to `1`, but this is no longer the case. 
 :::
 
-### wchooseby
+### `wchooseby`
 
 ```haskell
 Type: wchooseBy :: Pattern Double -> [(a,Double)] -> Pattern a
@@ -186,7 +190,7 @@ Type: wchooseBy :: Pattern Double -> [(a,Double)] -> Pattern a
 
 The `wchooseBy` function is like `wchoose` but instead of selecting elements of the list randomly, it uses the given pattern to select elements. 
 
-### cycleChoose
+### `cycleChoose`
 
 ```haskell
 Type: cycleChoose :: [a] -> Pattern a
