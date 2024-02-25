@@ -2,9 +2,19 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightBlog from 'starlight-blog';
 import tailwind from "@astrojs/tailwind";
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
+import rehypeSlug from 'rehype-slug';
 
 export default defineConfig({
   site: 'https://tidalcycles.org',
+  markdown: {
+    rehypePlugins: [
+      rehypeAccessibleEmojis,
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: 'append', }],
+    ],
+  },
   integrations: [
     starlight({
       title: 'TidalCycles',

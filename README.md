@@ -95,7 +95,6 @@ tailwind.config.mjs         --- tailwind config, theming
 - design
   - front page design
   - bios/profiles/info box and tables format
-  - add section header `#` anchors and click-to-copy url
 - general
   - make sure all absolute links to documentation i.e. `tidalcycles.org` links work
   - grep for TODOs in comments
