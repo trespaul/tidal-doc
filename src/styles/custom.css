@@ -29,7 +29,7 @@
    (reused from strudel.cc docs) */
 
 .icon.icon-link {
-  visibility: hidden;
+  @apply opacity-0 transition-opacity;
 }
 
 .sl-markdown-content h1:hover .icon.icon-link,
@@ -38,7 +38,7 @@
 .sl-markdown-content h4:hover .icon.icon-link,
 .sl-markdown-content h5:hover .icon.icon-link,
 .sl-markdown-content h6:hover .icon.icon-link {
-  visibility: visible;
+  @apply opacity-75;
 }
 
 .sl-markdown-content h1 > a,
@@ -51,8 +51,6 @@
 }
 
 .icon.icon-link::after {
+  @apply ml-2;
   content: '#';
-  margin-left: 8px;
-  font-size: 0.9em;
-  opacity: 50%;
 }
