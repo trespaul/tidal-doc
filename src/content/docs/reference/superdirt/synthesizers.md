@@ -23,7 +23,7 @@ An example of additive synthesis, building up a gong-like noise from a sum of si
 * `decay` (1): adjusts how the harmonics decay
 * `accelerate` (0): for pitch glide
 
-```c
+```haskell
 d1 $ n (slow 2 $ fmap (*7) $ run 8)
   # s "supergong"
   # decay "[1 0.2]/4"
@@ -107,7 +107,7 @@ Feedback PWM:
 * `voice` (0): number of voices
 * `detune` (0): detune amount
 
-```c
+```haskell
 d1 $ s "supertron"
   # octave 3
   # accelerate "0.2"
@@ -252,7 +252,8 @@ Higher env generator (egrate) values go faster!
 :::
 
 superfm examples   
-```
+
+```haskell
 d1 $ s "superfm" # n 0 #octave "<4 5 6>"
   #amp1 1 #amp3 1
   #mod11 1 #feedback 2
@@ -279,69 +280,71 @@ d1 $ freq "<200 300> <400 800>" #s "superfm"
 <details>
   <summary>superfm code examples (longer)</summary>
 
-      d1 $ s "superfm/2"
-        # octave 4
-        -- # n "<0 5 11>"
-        # n (irand 40 -10)
-        # amp1 1
-        # amp2 1
-        # amp3 0.8
-        # amp4 0
-        # amp5 0.8
-        # amp6 1
-        # ratio2 2
-        # ratio3 8
-        # ratio4 5
-        # ratio5 5
-        # ratio6 6.5
-        # detune5 1
-        # feedback 0.8
-        # mod11 1
-        # mod16 2.5
-        # mod23 3.5
-        # mod34 4.8
-        # mod45 3.5
-        # mod65 2
-        # egrate11 0.01
-        # egrate21 0.01
-        # egrate31 0.5
-        # egrate61 0.1
-        # egrate62 0.5
-        # egrate63 1
-        # eglevel62 0.13
-        # eglevel63 1.5
-        # lfofreq 0.2
-        # lfodepth 0.01
-        # room 0.8 # size 0.8 # dry 0.2
+  ```haskell
+  d1 $ s "superfm/2"
+    # octave 4
+    -- # n "<0 5 11>"
+    # n (irand 40 -10)
+    # amp1 1
+    # amp2 1
+    # amp3 0.8
+    # amp4 0
+    # amp5 0.8
+    # amp6 1
+    # ratio2 2
+    # ratio3 8
+    # ratio4 5
+    # ratio5 5
+    # ratio6 6.5
+    # detune5 1
+    # feedback 0.8
+    # mod11 1
+    # mod16 2.5
+    # mod23 3.5
+    # mod34 4.8
+    # mod45 3.5
+    # mod65 2
+    # egrate11 0.01
+    # egrate21 0.01
+    # egrate31 0.5
+    # egrate61 0.1
+    # egrate62 0.5
+    # egrate63 1
+    # eglevel62 0.13
+    # eglevel63 1.5
+    # lfofreq 0.2
+    # lfodepth 0.01
+    # room 0.8 # size 0.8 # dry 0.2
 
-        --- from Club Tidal
-        d1 $ s "superfm"
-        # octave 4
-        # n 0
-        # amp1 1
-        # amp2 1
-        # amp3 0
-        # amp4 0
-        # amp5 0
-        # amp6 1
-        # ratio2 2
-        # ratio3 3
-        # ratio4 4
-        # ratio5 0.5
-        # ratio6 0.25
-        # feedback 1
-        # mod11 1
-        # mod16 1
-        # mod23 1
-        # mod34 1
-        # mod45 1
-        # mod66 1
-        # egrate61 1
-        # egrate62 10
-        # egrate63 1
-        # eglevel62 0.13
-        # eglevel63 1.5
-        # room 0.5
+  --- from Club Tidal
+  d1 $ s "superfm"
+    # octave 4
+    # n 0
+    # amp1 1
+    # amp2 1
+    # amp3 0
+    # amp4 0
+    # amp5 0
+    # amp6 1
+    # ratio2 2
+    # ratio3 3
+    # ratio4 4
+    # ratio5 0.5
+    # ratio6 0.25
+    # feedback 1
+    # mod11 1
+    # mod16 1
+    # mod23 1
+    # mod34 1
+    # mod45 1
+    # mod66 1
+    # egrate61 1
+    # egrate62 10
+    # egrate63 1
+    # eglevel62 0.13
+    # eglevel63 1.5
+    # room 0.5
+  ```
 
 </details>
 
