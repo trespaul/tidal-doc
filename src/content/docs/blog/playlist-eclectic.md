@@ -1,6 +1,10 @@
 ---
 title: "Playlist: Eclectic"
 date: 2023-09-14
+authors:
+  name: HighHarmonics
+  picture: https://avatars.githubusercontent.com/u/117384787
+  url: https://github.com/HighHarmonics2
 ---
 
 <!-- TODO: author? -->
