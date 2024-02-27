@@ -1,5 +1,5 @@
 ---
-title: Visualisation
+title: "[verb] Visualisation"
 ---
 
 `Tidal-vis` is a tool made by Alex McLean to visualize Tidal patterns. This package allows several things:

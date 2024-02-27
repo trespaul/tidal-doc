@@ -1,5 +1,5 @@
 ---
-title: Chords
+title: "[verb] chords"
 ---
 
 To see the list of available chords, run `import Sound.Tidal.Chords`. This command will import the internal list of chords. Running `chordList` will output the list of the available chords registered by Tidal. Here is the list:

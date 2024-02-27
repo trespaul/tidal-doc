@@ -5,7 +5,9 @@ title: Control latency
 There are three configuration values which relate to latency: `cProcessAhead`, `cFrameTimespan`, and `oLatency`. Here's an example configuration:
 
 ```haskell
-tidal <- startTidal (superdirtTarget {oLatency = 0.05}) (defaultConfig {cFrameTimespan = 1/20, cProcessAhead = 3/10})
+tidal <- startTidal
+  ( superdirtTarget { oLatency = 0.05 } )
+  ( defaultConfig { cFrameTimespan = 1/20, cProcessAhead = 3/10 } )
 ```
 
 * **Frame timespan**: This is the duration of Tidal's calculation window in seconds. The default is `0.05 seconds`, in other words a calculation rate of 20 frames per second. If you find Tidal is using too much CPU, increasing the frame timespan will probably help. 

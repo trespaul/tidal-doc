@@ -1,5 +1,5 @@
 ---
-title: Control Voltage (CV)
+title: "[verb] Control Voltage (CV)"
 ---
 
 Tidal can send control voltage to modular synthesizers when using audio cards with DC output. A collection of CV helpers for Tidal is published in the [SuperDirt Voltage](https://github.com/mashaal/superdirt-voltage) library.

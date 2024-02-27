@@ -1,5 +1,5 @@
 ---
-title: State values
+title: "[verb] state values"
 ---
 
 State values were recently introduced in Tidal version `1.7.2`. For a more in-depth introduction, Alex McLean prepared a [Google Slides](https://docs.google.com/presentation/d/1Ibrne2zp8qTt6ItXoBv2vEat45-5hPZaeR_hAVK-JEQ/edit#slide=id.p) document you can take a look at. It will explain why such a feature was needed and how it was implemented.

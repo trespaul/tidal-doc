@@ -1,5 +1,5 @@
 ---
-title: Hackage
+title: "[move?] Hackage"
 ---
 
 Sometimes, the documentation will not be enough for your needs. You might want to explore Tidal in more depth and take a look at each and every function currently in store.

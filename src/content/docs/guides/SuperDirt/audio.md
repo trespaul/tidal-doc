@@ -1,5 +1,5 @@
 ---
-title: Audio configuration
+title: "[verb] audio configuration"
 ---
 
 ## Separate audio channels 

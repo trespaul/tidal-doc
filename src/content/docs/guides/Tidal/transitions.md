@@ -1,5 +1,5 @@
 ---
-title: Transitions
+title: "[verb] transitions"
 ---
 
 
