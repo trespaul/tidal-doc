@@ -97,9 +97,9 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/tidalcycles/tidal-doc/edit/main/'
       },
-      // components: {
-      //   Hero: './src/components/Hero.astro'
-      // },
+      components: {
+        Head: './src/components/Head.astro',
+      },
       plugins: [starlightBlog({
         recentPostCount: 20
       })]
