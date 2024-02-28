@@ -1,5 +1,5 @@
 ---
-title: "[verb] OSC"
+title: Send OSC elsewhere
 ---
 
 Open Sound Control (OSC) is a standard network protocol, ostensibly designed for music, but it's really just an easy way to send numbers and other data across a network. A range of live coding and other systems including DAWs (Digital Audio Workstations), visualisers and mixers are compatible with OSC.

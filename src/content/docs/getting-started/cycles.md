@@ -4,7 +4,7 @@ title: Cycles
 
 TidalCycles is not using BPM (*beats per minute*) but a specific measurement called CPS: *cycles per second*. For Tidal, time is *cyclical* and not *linear*. It means that when a cycle ends, a new one will follow. Time is counted in smaller and smaller decrements of *cycles per second* (e.g. 1/3 of a cycle). 
 
-![cycle](./assets/cycle_representation.png)
+![cycle](./assets/cycles.svg)
 
 This rather original way of dealing with time can be quite surprising for a musician, because both traditional european notation and modern sequencers are generally linear and deal with the beginning of time and the ending of time. Tidal can backtrack or fastforward in time because you can actually predict what will happen in `x` cycles or what happened `x` cycles ago (well, kinda..).
 

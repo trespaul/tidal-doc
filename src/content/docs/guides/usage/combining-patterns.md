@@ -1,5 +1,5 @@
 ---
-title: Combining patterns
+title: Combine patterns
 ---
 
 A core feature of Tidal is the ease in which two patterns can be combined. For example, these are two patterns being combined by adding together their elements:

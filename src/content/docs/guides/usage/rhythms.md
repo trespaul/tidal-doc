@@ -1,5 +1,5 @@
 ---
-title: Rhythms
+title: Write rhythms
 ---
 
 This page will teach you how to get started writing rhythms using different techniques. It is a good way to learn TidalCycles in a more intuitive way.

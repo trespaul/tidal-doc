@@ -1,5 +1,5 @@
 ---
-title: "[verb] control busses"
+title: "Route effects with control busses"
 ---
 
 This page introduces the feature known as *control busses*, which was

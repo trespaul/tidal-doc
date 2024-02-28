@@ -1,5 +1,5 @@
 ---
-title: "[verb] transitions"
+title: Transition between patterns
 ---
 
 

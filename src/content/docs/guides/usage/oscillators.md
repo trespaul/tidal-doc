@@ -1,5 +1,5 @@
 ---
-title: "[verb] oscillators"
+title: Modulate parameters with oscillators
 ---
 
 Oscillators are continuously varying patterns. Unless otherwise stated, oscillators give minimum values of `0` and maximum values of `1`, and repeat once per cycle.

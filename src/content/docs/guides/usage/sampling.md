@@ -1,5 +1,5 @@
 ---
-title: Sampling
+title: Manage and play samples
 ---
 
 ## The default sample library

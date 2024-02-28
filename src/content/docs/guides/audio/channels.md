@@ -1,5 +1,5 @@
 ---
-title: "[verb] audio configuration"
+title: Add audio channels
 ---
 
 ## Separate audio channels 

@@ -1,5 +1,5 @@
 ---
-title: Arpeggios
+title: Write arpeggios
 ---
 
 This page will teach you how to get started writing arpeggios using different techniques. It is a good way to learn TidalCycles in a more intuitive way.

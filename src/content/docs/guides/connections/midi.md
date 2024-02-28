@@ -1,5 +1,5 @@
 ---
-title: "[verb] MIDI"
+title: Send and receive MIDI
 ---
 
 Tidal can send and receive MIDI messages. You can talk with external synthesizers and hardware and receive data from your controllers. All the mapping is done directly through the language in an intuitive way.
