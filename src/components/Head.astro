@@ -3,6 +3,7 @@
 
 import type { Props } from '@astrojs/starlight/props'
 import Default from '@astrojs/starlight/components/Head.astro'
+import { ViewTransitions } from 'astro:transitions';
 
 const ogImageUrl = new URL(
   `/og/${Astro.props.id.replace(/\.\w+$/, '.png')}`,
@@ -11,5 +12,6 @@ const ogImageUrl = new URL(
 ---
 
 <Default {...Astro.props}><slot /></Default>
+<ViewTransitions />
 <meta property="og:image" content={ogImageUrl} />
 <meta name="twitter:image" content={ogImageUrl} />
