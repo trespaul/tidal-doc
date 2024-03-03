@@ -22,6 +22,10 @@ hero:
       icon: right-caret
 ---
 
+import { Image } from 'astro:assets';
+import openSourceImg from '../../assets/open_source.svg';
+import algoraveImg from '../../assets/algorave.svg';
+
 <div class="bento">
   <div class="col-span-1 md:col-span-2" style="margin-top: 0">
     #### Pattern everything
@@ -33,19 +37,27 @@ hero:
       $ sound "bd sn:1"
     ```
   </div>
-  <div class="col-span-1 md:col-span-3 grid grid-cols-2 gap-4" style="margin-top: 0">
+  <div class="col-span-1 md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4" style="margin-top: 0">
     <div>
       #### Tidal Community
       Tidal is used by a [diverse and vibrant community](/introduction/community/) of musicians for composition, improvisation and exploration of algorithmic music.
     </div>
-    ![](../../assets/algorave.svg)
+    <Image
+      src={algoraveImg}
+      alt="The Algorave logo."
+      class="size-32 sm:size-auto mx-auto"
+    />
   </div>
-  <div class="col-span-1 md:col-span-3 grid grid-cols-2 gap-4" style="margin-top: 0">
+  <div class="col-span-1 md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4" style="margin-top: 0">
     <div>
       #### Free and Open-Source
       TidalCycles — "Tidal" for short — is a free and open source live coding environment for algorithmic patterns, written in Haskell. Tidal uses SuperCollider, another open-source project, for synthesis and I/O.
     </div>
-    ![](../../assets/open_source.svg)
+    <Image
+      src={openSourceImg}
+      alt="The Open Source Initiative logo."
+      class="size-32 sm:size-auto mx-auto"
+    />
   </div>
   <div class="col-span-1 md:col-span-2" style="margin-top: 0">
     #### Updates
