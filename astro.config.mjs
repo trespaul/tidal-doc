@@ -15,6 +15,7 @@ export default defineConfig({
       [rehypeAutolinkHeadings, { behavior: 'append', }],
     ],
   },
+  prefetch: true,
   integrations: [
     starlight({
       title: 'TidalCycles',
