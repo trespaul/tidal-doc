@@ -6,6 +6,9 @@ authors:
   picture: https://avatars.githubusercontent.com/u/37638655
   title: nomad
   url: https://ghales.com/
+tags: [profile]
+excerpt: |
+  From the moment I watched [Kindohm](https://soundcloud.com/kindohm) play with code I knew I'd have to try that as well at some point. I started actually getting into live-coding by getting in touch with [CLiC](https://colectivo-de-livecoders.gitlab.io/) and by the UnB Media Lab. I've made friends in these communities and played a number of times with them.
 ---
 
 |          Tidal Cyclist | Ghales                      |

@@ -6,6 +6,9 @@ authors:
   title: UK
   url: https://heavy-lifting.org/
   picture: https://i1.sndcdn.com/avatars-000571209852-wyt3jc-t200x200.jpg
+tags: [workflow]
+excerpt: |
+  Hi, I'm Lucy, and I'm a live coder. In this blog post I'm going to be talking about some of my strategies for using samples and approaches to from-scratch or blank-screen live coded performance. … When I started live coding it felt like blank-screen was the only way. It excited me but it doesn't excite everyone. I feel that the emphasis on fully from-scratch performances can be a barrier for some people, and when I run workshops I always try to emphasize that while I start from a blank screen, it's not compulsory. But I do feel that the Algorave/live coding approach of starting with a blank screen, and embracing error is really exciting and necessary - without this forum for experimental risky performances I wouldn't be able to do what I do.
 ---
 
 > _Thinking about approaches to `from-scratch` improvised live code performance._   

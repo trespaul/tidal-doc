@@ -6,6 +6,9 @@ authors:
   title: Cape Town, South Africa
   picture: https://yt3.googleusercontent.com/hSZQhXpniMXwV92JTUG8kNuAo4wHW9hK27EN--YVBv_IFQorY0Qoezm9Vg1p-oYMf9s4u-CQ1No=s176-c-k-c0x00ffffff-no-rj
   url: https://www.youtube.com/@djmelan3
+tags: [profile]
+excerpt: |
+  I love the community around live coding and TidalCycles. What inspires me is how welcoming the community is and how simple it is to become involved. If you're new to TidalCycles there's a large community keen to help. In terms of TidalCycles itself I really enjoy the interactive aspect of the language, something that traditional DAWs lack. Live coding allows me to express myself musically much faster than a DAW can offer. I also find it easier to make creative decisions with Tidal whereas using a DAW often leads to overthinking and never actually finishing any projects.
 ---
 
 | Tidal Cyclist  | Mel Laubscher    |

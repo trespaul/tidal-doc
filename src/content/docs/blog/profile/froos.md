@@ -6,6 +6,9 @@ authors:
   title: France / Germany
   url: https://loophole-letters.vercel.app/
   picture: https://avatars.githubusercontent.com/u/12023032
+tags: [profile, strudel, workflow]
+excerpt: |
+  There are many things that inspire me.. I generally like the minimalistic, text-based approach to music making, where everything is visible at all times on one screen. When I started making music with an MPC1000, menu-diving was a key part of the process. A similar thing can be said about DAWs like Ableton (and Push), where there are many different UI layers and hidden items. Combining Tidal's simplistic interface with a terse and nestable syntax, it becomes a powerful tool full of rabbit holes to explore. Also, I like the fact that it is open source and thus hackable + the community around it is really refreshing.
 ---
 
 :::bio

@@ -6,6 +6,9 @@ authors:
   title: Buenos Aires, Argentina
   url: https://github.com/geikha/
   picture: https://avatars.githubusercontent.com/u/56176668
+tags: [profile]
+excerpt: |
+  I was born in Buenos Aires, Argentina. Coming from an artistic family, I grew up learning about music production and image manipulation. And as an internet child (I was born in this millennium), I grew up chronically attached to the computer. I've developed most of my musical knowledge as a Hip-Hop producer and as a musical omnivore. However, nowadays, I've grown away from Hip-Hop to dive into UK Garage and Chicago Footwork specifically.
 ---
 
 |          Tidal Cyclist | GEIKHA                                                     |

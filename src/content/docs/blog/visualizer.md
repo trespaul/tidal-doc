@@ -5,6 +5,9 @@ authors:
   name: HighHarmonics
   picture: https://avatars.githubusercontent.com/u/117384787
   url: https://github.com/HighHarmonics2
+tags: [guide]
+excerpt: |
+  Didactic Pattern Visualizer (DPV) is an easy way to visualize sound patterns from TidalCycles. It was created by the artist and creative technologist Iván Abreu "… to study the potential and complexity of the syntax of the pattern system for sequencing TidalCycles sounds." It utilizes the open source visualization program Processing to provide a scrolling grid where colored shapes appear in rhythm reflecting the flow of Tidal events (notes).
 ---
 
 ## Introduction

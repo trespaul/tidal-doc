@@ -5,9 +5,9 @@ authors:
   name: HighHarmonics
   picture: https://avatars.githubusercontent.com/u/117384787
   url: https://github.com/HighHarmonics2
+excerpt: |
+  Here is a playlist of recordings made with Tidal. This is a collection of performances that have stuck with me that I continue to draw inspiration from. It is very eclectic, with many different styles - which I think is wonderful. Tidal, after all, can be used for just about any kind of music making, and we should all celebrate the incredible range of expression being done under the heading of live coding. Enjoy!
 ---
-
-<!-- TODO: author? -->
 
 Here is a playlist of recordings made with Tidal. This is a collection of performances that have stuck with me that I continue to draw inspiration from. It is very eclectic, with many different styles - which I think is wonderful. Tidal, after all, can be used for just about any kind of music making, and we should all celebrate the incredible range of expression being done under the heading of live coding. Enjoy!
 

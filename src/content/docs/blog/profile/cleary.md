@@ -6,6 +6,9 @@ authors:
   title: Griffith, NSW, Australia
   picture: https://avatars.githubusercontent.com/u/2577966
   url: https://github.com/cleary/livecode/
+tags: [profile]
+excerpt: |
+  The [Tidal] community is lovely, they give/have given me a lot and I like to return that where I can. The project allows for such vast and varied possibilities in learning and creation, and that's what keeps me interested. The focus on inclusivity, sharing and generally "anti-gatekeeping" is a huge drawcard for me too.
 ---
 
 ![](https://photos.smugmug.com/photos/i-7r8LGsw/0/O/i-7r8LGsw.jpg)

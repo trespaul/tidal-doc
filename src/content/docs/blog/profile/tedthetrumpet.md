@@ -6,6 +6,9 @@ authors:
   title: Glasgow, UK
   picture: https://f4.bcbits.com/img/0031321072_21.jpg
   url: https://jsimonvanderwalt.com
+tags: [profile, workflow]
+excerpt:
+  I have no background in computer science, but I find the syntax [of Tidal] suprisingly intuitive. Also, by comparison with SuperCollider, you can get a lot of music going with very little typing.
 ---
 
 | Tidal Cyclist  | J Simon van der Walt |

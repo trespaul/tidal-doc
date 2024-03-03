@@ -6,6 +6,9 @@ authors:
   title: Düsseldorf, Germany and Telavi, Georgia
   picture: https://f4.bcbits.com/img/0024258371_21.jpg
   url: https://pondskater-music.bandcamp.com/
+tags: [profile]
+excerpt: |
+  Although I am not a developer and have no knowledge of programming at all, I was able to get into TC very quickly and find the approach very intuitive. In particular, I now find it easy to create complete rhythmic structures. Sometimes I don't know exactly what I'm doing, but some results speak for themselves. This fascinates and motivates me, even after three years. Tidal never gets boring. Besides, I have always been interested in new approaches and new musical territory. Live coding offers a great and ever-expandable field of experimentation.
 ---
 
 | Tidal Cyclist  |  Pondskater (aka Axel Ganz)   |

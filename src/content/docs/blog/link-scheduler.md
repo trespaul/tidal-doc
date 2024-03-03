@@ -6,6 +6,9 @@ authors:
   title: software engineer and hobbyist musician from Sweden
   picture: https://avatars.githubusercontent.com/u/908496
   url: https://zalastax.github.io
+tags: [development]
+excerpt: |
+  This post shares my experience of replacing a significant part of the Tidal internals. What I achieved is a direct integration from Tidal with Link, which is a library for synchronizing musical time between applications.  In this post, I'll explain why Link integration was important to me, provide an introduction to Tidal internals (with a focus on scheduling), some important concepts of Link, and how I overcame some really tough challenges!
 ---
 
 ## Introduction

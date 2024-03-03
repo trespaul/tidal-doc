@@ -6,6 +6,9 @@ authors:
   title: Lyon / Paris, France
   picture: https://f4.bcbits.com/img/0028405514_21.jpg
   url: https://raphaelforment.fr
+tags: [profile]
+excerpt: |
+  TidalCycles taught me a lot about music and improvisation. I used not to care too much about rhythm and structures when improvising. The emphasis that Tidal is putting on rhythm can actually be beneficial. It pushes you to explore some aspects of music you might be neglecting: complex time signatures, intriguing rhythms, etc... I also like the fact that it feels like a "metaphoric" language to talk about music that ends up taking shape while typing on the keyboard. Making music with Tidal, you quickly start to put a name on specific patterning concepts.
 ---
 
 | Tidal Cyclist  | Raphaël Maurice Forment |

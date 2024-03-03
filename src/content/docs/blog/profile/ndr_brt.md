@@ -6,6 +6,9 @@ authors:
   title: Italy
   picture: https://avatars.githubusercontent.com/u/8570990
   url: https://github.com/ndr-brt/
+tags: [profile]
+excerpt: |
+  When I met it for the first time everything was a wow, the cycle concept, function composition, mini-notation, patternization... Nowadays I'm still able to find inspiration watching other people livecoding or reading the posts on tidal club, especially when there are custom functions listed.
 ---
 
 | Tidal Cyclist  |  ndr_brt   |

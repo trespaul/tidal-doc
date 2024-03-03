@@ -6,6 +6,10 @@ authors:
   title: Vienna, Austria
   url: https://polymorphicengine.github.io/
   picture: https://avatars.githubusercontent.com/u/58735735
+tags: [profile, workflow]
+excerpt: |
+  I find the way Tidal allows me to approach music in a structural way fascinating. I like it's concise but still verbose syntax, especially combined with the mini-syntax.
+  When I make music on my own, I like to start out with simple rhythmic patterns and start to layer them with different versions of themselves (slower & lower / faster & higher / ..). Now apply the MI clouds effect and you can have fun for hours adjusting the parameters! I also like to use a traditional game controller and map the controls to conditional functions or effects in the code. For example, playing a drum pattern twice as fast when I press the 'A' button, or adjust the pan according to a joystick. I like the thought that I am programming the functionality of a game live, while I am also playing it.
 ---
 
 | Tidal Cyclist  | Martin Gius   |
@@ -50,7 +54,7 @@ let
 setbpm x = setcps (x/60/4)
 _add :: Time -> Pattern a -> Pattern a -> Pattern a
 _add t value pat = slow (pure $ 1+t) $ timeCat [(shift,pat),(1-shift, value)]
-				where shift = 1 / (t + 1)
+    where shift = 1 / (t + 1)
 add :: Pattern Time -> Pattern a -> Pattern a -> Pattern a
 add pt x y = innerJoin $ fmap (\t -> _add t x y) pt
 
@@ -64,14 +68,14 @@ d1
 $ while "t(4,16)" (|+ krush 1)
 $ while "[0 | 1]*16" (superimpose (plyWith 4 (|* speed 1.25) . slow 2))
 $ layer [id
-		,\x -> degradeBy (segment 16 perlin)
-        	$ slow 2
+    ,\x -> degradeBy (segment 16 perlin)
+          $ slow 2
             $ x
             # speed 0.75
             # shape 0.1
         ,\x -> add "[0.5 | 0.25]*4" (s "jungbass:1" # speed 0.8 # shape 0.2 # krush 2)
-        	$ x # speed "[2 | -2]*8"
-		]
+          $ x # speed "[2 | -2]*8"
+    ]
 $ s "[drum drum:1 [~ drum] drum:1, drum:3*[[8 | 16]*4]]"
 # krush 2
 # cloudswet 1

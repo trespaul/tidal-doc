@@ -6,6 +6,9 @@ authors:
   title: New York / Shanghai
   picture: https://i1.sndcdn.com/avatars-Nqukth2hknBFtG1B-yZrMDQ-t200x200.jpg
   url: https://www.instagram.com/v10101a/
+tags: [profile]
+excerpt: |
+  Making patterns and drum loops are my favorite things! I had a non-western percussion background,and using TidalCycles feels like wielding an algorithmic percussion instrument / sample chopper hybrid with a lot of space for surprises and ✨randomness✨, tickling my brain in all the right ways. 
 ---
 
 | Tidal Cyclist  | Viola He |

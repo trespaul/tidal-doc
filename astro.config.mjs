@@ -119,7 +119,7 @@ export default defineConfig({
         Hero: './src/components/Hero.astro',
       },
       plugins: [starlightBlog({
-        recentPostCount: 20
+        recentPostCount: 10
       })]
     }),
     tailwind({

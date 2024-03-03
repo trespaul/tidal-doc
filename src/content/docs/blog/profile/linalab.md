@@ -2,11 +2,13 @@
 title: "Profile: Linalab"
 date: 2023-05-08
 authors:
-    name: Lina Bautista, a.k.a. Linalab
-    title: Barcelona, Spain
-    url: https://linalab.com/
+  name: Lina Bautista, a.k.a. Linalab
+  title: Barcelona, Spain
+  url: https://linalab.com/
+tags: [profile]
+excerpt: |
+  I’m Lina, I’m a composer and live coder, I see myself as a long-distance runner in live coding. I’m not a fast learner, but I’ve always been enthusiastic to see and to analyse other live coders' techniques, especially in live sessions (it’s not the same to see a streamed or pre-recorded session, than to feel the space and share it with the live coder), that’s probably why I’ve organised many performances, workshops, Algoraves and projects around live coding and Tidal.
 ---
-
 
 | Tidal Cyclist        | Lina Bautista                                            |
 | -------------------- | -------------------------------------------------------- |

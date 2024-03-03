@@ -6,6 +6,9 @@ authors:
   url: https://eloielbonnoi.com/
   picture: https://cortex.persona.co/t/webgl/w/1024/i/009669e1020bff6c92af57833b7e7a18be02b9bf8788a71f4a4c3a32c31bf3f6/EloiPortadaWeb.jpg
   title: Centelles, Spain
+tags: [profile, workflow]
+excerpt: |
+  For me TidalCycles is a compositional tool because it allows me to make the complex music I've always dreamed of and do it very quickly, and more importantly, it allows me to perform it by myself in any circumstance. I'm particularly interested in the ability to create complex iterative structures and the flexibility it gives you to manipulate the sound. Sometimes, when I finish writing one of my endless scripts, I'll run it and spend some time listening to what Tidal comes up with. *I'm fascinated by the code's ability to generate unexpected structures all the time.*
 ---
 
 | Tidal Cyclist  | Eloi Isern |
@@ -24,7 +27,7 @@ authors:
 ## Livecoding  
 
 **What do you like about livecoding in Tidal?**  
-For me tidal cycles is a compositional tool because it allows me to make the complex music I've always dreamed of and do it very quickly, and more importantly, it allows me to perform it by myself in any circumstance.
+For me TidalCycles is a compositional tool because it allows me to make the complex music I've always dreamed of and do it very quickly, and more importantly, it allows me to perform it by myself in any circumstance.
 I'm particularly interested in the ability to create complex iterative structures and the flexibility it gives you to manipulate the sound. Sometimes, when I finish writing one of my endless scripts, I'll run it and spend some time listening to what Tidal comes up with. *I'm fascinated by the code's ability to generate unexpected structures all the time.*
 
 **What inspires you?**   

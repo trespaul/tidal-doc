@@ -6,6 +6,10 @@ authors:
   picture: https://avatars.githubusercontent.com/u/28980087
   url: https://lwlsn.github.io
   title: London, UK
+tags: [profile]
+excerpt: |
+  I think the main thing that I like about Tidal for me is working, transforming, shaping and shifting patterns, and listening to the changes in real time. I recently co-ran a workshop with Iván Paz, Alex McLean and Dave Griffiths in Sheffield and at Hangar in Barcelona (we did it remotely at the same time- thanks to On The Fly for having us :) ). We talked a lot about patterns in the context of other traditions, like weaving. To me, it's interesting to think about computer music in this way.
+
 ---
 
 |          Tidal Cyclist | digital selves                                               |

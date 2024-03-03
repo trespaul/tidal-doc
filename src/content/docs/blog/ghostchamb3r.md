@@ -6,6 +6,9 @@ authors:
   picture: https://f4.bcbits.com/img/0024727470_10.jpg
   url: http://www.ghostchamb3r.com/
   title: Minnesota, USA
+tags: [workflow]
+excerpt: |
+  Hello, I am ghostchamb3r and this is my Masterclass. 👻 For lack of a better term I produce electronic dance music. I take influences from a variety of genres and as a result I use a variety of production techniques and sound design approaches. When I go to upload my music to Spotify I just tell Spotify that it's Hard Techno, because sure, why not? I'm pretty sure it's not actually hard Techno or any of the other genres from the pulldown list. I don't know what it is. What I do know is that it's danceable and it hits hard on a club room floor.
 ---
 
 ## Keeping it on the rails

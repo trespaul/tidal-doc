@@ -6,6 +6,9 @@ authors:
   picture: https://avatars.githubusercontent.com/u/363294
   url: https://yoppa.org
   title: Maebashi, Japan
+tags: [profile, workflow, visuals]
+excerpt: |
+  What I like about live coding with TidalCycles is that I can improvise and change the pattern flexibly per-part basis (connections, d1, d2, d3). It also combines musical and coding ideas at a high level.
 ---
 
 |          Tidal Cyclist | Atsushi Tadokoro                        |

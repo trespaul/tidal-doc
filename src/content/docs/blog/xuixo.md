@@ -6,6 +6,8 @@ authors:
   title: San Francisco, California, USA
   url: https://instagram.com/1000instamilligrams
   picture: https://f4.bcbits.com/img/0032790587_10.jpg
+excerpt: |
+  Xuixo, a 6-track EP released on the xenharmonic label "split-notes" is the first studio EP by Relyt R, the alias I created for microtonal algorave. Relyt R is a focused split from my other algorave work as R Tyler. The Xuixo EP features algorithmic and machine learning enabled techno and dance music using non-Western tunings. 19-, 21-, and 33-tone equal temperaments were chosen to synthesize alien harmonies and melodies with notes exterior to the common 12.
 ---
 
 ![Xuixo Album Art](./assets/xuixo_art.jpg)

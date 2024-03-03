@@ -6,6 +6,9 @@ authors:
   title: Yorkshire, UK
   picture: https://f4.bcbits.com/img/a4048979081_16.jpg
   url: https://www.helenpapaioannou.com
+tags: [profile, workflow]
+excerpt: |
+  For me, Tidal is a super-fun environment that affords many possibilities and surprises, right from the outset of starting as a beginner. I enjoy the feeling of being able to make changes with intention and the musical surprises that arise from unexpected interactions with functions, misunderstandings and errors. I also like that it’s relatively easy to start making music even with limited experience of different functions and syntax.
 ---
 
 | Tidal Cyclist  | Helen Papaioannou    |

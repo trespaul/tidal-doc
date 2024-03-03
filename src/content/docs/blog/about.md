@@ -1,6 +1,8 @@
 ---
 title: Tidal Blog Info
 date: 2023-10-01
+excerpt: |
+  The TidalCycles blog is intended to be *by — for — about* the Tidal community. Anyone engaged with TidalCycles is encouraged to submit a blog post. Topics can be about Tidal practices, music made with Tidal, live coding, event coverage, new developments & releases, community, etc. Topics can also be broader — anything that would be of interest to this community, and it doesn't have to be limited to Tidal!
 ---
 
 ## Purpose
