@@ -1,5 +1,5 @@
 ---
-import { Icon, Card } from '@astrojs/starlight/components';
+import { Icon } from '@astrojs/starlight/components';
 ---
 
 <div class="embla">
@@ -24,10 +24,11 @@ import { Icon, Card } from '@astrojs/starlight/components';
 
 <script>
   import EmblaCarousel from 'embla-carousel';
+  import type { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
 
   // arrow buttons
 
-  const addTogglePrevNextBtnsActive = (emblaApi, prevBtn, nextBtn) => {
+  const addTogglePrevNextBtnsActive = (emblaApi: any, prevBtn: any, nextBtn: any) => {
     const togglePrevNextBtnsState = () => {
       if (emblaApi.canScrollPrev()) prevBtn.removeAttribute('disabled')
       else prevBtn.setAttribute('disabled', 'disabled')
@@ -47,7 +48,7 @@ import { Icon, Card } from '@astrojs/starlight/components';
     }
   }
 
-  const addPrevNextBtnsClickHandlers = (emblaApi, prevBtn, nextBtn) => {
+  const addPrevNextBtnsClickHandlers = (emblaApi: any, prevBtn: any, nextBtn: any) => {
     const scrollPrev = () => {
       emblaApi.scrollPrev()
     }
@@ -72,8 +73,8 @@ import { Icon, Card } from '@astrojs/starlight/components';
 
   // dots
 
-  const addDotBtnsAndClickHandlers = (emblaApi, dotsNode) => {
-    let dotNodes = []
+  const addDotBtnsAndClickHandlers = (emblaApi: EmblaCarouselType, dotsNode: Element) => {
+    let dotNodes: any[] = []
 
     const addDotBtnsWithClickHandlers = () => {
       dotsNode.innerHTML = emblaApi
@@ -81,7 +82,7 @@ import { Icon, Card } from '@astrojs/starlight/components';
         .map(() => '<button class="embla__dot" type="button"></button>')
         .join('')
 
-      const scrollTo = (index) => {
+      const scrollTo = (index: any) => {
         emblaApi.scrollTo(index)
       }
 
@@ -112,29 +113,45 @@ import { Icon, Card } from '@astrojs/starlight/components';
 
   // main
 
-  const OPTIONS = { loop: true, }
+  const OPTIONS: EmblaOptionsType = { loop: true, }
 
-  const emblaNode = document.querySelector('.embla')
-  const viewportNode = emblaNode.querySelector('.embla__viewport')
-  const prevBtnNode = emblaNode.querySelector('.embla__button--prev')
-  const nextBtnNode = emblaNode.querySelector('.embla__button--next')
-  const dotsNode = emblaNode.querySelector('.embla__dots')
+  const emblaNode: Element | null = document.querySelector('.embla')
 
-  const emblaApi = EmblaCarousel(viewportNode, OPTIONS)
+  let viewportNode: HTMLElement | null;
+  let prevBtnNode: HTMLElement | null;
+  let nextBtnNode: HTMLElement | null;
+  let dotsNode: HTMLElement | null;
 
-  const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(
-    emblaApi,
-    prevBtnNode,
-    nextBtnNode
-  )
-  const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(
-    emblaApi,
-    dotsNode
-  )
+  let emblaApi: EmblaCarouselType;
+  let removePrevNextBtnsClickHandlers;
+  let removeDotBtnsAndClickHandlers;
 
-  emblaApi.on('destroy', removePrevNextBtnsClickHandlers)
-  emblaApi.on('destroy', removeDotBtnsAndClickHandlers)
+  if (emblaNode != null) {
+    viewportNode = emblaNode.querySelector('.embla__viewport')
+    prevBtnNode = emblaNode.querySelector('.embla__button--prev')
+    nextBtnNode = emblaNode.querySelector('.embla__button--next')
+    dotsNode = emblaNode.querySelector('.embla__dots')
 
+    if (viewportNode != null) {
+      emblaApi = EmblaCarousel(viewportNode, OPTIONS)
+
+      removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(
+        emblaApi,
+        prevBtnNode,
+        nextBtnNode
+      )
+
+      if (dotsNode != null) {
+        removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(
+          emblaApi,
+          dotsNode
+        )
+
+        emblaApi.on('destroy', removePrevNextBtnsClickHandlers)
+        emblaApi.on('destroy', removeDotBtnsAndClickHandlers)
+      }
+    }
+  }
 </script>
 
 <style is:global>

@@ -1,19 +1,19 @@
 ---
-import type { Props } from '@astro/starlight/props';
+import type { Props } from '@astrojs/starlight/props';
 import CallToAction from '@astrojs/starlight/components/CallToAction.astro';
-import { Image } from 'astro:assets';
+// import { Image } from 'astro:assets';
 
 import Carousel from './Carousel.astro'
 
-const { title, tagline, description, hero } = Astro.props.entry.data;
+const { title, hero } = Astro.props.entry.data;
 
-const imageAttrs = {
-	loading: 'eager' as const,
-	decoding: 'async' as const,
-	width: 400,
-	height: 400,
-	alt: hero.image?.alt || '',
-};
+// const imageAttrs = {
+// 	loading: 'eager' as const,
+// 	decoding: 'async' as const,
+// 	width: 400,
+// 	height: 400,
+// 	alt: hero.image?.alt || '',
+// };
 ---
 
 <!--
@@ -47,23 +47,25 @@ const imageAttrs = {
   {hero.image && <Image src={hero.image.file} {...imageAttrs} class="" />}
   -->
 
-  <div class="flex flex-col text-left leading-tight">
-    <div class="pb-8">
-      <h1 id={title} data-page-title set:html={title} class="text-6xl text-white" />
-      {hero.tagline && <div class="text-lg" set:html={hero.tagline} />}
+  { hero &&
+    <div class="flex flex-col text-left leading-tight">
+      <div class="pb-8">
+        <h1 id={title} data-page-title class="text-6xl text-white">{title}</h1>
+        {hero.tagline && <div class="text-lg">{hero.tagline}</div>}
+      </div>
+      {
+        hero.actions.length > 0 && (
+          <div class="flex flex-wrap gap-x-4 gap-y-0 text-lg">
+            {hero.actions.map(({ text, ...attrs }) => (
+              <CallToAction {...attrs}>{text}</CallToAction>
+            ))}
+          </div>
+        )
+      }
     </div>
-    {
-      hero.actions.length > 0 && (
-        <div class="flex flex-wrap gap-x-4 gap-y-0 text-lg">
-          {hero.actions.map(({ text, ...attrs }) => (
-            <CallToAction {...attrs} set:html={text} />
-          ))}
-        </div>
-      )
-    }
-  </div>
+  }
 
-  <Carousel class="" client:load>
+  <Carousel>
     <iframe 
       src="https://www.youtube.com/embed/D1o9Y5kFDrk?start=250&autoplay=0&mute=0&playsinline=1&controls=1&loop=0"
       class="embla__slide aspect-video"
