@@ -1,0 +1,81 @@
+---
+import type { Props } from '@astro/starlight/props';
+import CallToAction from '@astrojs/starlight/components/CallToAction.astro';
+import { Image } from 'astro:assets';
+
+import Carousel from './Carousel.astro'
+
+const { title, tagline, description, hero } = Astro.props.entry.data;
+
+const imageAttrs = {
+	loading: 'eager' as const,
+	decoding: 'async' as const,
+	width: 400,
+	height: 400,
+	alt: hero.image?.alt || '',
+};
+---
+
+<!--
+<div class="hero min-h-lvh">
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/D1o9Y5kFDrk?start=250&autoplay=0&mute=1&playsinline=1&controls=0&loop=1"
+      class=""
+    ></iframe>
+  </div>
+  <div>    
+    <h1>Use a youtube video as a full screen background with CSS</h1>
+  </div> 
+</div>
+-->
+
+<!--
+<Carousel client:load>
+  <CarouselContent>
+    <CarouselItem><div>Slide 1</div></CarouselItem>
+    <CarouselItem><div>Slide 2</div></CarouselItem>
+    <CarouselItem><div>Slide 3</div></CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+-->
+
+<div class="hero flex flex-col lg:flex-row items-center gap-16 pb-16 pt-16 my-16 lg:my-32 mx-8">
+  <!--
+  {hero.image && <Image src={hero.image.file} {...imageAttrs} class="" />}
+  -->
+
+  <div class="flex flex-col text-left leading-tight">
+    <div class="pb-8">
+      <h1 id={title} data-page-title set:html={title} class="text-6xl text-white" />
+      {hero.tagline && <div class="text-lg" set:html={hero.tagline} />}
+    </div>
+    {
+      hero.actions.length > 0 && (
+        <div class="flex flex-wrap gap-x-4 gap-y-0 text-lg">
+          {hero.actions.map(({ text, ...attrs }) => (
+            <CallToAction {...attrs} set:html={text} />
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  <Carousel class="" client:load>
+    <iframe 
+      src="https://www.youtube.com/embed/D1o9Y5kFDrk?start=250&autoplay=0&mute=0&playsinline=1&controls=1&loop=0"
+      class="embla__slide aspect-video"
+    ></iframe>
+    <iframe 
+      src="https://www.youtube.com/embed/uwuPjYF-XwA?start=100&autoplay=0&mute=0&playsinline=1&controls=1&loop=0"
+      class="embla__slide aspect-video"
+    ></iframe>
+    <iframe 
+      src="https://www.youtube.com/embed/wgPf24_OQZY?start=130&autoplay=0&mute=0&playsinline=1&controls=1&loop=0"
+      class="embla__slide aspect-video"
+    ></iframe>
+  </Carousel>
+
+</div>

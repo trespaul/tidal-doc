@@ -113,8 +113,10 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/tidalcycles/tidal-doc/edit/main/'
       },
+      // component overrides
       components: {
         Head: './src/components/Head.astro',
+        Hero: './src/components/Hero.astro',
       },
       plugins: [starlightBlog({
         recentPostCount: 20

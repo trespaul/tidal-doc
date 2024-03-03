@@ -1,0 +1,263 @@
+---
+import { Icon, Card } from '@astrojs/starlight/components';
+---
+
+<div class="embla">
+  <div class="embla__viewport">
+    <div class="embla__container">
+      <slot />
+    </div>
+  </div>
+  <div class="embla__controls">
+    <div class="embla__buttons">
+      <button class="embla__button embla__button--prev" type="button">
+        <Icon name="left-arrow" size="2rem" />
+      </button>
+      <button class="embla__button embla__button--next" type="button">
+        <Icon name="right-arrow" size="2rem" />
+      </button>
+    </div>
+    <div class="embla__dots"></div>
+  </div>
+  <noscript> You need to enable JavaScript to run this widget.</noscript>
+</div>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+
+  // arrow buttons
+
+  const addTogglePrevNextBtnsActive = (emblaApi, prevBtn, nextBtn) => {
+    const togglePrevNextBtnsState = () => {
+      if (emblaApi.canScrollPrev()) prevBtn.removeAttribute('disabled')
+      else prevBtn.setAttribute('disabled', 'disabled')
+
+      if (emblaApi.canScrollNext()) nextBtn.removeAttribute('disabled')
+      else nextBtn.setAttribute('disabled', 'disabled')
+    }
+
+    emblaApi
+      .on('select', togglePrevNextBtnsState)
+      .on('init', togglePrevNextBtnsState)
+      .on('reInit', togglePrevNextBtnsState)
+
+    return () => {
+      prevBtn.removeAttribute('disabled')
+      nextBtn.removeAttribute('disabled')
+    }
+  }
+
+  const addPrevNextBtnsClickHandlers = (emblaApi, prevBtn, nextBtn) => {
+    const scrollPrev = () => {
+      emblaApi.scrollPrev()
+    }
+    const scrollNext = () => {
+      emblaApi.scrollNext()
+    }
+    prevBtn.addEventListener('click', scrollPrev, false)
+    nextBtn.addEventListener('click', scrollNext, false)
+
+    const removeTogglePrevNextBtnsActive = addTogglePrevNextBtnsActive(
+      emblaApi,
+      prevBtn,
+      nextBtn
+    )
+
+    return () => {
+      removeTogglePrevNextBtnsActive()
+      prevBtn.removeEventListener('click', scrollPrev, false)
+      nextBtn.removeEventListener('click', scrollNext, false)
+    }
+  }
+
+  // dots
+
+  const addDotBtnsAndClickHandlers = (emblaApi, dotsNode) => {
+    let dotNodes = []
+
+    const addDotBtnsWithClickHandlers = () => {
+      dotsNode.innerHTML = emblaApi
+        .scrollSnapList()
+        .map(() => '<button class="embla__dot" type="button"></button>')
+        .join('')
+
+      const scrollTo = (index) => {
+        emblaApi.scrollTo(index)
+      }
+
+      dotNodes = Array.from(dotsNode.querySelectorAll('.embla__dot'))
+      dotNodes.forEach((dotNode, index) => {
+        dotNode.addEventListener('click', () => scrollTo(index), false)
+      })
+    }
+
+    const toggleDotBtnsActive = () => {
+      const previous = emblaApi.previousScrollSnap()
+      const selected = emblaApi.selectedScrollSnap()
+      dotNodes[previous].classList.remove('embla__dot--selected')
+      dotNodes[selected].classList.add('embla__dot--selected')
+    }
+
+    emblaApi
+      .on('init', addDotBtnsWithClickHandlers)
+      .on('reInit', addDotBtnsWithClickHandlers)
+      .on('init', toggleDotBtnsActive)
+      .on('reInit', toggleDotBtnsActive)
+      .on('select', toggleDotBtnsActive)
+
+    return () => {
+      dotsNode.innerHTML = ''
+    }
+  }
+
+  // main
+
+  const OPTIONS = { loop: true, }
+
+  const emblaNode = document.querySelector('.embla')
+  const viewportNode = emblaNode.querySelector('.embla__viewport')
+  const prevBtnNode = emblaNode.querySelector('.embla__button--prev')
+  const nextBtnNode = emblaNode.querySelector('.embla__button--next')
+  const dotsNode = emblaNode.querySelector('.embla__dots')
+
+  const emblaApi = EmblaCarousel(viewportNode, OPTIONS)
+
+  const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(
+    emblaApi,
+    prevBtnNode,
+    nextBtnNode
+  )
+  const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(
+    emblaApi,
+    dotsNode
+  )
+
+  emblaApi.on('destroy', removePrevNextBtnsClickHandlers)
+  emblaApi.on('destroy', removeDotBtnsAndClickHandlers)
+
+</script>
+
+<style is:global>
+  .embla {
+    max-width: 30rem;
+    margin: auto;
+    --slide-spacing: 1rem;
+    --slide-size: 100%;
+
+    --detail-medium-contrast: rgb(80, 80, 80);
+    --detail-high-contrast: rgb(80, 80, 80);
+    --text-high-contrast-rgb-value: 80, 80, 80;
+    --text-body: rgb(80, 80, 80);
+  }
+  @media (prefers-color-scheme:dark) {
+    .embla {
+      --detail-medium-contrast: rgb(80, 80, 80);
+      --detail-high-contrast: rgb(101, 101, 101);
+      --text-high-contrast-rgb-value: 230, 230, 230;
+      --text-body: rgb(222, 222, 222);
+    }
+  }
+  .embla__viewport {
+    overflow: hidden;
+  }
+  .embla__container {
+    backface-visibility: hidden;
+    display: flex;
+    touch-action: pan-y;
+    margin-left: calc(var(--slide-spacing) * -1);
+  }
+  .embla__slide {
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+    padding-left: var(--slide-spacing);
+  }
+  .embla__slide__number {
+    box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+    border-radius: 1.8rem;
+    font-size: 4rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--slide-height);
+  }
+  .embla__controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: space-between;
+    gap: 1.2rem;
+  }
+  .embla__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    align-items: center;
+  }
+  .embla__button {
+    -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    display: inline-flex;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    width: 3.6rem;
+    height: 3.6rem;
+    z-index: 1;
+    border-radius: 50%;
+    color: var(--text-body);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .embla__button:disabled {
+    color: var(--detail-high-contrast);
+  }
+  .embla__button__svg {
+    width: 35%;
+    height: 35%;
+  }
+  .embla__dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
+    padding-right: 1rem;
+  }
+  .embla__dot {
+    -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    display: inline-flex;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .embla__dot:after {
+    box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    content: '';
+  }
+  .embla__dot--selected:after {
+    box-shadow: inset 0 0 0 0.2rem var(--text-body);
+  }
+</style>
