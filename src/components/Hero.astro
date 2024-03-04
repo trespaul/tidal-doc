@@ -1,19 +1,9 @@
 ---
 import type { Props } from '@astrojs/starlight/props';
 import CallToAction from '@astrojs/starlight/components/CallToAction.astro';
-// import { Image } from 'astro:assets';
-
 import Carousel from './Carousel.astro'
 
 const { title, hero } = Astro.props.entry.data;
-
-// const imageAttrs = {
-// 	loading: 'eager' as const,
-// 	decoding: 'async' as const,
-// 	width: 400,
-// 	height: 400,
-// 	alt: hero.image?.alt || '',
-// };
 ---
 
 <div
@@ -21,14 +11,17 @@ const { title, hero } = Astro.props.entry.data;
     "hero grid grid-cols-1 lg:grid-cols-2
     items-center gap-8 pb-16 pt-16 my-16 lg:my-32 mx-8"
 >
-  <!--
-  {hero.image && <Image src={hero.image.file} {...imageAttrs} class="" />}
-  -->
-
   { hero &&
-    <div class="flex flex-col text-left leading-tight place-self-center md:place-self-left">
+    <div
+      class="flex flex-col text-left leading-tight
+              place-self-center md:place-self-left"
+    >
       <div class="pb-8">
-        <h1 id={title} data-page-title class="text-4xl md:6xl text-white">{title}</h1>
+        <h1
+          id={title}
+          data-page-title
+          class="text-4xl md:6xl text-black dark:text-white"
+        >{title}</h1>
         {hero.tagline && <div class="text-lg">{hero.tagline}</div>}
       </div>
       {
