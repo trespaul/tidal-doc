@@ -4,21 +4,25 @@ tableOfContents:
   maxHeadingLevel: 3
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
 
 As mentioned in the [Introduction](/introduction/what-is-tidal), TidalCycles consists of a stack of components.
 Specifically, the stack contains, from the bottom up:
-- [SuperCollider](https://supercollider.github.io/), the backend audio server that makes the sound, with the additional [SC3 plugins](https://github.com/supercollider/sc3-plugins);
-- [SuperDirt](https://github.com/musikinformatik/SuperDirt), the sample library and synth engine used by Tidal, installed in SuperCollider;
-- the Tidal pattern engine (TidalCycles itself), which runs on [the Haskell Language](https://www.haskell.org/) (usually installed with [ghcup](https://www.haskell.org/ghcup/)), and which can be installed through [cabal](https://www.haskell.org/cabal/), Haskell's package manager;
-- and a code editor such as [Pulsar](https://pulsar-edit.dev/), which talks to Tidal via a [plugin](https://github.com/tidalcycles/pulsar-tidalcycles).
+
+<Steps>
+1. [SuperCollider](https://supercollider.github.io/), the backend audio server that makes the sound, with the additional [SC3 plugins](https://github.com/supercollider/sc3-plugins);
+2. [SuperDirt](https://github.com/musikinformatik/SuperDirt), the sample library and synth engine used by Tidal, installed in SuperCollider;
+3. the Tidal pattern engine (TidalCycles itself), which runs on [the Haskell Language](https://www.haskell.org/) (usually installed with [ghcup](https://www.haskell.org/ghcup/)), and which can be installed through [cabal](https://www.haskell.org/cabal/), Haskell's package manager;
+4. and a code editor such as [Pulsar](https://pulsar-edit.dev/), which talks to Tidal via a [plugin](https://github.com/tidalcycles/pulsar-tidalcycles).
+</Steps>
 
 On this page you will find guides for building up this stack for [Linux](#linux), [macOS](#macos), and [Windows](#windows).
 This can possibly be done automatically, so use whichever method suits your situation best.
 Don't be afraid to reach out for help via the community if you get stuck!
 
+## Install the components
 
-## Automatic installation
+### Automatic installation
 
 <Tabs>
 
@@ -42,7 +46,7 @@ Don't be afraid to reach out for help via the community if you get stuck!
   Using the package manager [Chocolatey](https://chocolatey.org/) and will install everything you need, including required dependencies.
   The installer assumes that these aren't installed already. If you do have some components (SuperCollider, SuperDirt, etc) it is recommended to use Manual installation steps for the remaining components.
 
-  After installing Chocolatey, you can run the following command to install TidalCycles:
+  After installing Chocolatey, you can run the following command to install the [TidalCycles](https://community.chocolatey.org/packages/TidalCycles) package ([source](https://github.com/tidalcycles/tidal-chocolatey/)):
 
   ```bash
   choco install tidalcycles
@@ -59,7 +63,7 @@ Don't be afraid to reach out for help via the community if you get stuck!
 </Tabs>
 
 
-## Manual installation
+### Manual installation
 
 <Tabs>
 
@@ -67,260 +71,267 @@ Don't be afraid to reach out for help via the community if you get stuck!
 
 Most modern distros will have all or most of the components of a Tidal installation available via their respective package managers.
 
-#### Preparation
+<Steps>
 
-Make sure your user is a a member of the `audio` group:
+0. Preparation
 
-```bash
-sudo usermod -a -G audio $USER
-```
+   First, make sure your user is a a member of the `audio` group:
+
+   ```bash
+   sudo usermod -a -G audio $USER
+   ```
     
-Logout and log back in for it to take effect. You can check if it worked with:
+   Logout and log back in for it to take effect. You can check if it worked with:
 
-```bash
-groups | grep audio
-```
+   ```bash
+   groups | grep audio
+   ```
 
-Next, install the necessary dependencies.
+   Next, install the necessary dependencies.
 
-<Tabs>
-  <TabItem label="Debian">
-    ```bash
-    sudo apt update && sudo apt install \
-      git jackd2 qjackctl zlib1g-dev gcc g++ ghc cabal-install
-    ```
-  </TabItem>
-
-  <TabItem label="Arch">
-    ```bash
-    sudo pacman -Syu && sudo pacman -Sy git jack2 qjackctl
-    sudo pacman -R lib32-mesa-demos mesa-demos # remove conflicts
-    ```
-  </TabItem>
-
-  <TabItem label="Fedora">
-    ```bash
-    sudo dnf install git-core qjackctl gcc-c++ cabal-install
-    ```
-  </TabItem>
-</Tabs>
+   <Tabs>
+     <TabItem label="Debian">
+       ```bash
+       sudo apt update && sudo apt install \
+         git jackd2 qjackctl zlib1g-dev gcc g++ ghc cabal-install
+       ```
+     </TabItem>
+ 
+     <TabItem label="Arch">
+       ```bash
+       sudo pacman -Syu && sudo pacman -Sy git jack2 qjackctl
+       sudo pacman -R lib32-mesa-demos mesa-demos # remove conflicts
+       ```
+     </TabItem>
+ 
+     <TabItem label="Fedora">
+       ```bash
+       sudo dnf install git-core qjackctl gcc-c++ cabal-install
+       ```
+     </TabItem>
+   </Tabs>
 
     
-#### SuperCollider Installation
+1. Install SuperCollider and the SC3-Plugins
+   
+   <Tabs>
+     <TabItem label="Debian">
+       ```bash
+         sudo apt install supercollider sc3-{plugins,plugins-language,plugins-server}
+       ```
+     </TabItem>
+   
+     <TabItem label="Arch">
+       ```bash
+         sudo pacman -Sy supercollider sc3-plugins
+       ```
+     </TabItem>
+   
+     <TabItem label="Fedora">
+       ```bash
+         sudo dnf install supercollider
+         # sc3-plugins for Fedora is provided by a 3rd party repo
+         sudo dnf copr enable ycollet/audinux
+         sudo dnf install supercollider-sc3-plugins
+         sudo dnf copr disable ycollet/audinux # (you may choose to leave it enabled)
+       ```
+     </TabItem>
+   </Tabs>
 
-Install SuperCollider and the SC3-Plugins
+2. SuperDirt Installation
 
-<Tabs>
-  <TabItem label="Debian">
-    ```bash
-      sudo apt install supercollider sc3-{plugins,plugins-language,plugins-server}
-    ```
-  </TabItem>
+   SuperDirt is a plugin or "Quark" for SuperCollider, and functions as the audio engine for TidalCycles. It also provides the default set of samples.
+       
+   Get the version number of the latest SuperDirt release by checking the [GitHub releases page](https://github.com/musikinformatik/SuperDirt/releases) or by running
+   
+   ```bash
+   git ls-remote https://github.com/musikinformatik/SuperDirt.git | grep tags | tail -n1 | awk -F/ '{print $NF}'
+   ```
+   
+   Install SuperDirt by starting the SuperCollider shell with the `sclang` command, then running the following (update the version number if required):
+   
+   ```c
+   Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.3"); thisProcess.recompile()})
+   ```
+   
+   The command returns immediately but processes in the background. Wait for it to finish and, once completed, press `Ctrl+d` to exit `sclang`.
 
-  <TabItem label="Arch">
-    ```bash
-      sudo pacman -Sy supercollider sc3-plugins
-    ```
-  </TabItem>
+3. Tidal Installation
 
-  <TabItem label="Fedora">
-    ```bash
-      sudo dnf install supercollider
-      # sc3-plugins for Fedora is provided by a 3rd party repo
-      sudo dnf copr enable ycollet/audinux
-      sudo dnf install supercollider-sc3-plugins
-      sudo dnf copr disable ycollet/audinux # (you may choose to leave it enabled)
-    ```
-  </TabItem>
-</Tabs>
+   <Tabs>
+     <TabItem label="Debian & Fedora">
+       ```bash
+         cabal update && cabal install tidal --lib
+       ```
+     </TabItem>
+   
+     <TabItem label="Arch">
+       ```bash
+         sudo pacman -Sy ghc ghc-libs haskell-{tidal,bifunctors,colour,hosc,mwc-random,network,primitive,random,vector,microspec}
+       ```
+     </TabItem>
+   </Tabs>
+   
+4. Almost done! The final installation step is to choose and install a [text editor (see below)](#get-a-text-editor) to interact with TidalCycles.
 
-#### SuperDirt Installation
-
-SuperDirt is a plugin or "Quark" for SuperCollider, and functions as the audio engine for TidalCycles. It also provides the default set of samples.
-    
-Get the version number of the latest SuperDirt release by checking the [GitHub releases page](https://github.com/musikinformatik/SuperDirt/releases) or by running
-
-```bash
-git ls-remote https://github.com/musikinformatik/SuperDirt.git | grep tags | tail -n1 | awk -F/ '{print $NF}'
-```
-
-Install SuperDirt by starting the SuperCollider shell with the `sclang` command, then running the following (update the version number if required):
-
-```c
-Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.3"); thisProcess.recompile()})
-```
-
-The command returns immediately but processes in the background. Wait for it to finish and, once completed, press `Ctrl+d` to exit `sclang`.
-
-#### Tidal Installation
-
-Install Tidal:
-
-<Tabs>
-  <TabItem label="Debian & Fedora">
-    ```bash
-      cabal update && cabal install tidal --lib
-    ```
-  </TabItem>
-
-  <TabItem label="Arch">
-    ```bash
-      sudo pacman -Sy ghc ghc-libs haskell-{tidal,bifunctors,colour,hosc,mwc-random,network,primitive,random,vector,microspec}
-    ```
-  </TabItem>
-</Tabs>
-
-Almost done! The final installation step is to choose and install a [text editor (see below)](#get-a-text-editor) to interact with TidalCycles.
-
+</Steps>
 </TabItem>
 
 <TabItem label="macOS">
+<Steps>
 
-{/* TODO: Add links to instructions for supercollider, SC3 plugins, and ghcup */}
+1. Install SuperCollider.
 
-#### SuperCollider and SuperDirt
+   {/* TODO: macos supercollider and SC3 installation */}
 
-Install SuperCollider.
+2. SuperDirt
 
-Start your freshly installed version of SuperCollider and paste the following line of code in the text editor. Press `Cmd+Return` to evaluate it.
+   Start your freshly installed version of SuperCollider and paste the following line of code in the text editor. Press `Cmd+Return` to evaluate it.
 
-```c
-Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.3"); thisProcess.recompile()})
-```
+   ```c
+   Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.3"); thisProcess.recompile()})
+   ```
 
-It'll take a while to install. You will know when the installation process is done by looking at the logs window. You'll see something like the following:
+   It'll take a while to install. You will know when the installation process is done by looking at the logs window. You'll see something like the following:
 
-```
-Installing SuperDirt
-Installing Vowel
-Vowel installed
-Installing Dirt-Samples
-Dirt-Samples installed
-SuperDirt installed
-compiling class library...
+   ```
+   Installing SuperDirt
+   Installing Vowel
+   Vowel installed
+   Installing Dirt-Samples
+   Dirt-Samples installed
+   SuperDirt installed
+   compiling class library...
 
-...
+   ...
 
-<!--T:31-->
-*** Welcome to SuperCollider 3.11.2. *** For help press Ctrl-D.
-```
+   <!--T:31-->
+   *** Welcome to SuperCollider 3.11.2. *** For help press Ctrl-D.
+   ```
 
-#### Tidal
+3. Tidal
 
-Install Haskell via `ghcup`.
+   Install Haskell via `ghcup`.
 
-Then, in a terminal window, we will add the path to our GHC installation to a file that is executed by our terminal every time it loads.
+   Then, in a terminal window, we will add the path to our GHC installation to a file that is executed by our terminal every time it loads.
+   
+   For macOS10.15 Catalina, the terminal uses `zsh`, so the file we need to modify is `.zshrc`:
+   
+   ```bash
+   . "$HOME/.ghcup/env"
+   echo '. $HOME/.ghcup/env' >> "$HOME/.zshrc"
+   ```
+   
+   For macOS 10.14 or before, the terminal uses `bash`, so the file we need to modify is `.bashrc`.
+   Replace `.zshrc` in the above command with `.bashrc`.
+   
+   After this, we will use `cabal` to install the TidalCycles library.
+   We will also run these two commands every time we want to update our TidalCycles library to the latest version.
+   
+   ```bash
+   cabal update
+   cabal v1-install tidal
+   ```
+   
+   If you've never installed TidalCycles before, then the `cabal v1-install tidal` step may take some time.
+   At the end of the command output, it should say `Installed tidal-x.x.x` (where `x.x.x` is the latest version number) without any errors.
 
-For macOS10.15 Catalina, the terminal uses `zsh`, so the file we need to modify is `.zshrc`:
+4. Almost done! The final installation step is to choose and install a [text editor (see below)](#get-a-text-editor) to interact with TidalCycles.
 
-```bash
-. "$HOME/.ghcup/env"
-echo '. $HOME/.ghcup/env' >> "$HOME/.zshrc"
-```
-
-For macOS 10.14 or before, the terminal uses `bash`, so the file we need to modify is `.bashrc`.
-Replace `.zshrc` in the above command with `.bashrc`.
-
-After this, we will use `cabal` to install the TidalCycles library.
-We will also run these two commands every time we want to update our TidalCycles library to the latest version.
-
-```bash
-cabal update
-cabal v1-install tidal
-```
-
-If you've never installed TidalCycles before, then the `cabal v1-install tidal` step may take some time.
-At the end of the command output, it should say `Installed tidal-x.x.x` (where `x.x.x` is the latest version number) without any errors.
-
-Almost done! The final installation step is to choose and install a [text editor (see below)](#get-a-text-editor) to interact with TidalCycles.
-
+</Steps>
 </TabItem>
 
 <TabItem label="Windows">
 
-#### SuperCollider
+<Steps>
 
-See [SuperCollider Downloads](https://supercollider.github.io/downloads),
-the [SuperCollider README](https://github.com/supercollider/supercollider),
-and the [Windows README](https://github.com/supercollider/supercollider/blob/develop/README_WINDOWS.md).
+1. SuperCollider
 
-The [SC3 Plugins](https://supercollider.github.io/sc3-plugins/) are also needed if you want to use any of the synthesizers included with TidalCycles.
-Follow the linked instructions to install them.
+   See [SuperCollider Downloads](https://supercollider.github.io/downloads),
+   the [SuperCollider README](https://github.com/supercollider/supercollider),
+   and the [Windows README](https://github.com/supercollider/supercollider/blob/develop/README_WINDOWS.md).
 
-#### SuperDirt
+   The [SC3 Plugins](https://supercollider.github.io/sc3-plugins/) are also needed if you want to use any of the synthesizers included with TidalCycles.
+   Follow the linked instructions to install them.
 
-To install SuperDirt, open SuperCollider and run the following command in the interactive editor (press Ctrl+Return to evaluate):
+2. SuperDirt
 
-```c
-Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.3"); thisProcess.recompile()})
-```
+   To install SuperDirt, open SuperCollider and run the following command in the interactive editor (press Ctrl+Return to evaluate):
 
-The installation will take a little while. You will know when the installation process is done by looking at the logs window. It will likely print something like the following:
+   ```c
+   Quarks.checkForUpdates({Quarks.install("SuperDirt", "v1.7.3"); thisProcess.recompile()})
+   ```
 
-```
-Installing SuperDirt
-Installing Vowel
-Vowel installed
-Installing Dirt-Samples
-Dirt-Samples installed
-SuperDirt installed
-compiling class library...
+   The installation will take a little while. You will know when the installation process is done by looking at the logs window. It will likely print something like the following:
 
-...
+   ```
+   Installing SuperDirt
+   Installing Vowel
+   Vowel installed
+   Installing Dirt-Samples
+   Dirt-Samples installed
+   SuperDirt installed
+   compiling class library...
 
-*** Welcome to SuperCollider 3.12.1. *** For help press Ctrl-D.
-```
+   ...
 
-#### Haskell
+   *** Welcome to SuperCollider 3.12.1. *** For help press Ctrl-D.
+   ```
 
-Install `ghcup` — see [Haskell `ghcup`](https://www.haskell.org/ghcup/) for info.
-For assistance, see the [Windows ghcup install](https://www.youtube.com/watch?v=bB4fmQiUYPw) YouTube video.
+3. Haskell and Tidal
 
-Run this command in Windows PowerShell (as admin):
+   Install `ghcup` — see [Haskell `ghcup`](https://www.haskell.org/ghcup/) for info.
+   For assistance, see the [Windows ghcup install](https://www.youtube.com/watch?v=bB4fmQiUYPw) YouTube video.
 
-```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; try { Invoke-Command -ScriptBlock ([ScriptBlock]::Create((Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing))) -ArgumentList $true } catch { Write-Error $_ }
-```
+   Run this command in Windows PowerShell (as admin):
 
-This should install GHCi v9.25. But Tidal 1.9.3+ is best with GHC 9.6.1 and `cabal` 3.10.1.0.
-Run these commands from PowerShell (as admin) to get the correct GHC and `cabal` versions:
+   ```powershell
+   Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; try { Invoke-Command -ScriptBlock ([ScriptBlock]::Create((Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing))) -ArgumentList $true } catch { Write-Error $_ }
+   ```
 
-```powershell
-ghcup install ghc 9.6.1
-ghcup install cabal 3.10.1.0
-ghcup set ghc 9.6.1
-ghcup set cabal 3.10.1.0
-```
+   This should install GHCi v9.25. But Tidal 1.9.3+ is best with GHC 9.6.1 and `cabal` 3.10.1.0.
+   Run these commands from PowerShell (as admin) to get the correct GHC and `cabal` versions:
 
-To verify that the above commands worked, run
+   ```powershell
+   ghcup install ghc 9.6.1
+   ghcup install cabal 3.10.1.0
+   ghcup set ghc 9.6.1
+   ghcup set cabal 3.10.1.0
+   ```
 
-```powershell
-ghci --version  
-cabal --version
-```
+   To verify that the above commands worked, run
 
-#### TidalCycles
+   ```powershell
+   ghci --version  
+   cabal --version
+   ```
 
-In PowerShell, run the following commands:
+   TidalCycles: In PowerShell, run the following commands:
 
-```powershell
-cabal update
-cabal v1-install tidal
-```
+   ```powershell
+   cabal update
+   cabal v1-install tidal
+   ```
 
-Make sure to use `v1-install`, as `v2-install tidal` may not work.
+   Make sure to use `v1-install`, as `v2-install tidal` may not work.
 
-Almost done! The final installation step is to choose and install a [text editor (see below)](#get-a-text-editor) to interact with TidalCycles.
+4. Almost done! The final installation step is to choose and install a [text editor (see below)](#get-a-text-editor) to interact with TidalCycles.
 
-{/* TODO: Tidal install? */}
-
+</Steps>
 </TabItem>
 
 </Tabs>
 
 ## Get a text editor
 
+To use Tidal, code needs to be run in the Tidal interface, which is a REPL (like a command line).
+It's inconvenient and impractical to type and run commands directly in the REPL, so we use a text editor of our choice together with a plugin or extension to run the REPL.
+
+Below are short introductions to the most popular text editors used with Tidal (and for code in general), and how to set them up. If you are new to code editing, choose between [Pulsar](#pulsar) and [VS Code](#vs-code).
+
 ### Pulsar
+
+![A screenshot of the Pulsar editor.](https://github.com/pulsar-edit/pulsar/raw/master/resources/readme.png)
 
 [Pulsar](https://pulsar-edit.dev/) is a code editor that is open-source and community-led.
 It is based on Atom and was started after the announcement that Atom will be [sunset](https://github.blog/2022-06-08-sunsetting-atom/).
@@ -336,7 +347,9 @@ See the [`#pulsar` channel on Discord](https://discord.com/channels/779427371270
 
 ### VS Code
 
-[VSCode](https://code.visualstudio.com/) is a popular general purpose text/code editor published by Microsoft, with some open-source components.
+![A screenshot of the VS Code editor.](https://code.visualstudio.com/assets/home/home-screenshot-linux-lg.png)
+
+[VSCode](https://code.visualstudio.com/) is currently the most popular general purpose code editor. It is published by Microsoft, with some open-source components.
 TidalCycles code can be written in VS Code through the [TidalCycles Extension](https://marketplace.visualstudio.com/items?itemName=tidalcycles.vscode-tidalcycles).
 Also see the [extension repository on GitHub](https://github.com/kindohm/vscode-tidalcycles) if you want to report an issue or contribute to its development.
 
@@ -345,6 +358,8 @@ After installation, click on the TidalCycles logo in the left pane to see all th
 From there you can preview them, and insert them directly in your code.
 
 ### Vim / Neovim
+
+![A screenshot of a customised neovim installation.](https://neovim.io/images/showcase/goneovim.png)
 
 [Vim](https://www.vim.org) is the [classic and ubiquitous](https://en.wikipedia.org/wiki/Vim_(text_editor)) text editor.
 This editor is famous for its minimalistic approach, flexibility, and for its unique approach to [modal editing](https://en.wikipedia.org/wiki/Vi#Interface).
@@ -365,6 +380,8 @@ By default, `undotree` will record every little tiny changes in your text file.
 Activate the `undotree` for a file by entering the `:UndotreeToggle` command.
 
 ### Emacs
+
+![A screenshot of the a Doom Emacs setup.](https://raw.githubusercontent.com/doomemacs/doomemacs/screenshots/main.png)
 
 {/* TODO: clean up emacs section */}
 
@@ -451,6 +468,8 @@ You only need to actually change this file if you want to tweak the
 
 ### Helix
 
+![A screenshot of the Helix editor.](https://github.com/helix-editor/helix/raw/master/screenshot.png)
+
 [Helix](https://helix-editor.com) is a code editor — written in Rust — with a fast-growing community.
 It takes inspiration from other modal editors like Vim, but aims to be vastly simplified while just as capable.
 Helix also aims to have things "just work", and features such as LSPs work out of the box.
@@ -460,6 +479,8 @@ To send text from Helix to Tidal, you can use `tmux`: run the Tidal command line
 See [this post by `@trespaul` on the Tidal Club forum](https://club.tidalcycles.org/t/language-server-protocol/1525/12) for more details.
 
 ### Sublime Text
+
+![A screenshot of Sublime Text.](https://www.sublimetext.com/screenshots/sublime_text_4.png)
 
 [Sublime Text](https://club.tidalcycles.org/t/language-server-protocol/1525/12) is a popular cross-platform text editor.
 It is closed source and costs $70 USD. You can still use Sublime Text without buying it but be ready to deal with an ominous pop-up window that remind you to buy it every few minutes.
@@ -478,34 +499,19 @@ into `config/Tidal/ghci-tidal.conf`, replacing whatever was already there.
 :::
 
 
-## Getting Help
+## Other installation operations
 
-If you are having trouble with installation, here are options:
-- Review this page carefully and make sure you are following all instructions.  
-- For individual component problems - such as SuperCollider and SuperDirt - check their ReadMe pages in GitHub:  
-    - [SuperCollider Readme](https://github.com/supercollider/supercollider)
-    - [SuperDirt Readme](https://github.com/musikinformatik/SuperDirt)
-- [TidalCycles Discord - Installation Help Channel](https://discord.com/channels/779427371270275082/779487905822801930)
-    - Try searching this channel to see if your problem has been experienced by others
-    - Be sure to post details - what exact problem, error messages, what Windows version, etc.
-    - See the "how to ask" channel for more about getting help from our community
-- [Forums - Tidal Club](https://club.tidalcycles.org/)  A lot of smart people hang out here.
-- Don't get discouraged! Tidal has a complex stack, but these components are all proven, robust and stable. Once it is all working, it rarely needs to have any attention.
-
-
-{/* TODO: clean up upgrading, downgrading, and uninstallation sections */}
-
-## Upgrading
+### Upgrading
 
 TidalCycles is a composite software. To upgrade it, it is *highly* recommended to upgrade everything along with the pattern library (the text editor and the SuperDirt audio engine as well). Each time a new version of Tidal is released, a new version of SuperDirt will likely follow, etc...
 
-### Ghc
+#### Ghc
 
 If you are using windows, you will need at least version 9.4.2 of ghc installed, e.g. [via chocolatey](https://community.chocolatey.org/packages/ghc). 
 
 For linux and mac, you don't need to upgrade ghc.
 
-### Library 
+#### Library 
 
 Upgrade tidal with the following from a terminal window (Linux/MacOS/Windows):
 
@@ -522,11 +528,11 @@ cabal install tidal --lib
 
 If things get messed up, under linux and macos you can remove the folders `.ghc` and `.cabal` from your home folder, and try again. Under windows, you can try the same but by deleting the `c:\Users\<user>\AppData\Roaming\cabal` where `<user>` is your username.
 
-### Editor plugin
+#### Editor plugin
 
 Your text editor might refer to the TidalCycles plugin as an *extension* or as a *package*. Check the sidebar to get more information about ways to update your favorite text editor. 
 
-### SuperDirt
+#### SuperDirt
 
 To upgrade the SuperDirt sound synthesiser/sampler, open SuperCollider,
 and paste the following command in the interactive editor. Select the text and press Shift+Enter:
@@ -538,12 +544,12 @@ Quarks.update("SuperDirt")
 You'll need to recompile the class library. You can do this either by simply restarting the software or via the *Recompile class library* entry on the *Language* top-bar menu.
 
 
-## Downgrading
+### Downgrading
 
 Sometimes, you might want to return to an earlier version of Tidal. Use the `ghc-pkg` command to do so. Enter the following commands in your terminal (or Powershell for Windows users) to downgrade your Tidal installation.
 
 
-### Listing all the currently installed versions
+#### Listing all the currently installed versions
 
 This command will list the versions of Tidal you have installed. If there is more than one, the most recent will be used: 
 
@@ -551,7 +557,7 @@ This command will list the versions of Tidal you have installed. If there is mor
 ghc-pkg list tidal
 ```
 
-### Uninstalling a version 
+#### Uninstalling a version 
 
 To uninstall a version, you can do, for example:
 
@@ -561,7 +567,7 @@ ghc-pkg unregister tidal-1.0.6
 
 Do this for each version until the most recent is the one you want.
 
-### Choosing a specific version
+#### Choosing a specific version
 
 If you don't have the one you want installed, you can select the desired version:
 
@@ -570,25 +576,25 @@ cabal install tidal-0.9.10
 ```
 
 
-## Uninstallation
+### Uninstallation
 
 TidalCycles does not provide an easy uninstaller. To uninstall Tidal, you will need to:
 * Uninstall SuperDirt and/or SuperCollider if you are not already using it for another purpose.
 * Uninstall the Tidal library and the GHC compiler.
 
-### Linux
+#### Linux
 
 Uninstalling TidalCycles on Linux can be tricky. There are multiple ways of installing it depending on the distribution you are using. Here are some tips you can use to locate all the components that are part of the Tidal install.
 
-#### Using whereis
+##### Using whereis
 
 Type `whereis scide sclang scsynth` in a terminal path to get the path to SuperCollider binaries.
 
-#### SuperDirt Quark
+##### SuperDirt Quark
 
 Open SuperCollider. In the `File` menu, click on `Open user support directory`. This menu will take you where SuperDirt is currently installed on your computer. Check in the `downloaded-quarks` for SuperDirt. Don't forget to uninstall the `Dirt-Samples` folder as well. It can be quite heavy (all the samples are located here).
 
-#### Uninstall stack
+##### Uninstall stack
 
 If you installed Tidal using Stack, you can use a dirty but simple solution to uninstall it. Run `rm -rf $HOME/.stack`. This command will delete the hidden stack folder located in your root directory.
 
@@ -599,7 +605,7 @@ Stack will sometimes install a binary located here: `$HOME/.local/bin`. Delete i
 Double-check or triple-check the `rm -rf` command. This is a powerful tool that will delete things definitively. Use it with caution as it can be quite dangerous if you mess with it.
 :::
 
-#### Clean up cabal and GHC
+##### Clean up cabal and GHC
 
 To clean up `cabal` and `GHC` (user-installed packages), try running the following command in a terminal window:
 ```bash
@@ -610,16 +616,16 @@ rm ~/.cabal ~/.ghc
 Double-check or triple-check the `rm -rf` command. This is a powerful tool that will delete things definitively. Use it with caution as it can be quite dangerous if you mess with it.
 :::
 
-### Windows
+#### Windows
 For chocolatey installs, see the instructions for [Windows Chocolatey Cleanup](https://tidalcycles.org/docs/getting-started/windows-choco-cleanup). 
 
-### MacOS
+#### MacOS
 
-#### Using uninstall-hs
+##### Using uninstall-hs
 
 Open a terminal window and type `uninstall-hs`. This command will delete many things Haskell related from your computer.
 
-#### Uninstalling ghcup
+##### Uninstalling ghcup
 
 If you installed Tidal using `ghcup`, you can try a hacky solution. Open a terminal window and paste `rm -rf ~/.ghcup`. This will delete the `.ghcup` hidden directory that was living in your root directory.
 
@@ -627,7 +633,7 @@ If you installed Tidal using `ghcup`, you can try a hacky solution. Open a termi
 Double-check or triple-check the `rm -rf` command. This is a powerful tool that will delete things definitively. Use it with caution as it can be quite dangerous if you mess with it.
 :::
 
-#### Clean up cabal and GHC
+##### Clean up cabal and GHC
 
 To clean up `cabal` and `GHC` (user-installed packages), try running the following command in a terminal window:
 ```bash
@@ -637,4 +643,19 @@ rm ~/.cabal ~/.ghc
 :::caution
 Double-check or triple-check the `rm -rf` command. This is a powerful tool that will delete things definitively. Use it with caution as it can be quite dangerous if you mess with it.
 :::
+
+
+## Getting Help
+
+If you are having trouble with installation, here are options:
+- Review this page carefully and make sure you are following all instructions.  
+- For individual component problems - such as SuperCollider and SuperDirt - check their ReadMe pages in GitHub:  
+    - [SuperCollider Readme](https://github.com/supercollider/supercollider)
+    - [SuperDirt Readme](https://github.com/musikinformatik/SuperDirt)
+- [TidalCycles Discord - Installation Help Channel](https://discord.com/channels/779427371270275082/779487905822801930)
+    - Try searching this channel to see if your problem has been experienced by others
+    - Be sure to post details - what exact problem, error messages, what Windows version, etc.
+    - See the "how to ask" channel for more about getting help from our community
+- [Forums - Tidal Club](https://club.tidalcycles.org/)  A lot of smart people hang out here.
+- Don't get discouraged! Tidal has a complex stack, but these components are all proven, robust and stable. Once it is all working, it rarely needs to have any attention.
 
