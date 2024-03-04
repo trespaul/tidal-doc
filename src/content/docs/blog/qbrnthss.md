@@ -6,6 +6,7 @@ authors:
   title: Barcelona, Spain
   url: http://callitanything.org/
   picture: https://f4.bcbits.com/img/a3167224562_10.jpg
+tags: [release, workflow]
 excerpt: |
   "The Magic Words Are Squeamish Ossifrage" is the plain text solution to many cryptographic challenges, a tradition originated in a challenge set by the authors of the RSA encryption algorithm in 1977. It is my first full-length album as QBRNTHSS, the result of more than a year of live performances and rehearsals using TidalCycles and Supercollider as main instruments. It’s published on the Sheffield label Interworld Media in digital download and cassette tape, and aesthetically it’s a mixture of synthetic textures, noisy ambients and broken rhythms.
 
