@@ -114,6 +114,4 @@ p "tick" $ "0*4" # s "tick"
 
 ## The Didactic Pattern Visualiser
 
-For a different approach to visualizing Tidal patterns, see the [Didactic Pattern Visualizer](https://github.com/ivan-abreu/didacticpatternvisualizer/tree/main) by Iván Abreu. Also see the blog post on it by `HighHarmonics` with examples and code: [Tidal Visualization with Didactic Pattern Visualizer].
-
-<!-- TODO: add blog link above -->
+For a different approach to visualizing Tidal patterns, see the [Didactic Pattern Visualizer](https://github.com/ivan-abreu/didacticpatternvisualizer/tree/main) by Iván Abreu. Also see the blog post on it by `HighHarmonics` with examples and code: [Tidal Visualization with Didactic Pattern Visualizer](/blog/visualizer).

@@ -412,9 +412,7 @@ LinkToMidiClock {
 
 Reboot SuperCollider or use `Language > Recompile Class Library`.
 
-We are now ready to follow the initialization guide. We will use the MIDI device variable named `~midiOut` from the initialization in the examples below.
-
-<!-- TODO: add initialization guide link -->
+We are now ready to follow the [initialization guide](#initialization). We will use the MIDI device variable named `~midiOut` from the initialization in the examples below.
 
 After the MIDI device is initialized, create a [LinkClock](https://doc.sccode.org/Classes/LinkClock.html) in SuperCollider.
 
@@ -443,15 +441,13 @@ Note: If SuperCollider and Tidal don't connect over Link, try starting Tidal bef
 
 For more details on Tidal's integration with Link, see [Multi-User Tidal](/reference/multi-user).
 
-<!-- TODO: add link to multi-user tidal page -->
+<!-- TODO: add link to multi-user tidal page (need to find a place for that page) -->
 
 ### Synchronising MIDI clock via Tidal
 
 We can alternatively use Tidal and SuperDirt MIDI for sending MIDI clock events. The advantage is that it also works in older versions of Tidal, but the method is somewhat more complicated.
 
-Set up SuperDirt MIDI by following the initialization guide.
-
-<!-- TODO: add initialization guide link -->
+Set up SuperDirt MIDI by following the [initialization guide](#initialization).
 
 When that is done, you can start sending MIDI clock messages, 48 per cycle, like this:
 
