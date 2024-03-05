@@ -3,7 +3,7 @@ import Hackage from '@components/Hackage.astro';
 
 export function getStaticPaths() {
 
-  const mkUrl = (slug) =>
+  const mkUrl = (slug: String) =>
     `https://hackage.haskell.org/package/tidal-1.9.4/docs/Sound-Tidal-${slug}.html`;
   
   const pages = [
@@ -39,7 +39,6 @@ export function getStaticPaths() {
   ));
 }
 
-const { slug } = Astro.params;
 const { title, url } = Astro.props;
 ---
 
