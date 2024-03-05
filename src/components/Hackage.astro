@@ -1,0 +1,20 @@
+---
+import { Markup } from 'astro-remote';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+
+const { title, url } = Astro.props;
+
+const html = await fetch(url).then(res => res.text());
+---
+
+<StarlightPage frontmatter={ { title } }>
+  <Markup
+    content={html} 
+    components={{
+    }}
+    sanitize={{ 
+      dropElements: ["head","style", "meta", "link", "title"], // remove along with children
+      blockElements: ["html", "body"], // remove but keep children
+    }}
+  />
+</StarlightPage>

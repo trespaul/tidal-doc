@@ -1,0 +1,46 @@
+---
+import Hackage from '@components/Hackage.astro';
+
+export function getStaticPaths() {
+
+  const mkUrl = (slug) =>
+    `https://hackage.haskell.org/package/tidal-1.9.4/docs/Sound-Tidal-${slug}.html`;
+  
+  const pages = [
+    { title: 'Bjorklund'   , hSlug: 'Bjorklund' },
+    { title: 'Chords'      , hSlug: 'Chords' },
+    { title: 'Config'      , hSlug: 'Config' },
+    { title: 'Context'     , hSlug: 'Context' },
+    { title: 'Control'     , hSlug: 'Control' },
+    { title: 'Core'        , hSlug: 'Core' },
+    { title: 'ID'          , hSlug: 'ID' },
+    { title: 'Params'      , hSlug: 'Params' },
+    { title: 'ParseBP'     , hSlug: 'ParseBP' },
+    { title: 'Pattern'     , hSlug: 'Pattern' },
+    { title: 'Safe.Boot'   , hSlug: 'Safe-Boot' },
+    { title: 'Safe.Context', hSlug: 'Safe-Context' },
+    { title: 'Scales'      , hSlug: 'Scales' },
+    { title: 'Show'        , hSlug: 'Show' },
+    { title: 'Simple'      , hSlug: 'Simple' },
+    { title: 'Stream'      , hSlug: 'Stream' },
+    { title: 'StreamTypes' , hSlug: 'StreamTypes' },
+    { title: 'Tempo'       , hSlug: 'Tempo' },
+    { title: 'Time'        , hSlug: 'Time' },
+    { title: 'Transition'  , hSlug: 'Transition' },
+    { title: 'UI'          , hSlug: 'UI' },
+    { title: 'Utils'       , hSlug: 'Utils' },
+    { title: 'Version'     , hSlug: 'Version' },
+  ]
+
+  return pages.map( ({ title, hSlug }) => (
+    { params: { slug: title.toLowerCase().replace('.', '-') },
+      props: { title, url: mkUrl(hSlug) },
+    }
+  ));
+}
+
+const { slug } = Astro.params;
+const { title, url } = Astro.props;
+---
+
+<Hackage url={ url } title={ title } />
