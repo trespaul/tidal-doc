@@ -473,7 +473,8 @@ It takes inspiration from other modal editors like Vim, but aims to be vastly si
 Helix also aims to have things "just work", and features such as LSPs work out of the box.
 It does not, however, have a plugin system yet.
 
-To send text from Helix to Tidal, you can use `tmux`: run the Tidal command line, and use the Helix "pipe to command" feature to run a `tmux` command to input the keystrokes in the Tidal command line.
+To send text from Helix to Tidal, you can use Helix's "pipe to command" feature to pipe the text to a command which sends the text on to the Tidal REPL.
+This can be done by using, for example, [`tmux`](https://github.com/tmux/tmux) or the [`kitty`](https://sw.kovidgoyal.net/kitty/) terminal emulator.
 See [this post by `@trespaul` on the Tidal Club forum](https://club.tidalcycles.org/t/language-server-protocol/1525/12) for more details.
 
 ### Sublime Text
