@@ -4,6 +4,13 @@ import CallToAction from '@astrojs/starlight/components/CallToAction.astro';
 import Carousel from './Carousel.astro'
 
 const { title, hero } = Astro.props.entry.data;
+const isHomepage = Astro.props.slug === '';
+
+const carousel = [
+  "https://www.youtube.com/embed/D1o9Y5kFDrk?start=250&autoplay=0&mute=0&playsinline=1&controls=1&loop=0",
+  "https://www.youtube.com/embed/uwuPjYF-XwA?start=100&autoplay=0&mute=0&playsinline=1&controls=1&loop=0",
+  "https://www.youtube.com/embed/wgPf24_OQZY?start=130&autoplay=0&mute=0&playsinline=1&controls=1&loop=0",
+];
 ---
 
 <div
@@ -36,19 +43,18 @@ const { title, hero } = Astro.props.entry.data;
     </div>
   }
 
-  <Carousel>
-    <iframe 
-      src="https://www.youtube.com/embed/D1o9Y5kFDrk?start=250&autoplay=0&mute=0&playsinline=1&controls=1&loop=0"
-      class="embla__slide aspect-video"
-    ></iframe>
-    <iframe 
-      src="https://www.youtube.com/embed/uwuPjYF-XwA?start=100&autoplay=0&mute=0&playsinline=1&controls=1&loop=0"
-      class="embla__slide aspect-video"
-    ></iframe>
-    <iframe 
-      src="https://www.youtube.com/embed/wgPf24_OQZY?start=130&autoplay=0&mute=0&playsinline=1&controls=1&loop=0"
-      class="embla__slide aspect-video"
-    ></iframe>
-  </Carousel>
+  {
+    isHomepage && carousel &&
+      <Carousel>
+        {
+          carousel.map(url => (
+            <iframe
+              src={url}
+              class="embla__slide aspect-video"
+            ></iframe>
+          ))
+        }
+      </Carousel>
+  }
 
 </div>
