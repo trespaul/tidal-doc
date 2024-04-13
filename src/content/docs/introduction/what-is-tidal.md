@@ -14,6 +14,7 @@ Check out the [showcase](/introduction/showcase) to see what cool things people 
 You can learn Tidal through experimentation and play — most Tidal coders have little or no experience in software engineering.
 To jump right in, you can try out TidalCycles online without installing anything by using [Estuary](https://estuary.mcmaster.ca/).
 
+If you are familiar with JavaScript, you may want to check out [Strudel](https://strudel.cc), a port of Tidal to JavaScript. It also works directly in your browser!
 
 ## The components
 
