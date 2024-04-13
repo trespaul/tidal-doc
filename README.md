@@ -9,9 +9,6 @@ npm run dev    # local server for development
 npm run build  # build production site into dist/ folder
 ```
 
-
-
-
 ## Structure
 
 ```
@@ -53,8 +50,7 @@ tailwind.config.mjs         --- tailwind config, theming
 The specific pages are:
 
 - **Introduction**
-  - What is Tidal? [what it is; what it is used for]
-  - The concepts [the components of the stack; cycles and patterns [TODO: identify topics]]
+  - What is Tidal? [what it is; what it is used for; the components of the stack; the concept: cycles and patterns]
   - Showcase [select performances / releases; list of artists; academic publications; ...]
   - Community [links to platforms, forum]
   - Related projects [livecoding projects, inspired / inspired by; e.g., tidal-vis ...]

@@ -16,6 +16,10 @@ To jump right in, you can try out TidalCycles online without installing anything
 
 If you are familiar with JavaScript, you may want to check out [Strudel](https://strudel.cc), a port of Tidal to JavaScript. It also works directly in your browser!
 
+## The concept
+
+[TODO: Explain cycles and patterns]
+
 ## The components
 
 To use Tidal you need a stack of components to translate your code into sound. What is called "TidalCycles" is technically only the top layer of this stack, a language and library embedded in the Haskell programing language.
