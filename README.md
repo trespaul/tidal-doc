@@ -56,9 +56,9 @@ The specific pages are:
   - Related projects [livecoding projects, inspired / inspired by; e.g., tidal-vis ...]
 - **Getting started**
   - Installation
-  - Tutorial [getting from installed to first sounds, then to sounding like something (introduce to basic usage of stuff, incl. mini-notation) (can be multiple pages) [TODO: decide structure and contents of tutorial]]
+  - Tutorial [getting from installed to first sounds, then to sounding like something (introduce to basic usage of stuff, incl. mini-notation) (can be multiple pages)]
     - currently: cycles, patterns, controls
-- **Guides** [how to do specific things that aren't necessary to know at first; address common questions like "how do I get Tidal to do X?"; page titles should follow from "How to ..." / start with a verb; can perhaps be organised into subsections, or we can rely on search; the below are examples; [TODO: identify all necessary guides]]
+- **Guides** [how to do specific things that aren't necessary to know at first; address common questions like "how do I get Tidal to do X?"; page titles should follow from "How to ..." / start with a verb; can perhaps be organised into subsections, or we can rely on search; the below are examples]
   - Usage
     - Write arpeggios
     - Write chords
@@ -84,7 +84,7 @@ The specific pages are:
     - Send and receive midi
     - Send OSC elsewhere
     - Visualise events
-- **Explanation** [more in-depth theoretical explanation of internals; Haskell stuff [TODO: identify topics]; these suggestions by ninioArtillero on Discord]
+- **Explanation** [more in-depth theoretical explanation of internals; Haskell stuff; these suggestions by ninioArtillero on Discord]
   - The Haskell language [left and right associativity, layout rules]
   - The Pattern data type
   - Types and typeclasses [crash course]
