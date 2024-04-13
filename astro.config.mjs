@@ -40,7 +40,6 @@ export default defineConfig({
           // translations: { 'fr': 'Introduction', },
           items: [
             { label: 'What is Tidal?', link: '/introduction/what-is-tidal', },
-            { label: 'The concept', link: '/introduction/concept', },
             { label: 'Showcase', link: '/introduction/showcase', },
             { label: 'Community', link: '/introduction/community', },
             { label: 'Related projects', link: '/introduction/related', },
