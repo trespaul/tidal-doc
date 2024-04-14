@@ -145,6 +145,29 @@ To stop a specific pattern at the next cycle, you can use the `silence` function
 p "loudpattern" $ silence
 ```
 
+You can also control whether a pattern makes sound by muting or soloing them:
+
+```haskell
+d1 $ sound "arpy cp arpy:2"
+d2 $ sound "sn sn:2 bd sn"
+
+solo 2
+-- now only the second pattern will be playing
+
+unsolo 2
+-- now both will be playing, again
+
+mute 2
+-- now only the first pattern will be playing
+
+unmute 2 -- (or unmuteAll)
+-- now both will be playing
+```
+
+:::tip
+The Pulsar plugin adds some key shortcuts for this common operations, like `Ctrl+1` to toggle mute for the first pattern, or `Ctrl+0` to unmute all. You can see the complete list of keybindings inside Pulsar, by going to `Edit > Preferences > Packages`, selecting tidalcycles, and scrolling down to the `Keybindings` section.
+:::
+
 `hush` will stop all the patterns currently running:
 
 ```haskell
@@ -188,7 +211,9 @@ d1 $ s "bd hh bd hh*2"
 You'll see more advanced use of control patterns as you go.
 
 
-## Syntax and mini-notation
+## Writing Tidal code
+
+### Syntax
 
 By now, you've probably wondered how exactly these patterns are composed, and what do `$` and `#` and so on mean anyway?
 
@@ -208,3 +233,28 @@ The `$` is similar to `#` ([here's a comparison](/guides/usage/dollarsign/#compa
 You can think of it as a "pipe": it indicates that everything to its right should be evaluated first, and then passed ("piped") to the left.
 It's mainly used to avoid a bunch of parentheses piling up.
 See the [function chaining guide](/guides/usage/dollarsign/) for more.
+
+To make a comment — to tell the interpreter to ignore something — prefix the text with `--` (two dashes) or enclose the text with `{-` and `-}`, like so:
+
+```haskell
+{-
+   I'm leaving a note for myself in this comment block.
+   In the commented line below, I want to keep the text
+   for some reason, but I want the interpreter to ignore it.
+-}
+
+d1 $ s "bd hh bd hh*2"
+   -- # lpf "500 1000 1500"
+   # lpf "1000"
+   # lpq 0.5
+```
+
+### Mini-notation
+
+All the patterns in quotation marks thusfar have been using "mini-notation" syntax.
+Mini-notation was created as a way to write patterns much more conveniently than straightforwardly composing functions together.
+
+For example, in `"bd hh bd hh*2"`, the `*` means that the element should be repeated.
+On this page, we have also encountered `~`, used to indicate a rest, and `:`, used to select a specific sample from a folder.
+
+On the next page, the notation syntax will be introduced bit-by-bit, but you can also check out the [mini-notation reference page](/reference/mini-notation/mini-notation) for a complete outline of what it can do.
