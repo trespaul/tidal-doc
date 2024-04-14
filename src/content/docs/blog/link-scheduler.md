@@ -162,10 +162,8 @@ data LinkOperations = LinkOperations {
 
 #### Calling the Link API from Haskell
 
-As mentioned in [Troubles], Link is a C++ library and the Haskell integration is done using the "Foreign Function Interface" (FFI).
+As mentioned before, Link is a C++ library and the Haskell integration is done using the "Foreign Function Interface" (FFI).
 Haskell has some support for integrating directly with C++, but it seemed too difficult to use for my taste.
-
-<!-- TODO: broken link in previous paragrpah -->
 
 Fortunately, while I was working on my implementation,
 Link released a C-wrapper of their library.
