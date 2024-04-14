@@ -16,11 +16,12 @@ To jump right in, you can try out TidalCycles online without installing anything
 
 If you are familiar with JavaScript, you may want to check out [Strudel](https://strudel.cc), a port of Tidal to JavaScript. It also works directly in your browser!
 
-## The concept
+## How it works
 
-[TODO: Explain cycles and patterns]
-
-## The components
+The fundamental concepts of Tidal are cycles and patterns.
+In Tidal, time is cyclical, and you are always somewhere in a cycle of time going around and around.
+Patterns are used to determine what events happen at what times.
+For more, read the explanation on the [concepts tutorial page](/getting-started/concepts).
 
 To use Tidal you need a stack of components to translate your code into sound. What is called "TidalCycles" is technically only the top layer of this stack, a language and library embedded in the Haskell programing language.
 Code is interpreted by the TidalCycles Library and sent to [SuperDirt](https://github.com/musikinformatik/SuperDirt), a synth and sampling engine, which runs in [SuperCollider](https://supercollider.github.io/), a programming language and audio server which produces the sounds.
