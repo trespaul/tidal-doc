@@ -36,7 +36,7 @@ However if you want to work in stereo, you should keep this number to 2,
 i.e. the number of channels per orbit.
 
 If your editor plugin (and therefore ```BootTidal.hs```), then `d1` will automatically be sent to orbit 0, `d2` to orbit 1, and so on. Or you can be explicit by using the orbit control, e.g.
-```c
+```haskell
 d1 $ sound "bd" # orbit 3
 ```
 
@@ -92,7 +92,7 @@ That's it! You can save this code in your supercollider startup file (which you 
 
 Then to use it, you can use things like:
 
-```c
+```haskell
 d1 $ sound "bd*16" # pan saw
 ```
 
@@ -100,7 +100,7 @@ The above will play kick drums in a ring around all the speakers. If you had fou
 
 Because `0` and `1` are the same speaker, the jux function doesn't work well (as it will play the original pattern in position `0`, and the transformed pattern on pan position `1`, which in multichannel sound, are the same speaker. Instead, you can use `juxBy 0.5` , or `jux'`, which distributes a list of functions across a multichannel ring.
 
-```c
+```haskell
 d1 $ juxBy 0.5 rev $ sound "bd cp sn:2 mt*2" # pan saw
 
 d1 $ jux' [id, rev] $ sound "bd cp sn:2 mt*2" # pan saw

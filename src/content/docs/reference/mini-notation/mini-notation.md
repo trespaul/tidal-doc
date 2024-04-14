@@ -33,22 +33,22 @@ Learning the mini-notation is *essential* for learning how to make music with Ti
 ### Rests
 
 Use `~` to create rests in your patterns:
-```c
+```haskell
 d1 $ s "~ hh"
 ```
 
 ### Pattern grouping
 
 Picture every element of your cycle as a step. Divide a simple pattern by 4:
-```c
+```haskell
 p "demo" $ s "bd bd bd bd"
 ```
 Now use pattern grouping to create a subdivision of any step:
-```c
+```haskell
 p "demo" $ s "[bd hh] bd bd"
 ```
 You can play with infinite layers of subdivisions. Time and human perception is the limit:
-```c
+```haskell
 p "demo" $ s "[bd [hh [cp sn:2] hh]] bd bd bd"
 ```
 
@@ -56,12 +56,12 @@ p "demo" $ s "[bd [hh [cp sn:2] hh]] bd bd bd"
 
 You can use `.` to separate multiple pattern groupings in your pattern top-level:
 
-```c
+```haskell
 p "demo" $ s "bd*3 . hh*4 cp"
 ```
 
 You can nest pattern grouping shorthands:
-```c
+```haskell
 p "demo" $ s "[bd*3 . hh:2*2] . hh*4 cp"
 ```
 
@@ -69,7 +69,7 @@ p "demo" $ s "[bd*3 . hh:2*2] . hh*4 cp"
 
 You can play multiple patterns at the same time inside one pattern. This is one of the most intuitive ways of dealing with superposition/polyphony. These patterns have the 4 samples sounding together, but with different rhythmic subdivisions. The second pattern is a complete rhythm section:
 
-```c
+```haskell
 d1 $ s "[bd*2,hh*3,[~ cp]*2, bass]"
 d1 $ s "[bd*3,hh*4,[~ cp]*2, bass*4]"
 ```
@@ -81,7 +81,7 @@ Be sure to enclose your pattern between brackets (`[]`) if you want to use super
 ### Step repetition
 
 You can repeat a step as many times as you like using the multiplication symbol (also illustrated above):
-```c
+```haskell
 d1 $ note "[[c3*3],[c e g c6*3]]" # s "superpiano"
 
 d2 $ s "cp cp cp*2"
@@ -91,7 +91,7 @@ d2 $ s "cp cp cp*2"
 
 You can slow down a pattern by using division (`/`). This one needs a little bit of practice to be understood:
 
-```c
+```haskell
 d1 $ s "bd cp/2"
 ```
 
@@ -101,7 +101,7 @@ The `clap` will only be heard every other cycle.
 
 You can alternate between events in your pattern using the `less-than` and `more-than` symbols < >. This one can be used to add a little variation to your pattern or to create nice and simple melodies and arpeggios:
 
-```c
+```haskell
 d1 $ fast 2 $ n "<c e g>" # s "superpiano"
 
 d2 $ s "bd <[hh sn] [hh cp]>"
@@ -110,13 +110,13 @@ d2 $ s "bd <[hh sn] [hh cp]>"
 ### Replicate
 
 Use `!` to replicate a given event `x` times:
-```c
+```haskell
 d2 $ s "bd!2 cp!2"
 ```
 
 :::caution
 This is not the same thing as the `*` symbol. `!` will create new steps or `replicate` the steps. `*` will only multiply a step by a given factor:
-```c
+```haskell
 -- so far so good
 d2 $ s "bd!2 cp!2"
 -- oh wait!
@@ -127,7 +127,7 @@ d2 $ s "bd!2 cp*2"
 ### Elongate
 
 Elongate or `_` will extend the duration of an event for `x` steps:
-```c
+```haskell
 d2 $ s "bd _ _ hh*4"
 ```
 
@@ -136,21 +136,21 @@ You might hear a lot of silence between the first hit and the hi-hat. That's per
 ### Randomization
 
 You can use a question mark `?` to randomly remove some events from the pattern, with a probability of `1/2`. To use a different probabilty, use a number after the question mark.
-```c
+```haskell
 d1 $ s "bd hh? bd hh?0.8"
 ```
 
 ### Random choice
 
 You can use the &#124 symbol between brackets `[]` to choose between multiple events with an equal probability:
-```c
+```haskell
 d1 $ s "[bd*4|hh*12|cp*2]"
 ```
 
 ### Sample Selection
 
 When entering the name of an audio sample, you are in fact entering the name of the `folder` containing it. To select a specific file in the selected folder, use the `:` symbol followed by any number:
-```c
+```haskell
 p "scroll" $ s "arpy:1 arpy:2 arpy:3 arpy:4 arpy:5"
 
 -- all right, that's better
@@ -159,7 +159,7 @@ p "scroll" $  s "[bd*4, [arpy:1,arpy:2,arpy:3,arpy:4,arpy:5](5,8)]"
 
 :::tip
 You can't go too far in the folder and select a file that doesn't exist. Something like `cp:1238129038123` will work:
-```c
+```haskell
 d1 $ s "cp:1238129038123"
 ```
 Tidal will not complain. It will just cycle in the folder until it finds the right sample.
@@ -172,7 +172,7 @@ Euclidian rhythms are rhythms obtained using the greatest common divisor of two 
 * the number of steps/silences to fill
 
 A euclidian rhythm will distribute the first number of beats to the second numbers of steps to be filled. With Tidal, you can create euclidian rhythms by adding an event followed by the `(x,y)` indicator, `x` and `y` corresponding to the numbers described above:
-```c
+```haskell
 d1 $ s "[bd(3,8), cp(2,8), hh(7,8), bass:1(7,16)]"
 
 d1 $ s "[bd(5,8), cp(4,8), hh(7,8), bass:1(7,16)]"
@@ -211,7 +211,7 @@ The Euclidean Algorithm Generates Traditional Musical Rhythms by Toussaint
 
 You can also specify a third number for the sequence. This provides an offset, moving the pattern left by the number of steps. For example, `(3,8,1)` will shift the sequence left by one of the 8 specified steps.
 
-```c
+```
 x ~ ~ x ~ ~ x ~ (3,8)
 ~ ~ x ~ ~ x ~ x (3,8,1)
 ~ x ~ ~ x ~ x ~ (3,8,2)
@@ -220,7 +220,7 @@ x ~ ~ x ~ x ~ ~ (3,8,3)
 
 Here is how you can have a euclidian sequence spread across different samples:
 
-```c
+```haskell
 d1 $ s "east(4,7)" # n "2 3 0 5"
 d1 $ s "east(4,7)" # n (irand 8)
 ```
@@ -249,7 +249,7 @@ d1 $ distrib [9,16, 5] $ sound "east:2"
 
 Creating polymetric sequences is a fairly advanced thing you can do using the Tidal mini-notation. To do so, enclose your pattern between curly brackets (`{}`). In the 1st example the 3 note and 4 note patterns sound together. The 4 beat pattern wraps and you hear the cr sample on different parts of the 3 beat pattern:
 
-```c
+```haskell
 d1 $ s "{bd sd stab, cp arpy cr arpy}"
 d1 $ s "{bd*2, hh*4, bd hh 808:4}"
 ```
@@ -257,7 +257,7 @@ d1 $ s "{bd*2, hh*4, bd hh 808:4}"
 ### Polymetric Sequences with Subdivision
 
 Alternatively, you can also add the precise subdivision you are looking for by using `%` followed by the subdivision number:
-```c
+```haskell
 d1 $ s "{bd hh 808:4}%8"
 d2 $ s "{bd cp 808:5}%4" # speed 2
 ```

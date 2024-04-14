@@ -22,7 +22,7 @@ MIDIClient.init;
 
 You should now see a list of the system MIDI devices in SuperCollider's post window. The output will look something like this:
 
-```c
+```
 MIDI Sources:
 	MIDIEndPoint("LoopBe Internal MIDI", "LoopBe Internal MIDI")
 	MIDIEndPoint("Focusrite USB MIDI", "Focusrite USB MIDI")
@@ -148,13 +148,13 @@ Note that the left-most pattern defines the rhythm in this case when using `#`.
 
 If you have a specific feature on your device that listens on a specific CC number, you can give it a friendly name if you wish:
 
-```c
+```haskell
 let ringMod = 30
 d2 $ ccv "0 20 50 60" # ccn ringMod # s "mydevice"
 ```
 If you have many CC params you want to control at once, a stack works well:
 
-```c
+```haskell
 d2 $ fast 8 $ stack [
   ccn 30 # ccv (range 0 127 $ slow 30 sine),
   ccn 31 # ccv "[0 70 30 110]/3",
@@ -451,31 +451,31 @@ Set up SuperDirt MIDI by following the [initialization guide](#initialization).
 
 When that is done, you can start sending MIDI clock messages, 48 per cycle, like this:
 
-```c
+```haskell
 p "midiclock" $ midicmd "midiClock*48" # s "mydevice"
 ```
 
 Your MIDI device should adjust its BPM to Tidal's cps. It's then a good idea to send a `stop` message like this:
 
-```c
+```haskell
 once $ midicmd "stop" # s "mydevice"
 ```
 
 and then finally a start message to start the MIDI clock at the right time. The following sends a start message every fourth cycle:
 
-```c
+```haskell
 p "midictl" $ midicmd "start/4" # s "mydevice"
-
 ```
+
 Once everything's started and in sync, it's probably best to stop sending the start messages to avoid glitching:
 
-```c
+```haskell
 p "midictl" $ silence
 ```
 
 However now if you do hush, the `midiclock` will stop as well as all the other patterns. To avoid this, you can overwrite the hush function with a version that silences particular patterns:
 
-```c
+```haskell
 let hush = mapM_ ($ silence) [d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16]
 ```
 
