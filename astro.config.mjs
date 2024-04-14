@@ -52,11 +52,6 @@ export default defineConfig({
             { label: 'Launching Tidal', link: '/getting-started/launching', },
             { label: 'The basic concepts', link: '/getting-started/concepts', },
             { label: 'Making music', link: '/getting-started/music', },
-            // { label: 'Launching Tidal', link: '/getting-started/launching' },
-            // { label: 'Making sound', link: '/getting-started/making-sound' },
-            // { label: 'Cycles', link: '/getting-started/cycles' },
-            // { label: 'Patterns', link: '/getting-started/patterns' },
-            // { label: 'Controls', link: '/getting-started/controls' },
           ]
         },
         { label: 'Guides',
