@@ -17,7 +17,7 @@ Learning the mini-notation is *essential* for learning how to make music with Ti
 | `,`    | Play multiple patterns at the same time | `d1 $ s "[bd sd, hh hh hh]"`       | `d1 $ stack [s "bd sd", s "hh hh hh"]`                         |
 | `*`    | Repeat a pattern                        | `d1 $ s "bd*2 sd"`                 | `d1 $ s "[bd bd] sd"`                                          |
 | `/`    | Slow down a pattern                     | `d1 $ s "bd/2"`                    | `d1 $ s (slow 2 $ "bd")`                                       |
-| &#124     | Create a random choice                  | `d1 $ s "[bd` &#124`cp `&#124`hh]"`              |                                                                |
+| `\|`   | Create a random choice                  | `d1 $ s "[bd \| cp \| hh]"`        |                                                                |
 | `< >`  | Alternate between patterns              | `d1 $ s "bd <sd hh cp>"`           | `d1 $ slow 3 $ s "bd sd bd hh bd cp"`                          |
 | `!`    | Replicate a pattern                     | `d1 $ s "bd!3 sd"`                 | `d1 $ s "bd bd bd sd"`                                         |
 | `_`    | Elongate a pattern                      | `d1 $ s "bd _ _ ~ sd _"`           | Results in pattern  `(0>1/2)\|s: "bd" (4/6>1)\|s: "sd"`        |
