@@ -1,8 +1,8 @@
 ---
-title: Synthesizers
+title: Synthesisers
 ---
 
-SuperDirt is installed along with an extensive list of *default* audio effects and synthesizers. Note that you can also extend this list by adding your own synthesizers and audio effects to the audio engine. For instance, check out the [Mutable Instruments](https://club.tidalcycles.org/t/mutable-instruments-ugens/2730) or the [SynthDefs for Tidal](https://club.tidalcycles.org/t/synthdefs-for-tidal/1092) threads on the Tidal Club forum.
+SuperDirt is installed along with an extensive list of *default* audio effects and synthesisers. Note that you can also extend this list by adding your own synthesisers and audio effects to the audio engine. For instance, check out the [Mutable Instruments](https://club.tidalcycles.org/t/mutable-instruments-ugens/2730) or the [SynthDefs for Tidal](https://club.tidalcycles.org/t/synthdefs-for-tidal/1092) threads on the Tidal Club forum.
 
 ## Basic instruments
 
@@ -216,7 +216,7 @@ Addition reference sources:
 
 :::tip
 
-To use superfm, you need to initialize all of the parameter variables you will use. Get the full list from the GitHub source (above) and execute this in your editor or add it to your `BootTidal.hs`. If you get "Variable not in scope" error messages, then you haven't loaded the variable definitions properly.
+To use superfm, you need to initialise all of the parameter variables you will use. Get the full list from the GitHub source (above) and execute this in your editor or add it to your `BootTidal.hs`. If you get "Variable not in scope" error messages, then you haven't loaded the variable definitions properly.
 
 :::
 

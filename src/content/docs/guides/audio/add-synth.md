@@ -2,14 +2,14 @@
 title: Add synthesisers to SuperDirt
 ---
 
-When you install SuperDirt, you also install a small library of *default* synthesizers. These synths are made specifically for Tidal and SuperDirt. They do sound nice, but at some point you will want to create your own synthesizers. This page will guide you and teach you the basic steps of synthesizer creation for SuperDirt.
+When you install SuperDirt, you also install a small library of *default* synthesisers. These synths are made specifically for Tidal and SuperDirt. They do sound nice, but at some point you will want to create your own synthesisers. This page will guide you and teach you the basic steps of synthesiser creation for SuperDirt.
 
 
-## Building a simple synthesizer
+## Building a simple synthesiser
 
 ### Learning SuperCollider
 
-If you want to build new synthesizers for TidalCycles, you will need to learn some rudiments of the SuperCollider language (*SCLang*) as well. There are many guides, courses and tutorials you can find on the internet. I personnally recommand the [Eli Fieldsteel](https://www.youtube.com/user/elifieldsteel) YouTube channel. It is the most complete and beginner friendly tutorial you can find. It starts from the very basics up to very advanced topics for the more courageous.
+If you want to build new synthesisers for TidalCycles, you will need to learn some rudiments of the SuperCollider language (*SCLang*) as well. There are many guides, courses and tutorials you can find on the internet. I personnally recommand the [Eli Fieldsteel](https://www.youtube.com/user/elifieldsteel) YouTube channel. It is the most complete and beginner friendly tutorial you can find. It starts from the very basics up to very advanced topics for the more courageous.
 
 When you play with TidalCycles, SuperCollider and SuperDirt are in charge of handling audio. Everything audio-related on Tidal will happen on the SuperCollider side. Even if you haven't planned to learn more about audio synthesis, it is important to keep this architectural distinction in mind.
 
@@ -23,11 +23,11 @@ SynthDef(\test, {
 }).add;
 ```
 
-In SuperCollider, a `SynthDef` is a definition of something that will be instantiated as a `Synth` node. Don't be affraid of the technical jargon, it just means that we are going to declare a function that will be the definition of our synthesizers.
+In SuperCollider, a `SynthDef` is a definition of something that will be instantiated as a `Synth` node. Don't be affraid of the technical jargon, it just means that we are going to declare a function that will be the definition of our synthesisers.
 
-Everything inside the `||` is a list of arguments: a list of required parameters for our synthesizer to work. You might recognize some Tidal oddities, such as the `accelerate` parameter, or the `begin` and `end` parameters.
+Everything inside the `||` is a list of arguments: a list of required parameters for our synthesiser to work. You might recognize some Tidal oddities, such as the `accelerate` parameter, or the `begin` and `end` parameters.
 
-We give our synthesizer a `\name`, here (`\test`). This way, `SuperCollider` will be able to retrieve it on-the-fly from its internal list of synths. The `.add` method simply means "add it to the server".
+We give our synthesiser a `\name`, here (`\test`). This way, `SuperCollider` will be able to retrieve it on-the-fly from its internal list of synths. The `.add` method simply means "add it to the server".
 
 
 :::tip
@@ -48,9 +48,9 @@ Think about them as "audio bricks". They are tiny components, each one represent
 - `control rate`: `.kr` in SuperCollider. Control rates are used for signals when the sampling rate is not crucial (enveloppes and LFOs). They are generally running at `samplerate/some amount`.
 - `initial rate`: `.ir` in SuperCollider. A static non-modulable rate. It is more efficient on the CPU compared to a regular argument. But yeah, sounds like some sort of variable.
 
-#### Basic synthesizer
+#### Basic synthesiser
 
-In the following example, I've arranged everything you need to get a basic synthesizer running:
+In the following example, I've arranged everything you need to get a basic synthesiser running:
 ```c
 SynthDef(\test, {
     | out, sustain=1, freq=440, speed=1, begin=0, end=1, pan, accelerate, offset|
@@ -60,7 +60,7 @@ SynthDef(\test, {
     OffsetOut.ar(out, Pan2.ar(in: output, pos: pan));
 }).add;
 ```
-These four lines alone are enough to make a basic synthesizer. Notice that we are introducing new variables using the `var blabla = ...` syntax. We added the following components:
+These four lines alone are enough to make a basic synthesiser. Notice that we are introducing new variables using the `var blabla = ...` syntax. We added the following components:
 * `osc`: `SinOsc` is a basic sinusoïdal oscillator, running at `freq` speed.
 * `env`: `Line` is a line generator, running from `1.0` to `0.0` over `sustain` seconds.
 * `output`: by multiplying `osc` by `env`, we created an amplitude enveloppe for our synth, turning a continuous signal into discrete notes.
@@ -76,7 +76,7 @@ d1
   # s "test"
 ```
 
-#### Free the synthesizer
+#### Free the synthesiser
 
 Our synth is currently working but something is wrong. The `synth` will never die, meaning that each note we will play will slowly increase the memory usage until audio glitches and other problems start to appear, apparently at random. SuperCollider can fix that by using `DoneAction`. Take a look at this updated version:
 ```c
@@ -94,7 +94,7 @@ Using `doneAction` is *extremely important*. Our synth will now free whatever re
 
 SuperDirt is Tidal's audio engine. If you wish to use your synth with SuperDirt, there are a couple more things you should take care of. Remember the `OffsetOut` part? We will improve it in order to make it compatible with Tidal. We were hearing sound, but the sound was not managed and handled by SuperDirt itself but by the *vanilla* SuperCollider audio server instance.
 
-Take a look at this new version of our `Blip-blop` synthesizer:
+Take a look at this new version of our `Blip-blop` synthesiser:
 ```c
 SynthDef(\test, {
     | out, sustain=1, freq=440, speed=1, begin=0, end=1, pan, accelerate, offset, volume|
@@ -121,7 +121,7 @@ Note that we changed a few things:
 
 ## More complex synthesis
 
-This page taught you to create a synthesizer for SuperDirt but it is still pretty basic. If you learn a bit more about SuperCollider, you will be able to refine your ideas. Take a look at the following `SynthDef`. Keep the same pattern running, it sounds nice:
+This page taught you to create a synthesiser for SuperDirt but it is still pretty basic. If you learn a bit more about SuperCollider, you will be able to refine your ideas. Take a look at the following `SynthDef`. Keep the same pattern running, it sounds nice:
 
 ```haskell
 SynthDef(\elegiac, {
@@ -167,7 +167,7 @@ let (begin, begin_p) = pF "begin" (Nothing)
 
 ### I can hear 'clicks'
 
-When using your custom synthesizers for Tidal, you will sometimes hear 'clicks'. These clicks are breaks/discontinuities in the audio signal. Audio clicks are ubiquitous in computer music, and people are doing everything they can to avoid them and to fix the problem.
+When using your custom synthesisers for Tidal, you will sometimes hear 'clicks'. These clicks are breaks/discontinuities in the audio signal. Audio clicks are ubiquitous in computer music, and people are doing everything they can to avoid them and to fix the problem.
 
 If you can hear audio clicks while playing with your custom SuperCollider synths, try the following:
 * rewrite your `SynthDef` the Tidal way (see above).
