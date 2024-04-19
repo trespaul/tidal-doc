@@ -7,7 +7,8 @@ import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 import rehypeSlug from 'rehype-slug';
 
 export default defineConfig({
-  site: 'https://tidalcycles.org',
+  // site: 'https://tidalcycles.org',
+  site: 'https://tidal-doc.pages.dev',
   markdown: {
     rehypePlugins: [
       rehypeAccessibleEmojis,
