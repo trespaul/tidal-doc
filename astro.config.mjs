@@ -86,7 +86,7 @@ export default defineConfig({
           items: [
             { label: 'Tidal functions',
               autogenerate: { directory: 'reference/tidal' },
-              // collapsed: true,
+              collapsed: true,
               badge: 'WIP',
             },
             { label: 'SuperDirt',
