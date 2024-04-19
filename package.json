@@ -20,6 +20,7 @@
     "astro": "^4.6.1",
     "astro-og-canvas": "^0.4.2",
     "astro-remote": "^0.3.2",
+    "cheerio": "^1.0.0-rc.12",
     "embla-carousel": "^8.0.2",
     "markdown-it": "^14.1.0",
     "rehype-accessible-emojis": "^0.3.2",
