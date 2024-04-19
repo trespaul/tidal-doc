@@ -14,7 +14,7 @@ All engines accept the `harm`, `timbre` and `morph` parameters, which have speci
 
 Virtual-analog synthesis of classic waveforms.
 
-![](./assets/mi-ugens-plaits-1.png)
+![](./_assets/mi-ugens-plaits-1.png)
 
 | parameter | effect                          |
 |-----------|---------------------------------|
@@ -64,7 +64,7 @@ Simulation of formants and filtered waveforms through the multiplication, additi
 | morph     | formant width and shape; this controls the shape of the window by which a sum of two synchronized sine oscillators is multiplied |
 | mode 1    | simulation of filtered waveforms by windowed sine waves – a recreation of Braids’ Z*** models. `harm` controls the filter type (peaking, LP, BP, HP), with smooth variation from one response to another |
 
-![](./assets/mi-ugens-plaits-2.png)
+![](./_assets/mi-ugens-plaits-2.png)
 
 ## 4: Harmonic oscillator
 
@@ -77,7 +77,7 @@ An additive mixture of harmonically-related sine waves.
 | morph     | bump shape – from flat and wide to peaked and narrow; this control is somewhat similar to the resonance of a band-pass filter |
 | mode 1    | variant including only the subset of harmonics present in the drawbars of a Hammond organ (frequency ratios of 1, 2, 3, 4, 6, 8, 10 and 12) |
 
-![](./assets/mi-ugens-plaits-3.png)
+![](./_assets/mi-ugens-plaits-3.png)
 
 ## 5: Wavetable oscillator
 
@@ -165,7 +165,7 @@ Variable-clock white noise processed by a resonant filter. The cutoff frequency 
 | morph     | filter resonance |
 | mode 1    | variant employing two band-pass filters, with their separation controlled by `harm` |
 
-![](./assets/mi-ugens-plaits-4.png)
+![](./_assets/mi-ugens-plaits-4.png)
 
 ## 10: Particle noise
 

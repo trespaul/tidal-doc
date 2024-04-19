@@ -1,5 +1,5 @@
 ---
-title: Multi-user Tidal
+title: Use Tidal with multiple users
 ---
 
 There are different ways to use Tidal with your friends.
@@ -8,9 +8,13 @@ There are different ways to use Tidal with your friends.
 
 ### Troop
 
-![troop](./assets/troop.png)
+![troop](./_assets/troop.png)
 
-[Troop](https://github.com/Qirky/Troop) is described by it author, Ryan Kirkbride (`Qirky`), as *"a real-time collaborative tool that enables group live coding within the same document across multiple computers."* Troop is a preconfigured text editor for collaborative live-coding on a network. Troop is written in [Python 3](https://www.python.org/). You will need to install Python and `tkinter` for your specific OS/distribution. Linux users might need to install a few more dependencies, but it should be straightforward.
+[Troop](https://github.com/Qirky/Troop) is described by it author, Ryan Kirkbride (`Qirky`), as *"a real-time collaborative tool that enables group live coding within the same document across multiple computers."*
+Troop is a preconfigured text editor for collaborative live-coding on a network.
+Troop is written in [Python 3](https://www.python.org/).
+You will need to install Python and `tkinter` for your specific OS/distribution.
+Linux users might need to install a few more dependencies, but it should be straightforward.
 
 :::caution
 Note that you will also need to install SuperCollider and TidalCycles to use Troop on your computer. 
@@ -28,7 +32,7 @@ For the installation / configuration process, please report to the README on the
 
 ### Estuary
 
-![estuary](./assets/estuary.png)
+![estuary](./_assets/estuary.png)
 
 [Estuary](https://github.com/dktr0/estuary), also programmed by David Ogborn(`dktr0`) is a collaborative live coding environment with some components taken and extended from [Extramuros](#extramuros). Estuary is embedding `minitidal`, a subset of TidalCycles that works directly (including sound!) in your web browser. No installation is required.
 
@@ -42,7 +46,9 @@ There is a [server](https://estuary.mcmaster.ca) running 24/7 on the McMaster Un
 
 Network tempo sharing is one way of synchronizing Tidal to other instances running on different computers. This approach is more complex and "hands-on" than the ones described above. They might be better suited to more advanced / technically skilled users. 
 
-Note: This method does not work as of Tidal 1.9. Consider using [Native Link Protocol Synchronization](#native-link-protocol-synchronization) instead.
+:::note
+This method does not work as of Tidal 1.9. Consider using [Native Link Protocol Synchronization](#native-link-protocol-synchronization) instead.
+:::
 
 1. Sync computer clocks
 
@@ -81,7 +87,7 @@ Note: This method does not work as of Tidal 1.9. Consider using [Native Link Pro
 ## Link Protocol Synchronization
 
 [Link](https://www.ableton.com/en/link/) is a protocol for
-synchronizing musical gear, software or hardware. Link will
+synchronizing musical gear, software, or hardware. Link will
 synchronize all the devices found on a local network together. Timing
 and tempo will be shared by all clients. It was originally created by
 a music software company called Ableton, but they shared it with the
@@ -90,7 +96,7 @@ use.
 
 ## Native Link Protocol Synchronization
 
-Tidal version 1.9 directly integrates with Ableton Link.  Link
+Tidal version 1.9 directly integrates with Ableton Link. Link
 Synchronization is enabled by default and Tidal will automatically
 connect with other link-compatible applications on the same local
 network, including other Tidal instances.
@@ -122,18 +128,21 @@ Link uses the concept of a shared timeline where a timestamp corresponds to when
 
 The first step of adjusting latency is to find how much to adjust it.
 Set the cps low, e.g.
-```
+
+```haskell
 setcps 0.25
 ```
 
 Run a simple pattern, e.g.
-```
+
+```haskell
 d1 $ s "cp"
 ```
 
 Use `nudge` to
 find the offset
-```
+
+```haskell
 d1 $ s "cp" # nudge 0.05
 ```
 
@@ -143,7 +152,8 @@ long as you use the same audio device and so on, you shouldn't have to
 adjust it again. We need to use subtraction because nudge moves events later in time whereas oLatency moves events earlier in time.
 
 You might have to nudge backwards, e.g.
-```
+
+```haskell
 d1 $ s "cp" # nudge (-0.05)
 ```
 
@@ -190,23 +200,25 @@ To change the BPM from tidal, you currently have to run e.g. `sendMsg sock "bpm 
 
 EspGrid is a language-neutral, separate piece of open source software for sharing tempo and other things in electronic ensembles. The software is available on [dktr0's website](https://dktr0.github.io/EspGrid/install.html). It is made so that changing the tempo on one instance will change the tempo on all the instances. Every change is reflected everywhere.
 
-Note: The ESPGrid integration was removed in Tidal 1.9 when Tidal started using Link for scheduling events.
+:::note
+The ESPGrid integration was removed in Tidal 1.9 when Tidal started using Link for scheduling events.
+:::
 
-### 1) Start EspGrid/espgridd
+1. Start EspGrid/espgridd
 
-Detailled instructions for installing, starting and configuring EspGrid/espgridd are available at the link mentionned above.
+   Detailed instructions for installing, starting and configuring EspGrid/espgridd are available at the link mentionned above.
 
-### 2) Start Tidal and SuperDirt 
+2. Start Tidal and SuperDirt 
 
-Start Tidal the usual way. 
+   Start Tidal the usual way. 
 
-### 3) Sync with EspGrid
+3. Sync with EspGrid
 
-Just evaluate `espgrid tidal` in your editor session.
+   Just evaluate `espgrid tidal` in your editor session.
 
-### 4) Change the tempo
+4. Change the tempo
 
-You can change the tempo for everyone synced to EspGrid with `cpsEsp 0.5`, `cpsEsp 0.75`, etc. If others change the tempo (including via the OSX GUI EspGrid app, SuperCollider quarks, etc) your tempo should change as well. 
+   You can change the tempo for everyone synced to EspGrid with `cpsEsp 0.5`, `cpsEsp 0.75`, etc. If others change the tempo (including via the OSX GUI EspGrid app, SuperCollider quarks, etc) your tempo should change as well. 
 
 ### CPS and BPM
 
@@ -215,7 +227,6 @@ You can't adjust `cps` in Tidal and have that change BPM in the link network yet
 ```haskell
 sock <- carabiner tidal 4 (-0.14)
 ```
-
 
 You can't adjust cps in Tidal and have that change bpm in the link network yet - this will be fixed up soon.
 
@@ -231,7 +242,7 @@ sock <- carabiner tidal 4 (-0.14)
 * `-0.14`: latency time adjustment to get Tidal in phase. You might need to tweak it, to get it bang on.
 
 :::caution
-You have to restart Tidal everytime you adjust these numbers. You can do that by restarting your text editor. This will be more easily configured in the future. 
+You have to restart Tidal every time you adjust these numbers. You can do that by restarting your text editor. This will be more easily configured in the future. 
 :::
 
 Report your good or bad experiences [here]( https://toplap.lurk.org/t/link-support-preview/418).

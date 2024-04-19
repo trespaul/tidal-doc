@@ -91,6 +91,7 @@ export default defineConfig({
             },
             { label: 'SuperDirt',
               autogenerate: { directory: 'reference/superdirt' },
+              collapsed: true,
             },
             { label: 'Configuration',
               items: [
