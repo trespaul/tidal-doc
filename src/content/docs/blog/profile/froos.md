@@ -11,12 +11,16 @@ excerpt: |
   There are many things that inspire me.. I generally like the minimalistic, text-based approach to music making, where everything is visible at all times on one screen. When I started making music with an MPC1000, menu-diving was a key part of the process. A similar thing can be said about DAWs like Ableton (and Push), where there are many different UI layers and hidden items. Combining Tidal's simplistic interface with a terse and nestable syntax, it becomes a powerful tool full of rabbit holes to explore. Also, I like the fact that it is open source and thus hackable + the community around it is really refreshing.
 ---
 
-:::bio
-*Felix has been working with Tidal for a year and also uses Strudel, Ableton Live, and DIY synths, in addition to playing trumpet.
-Check out their [website](https://loophole-letters.vercel.app/),
-[YouTube](https://www.youtube.com/@eddyflux), and
-[GitHub](https://github.com/felixroos/)*
-:::
+| Tidal Cyclist           | Felix
+|------------------------:|:------
+| aka                     | froos
+| Location                | France / Germany
+| Years with Tidal        | 1 yrs
+| Other LiveCoding env    | Strudel
+| Music available online  | [YouTube](https://www.youtube.com/@eddyflux), [website](https://loophole-letters.vercel.app/)
+| Code online             | [GitHub](https://github.com/felixroos/)
+| Other music/audio sw/hw | Ableton, Trumpet, DIY Synth
+| Comments                | [Club Tidal Forum Thread](https://club.tidalcycles.org/t/tidal-cycles-blog-returns-profile-from-froos/4577/10)
 
 ![srudel wac](https://i.imgur.com/5fClfIp.png)
 
