@@ -670,7 +670,7 @@ This will play on the third octave:
 d1 $ note "c a f e" # s "superpiano" |- note 24
 ```
 
-To know more about how to play chords, arpeggios, and scales, see the [chords](/guides/usage/chords) and [arpeggios](/guides/usage/arpeggios) guide pages, and the [scales reference page](/reference/functions/scales).
+To know more about how to play chords, arpeggios, and scales, see the [chords](/guides/usage/chords) and [arpeggios](/guides/usage/arpeggios) guide pages, and the [scales reference page](/reference/tidal/scales).
 
 
 ## Where to go from here
