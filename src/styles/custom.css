@@ -2,15 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* font definitions */
+
 :root {
   --sl-font: 'Inter Variable', sans-serif;
-	--sl-font-mono: 'Fira Code Variable', monospace;
+	--sl-font-mono: 'Iosevka Tidal', monospace;
   font-feature-settings:
-	  "liga" 1,
-	  "calt", /* Contextual Alternates */
-	  "dlig", /* Discretionary Ligatures */
-	  "ss02", /* Disambiguation */
+    "liga" 1,
+    "calt", /* Contextual Alternates */
+    "dlig", /* Discretionary Ligatures */
+    "ss07", /* Square punctuation */
+    "ss08"  /* Square quotes */
 }
+
+/* prevent `<|` from becoming a triangle in `|<|` etc. */
+h3 code {
+  font-feature-settings: "trig" off;
+}
+
+/* bento "component" */
 
 .bento {
   @apply grid grid-cols-1 md:grid-cols-5 gap-6 content-center;

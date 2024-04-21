@@ -22,8 +22,8 @@ export default defineConfig({
       title: 'TidalCycles',
       customCss: [
         './src/styles/custom.css',
-        '@fontsource-variable/inter',
-        '@fontsource-variable/fira-code',
+        './src/assets/fonts/inter/inter.css',
+        './src/assets/fonts/iosevka/iosevka.css',
       ],
       logo: {
         src: './src/assets/logo.svg'
