@@ -1,5 +1,5 @@
 ---
-title: "Route effects with control busses"
+title: "Modify ongoing sounds with control busses"
 ---
 
 This page introduces the feature known as *control busses*, which was
