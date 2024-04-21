@@ -27,7 +27,7 @@ For more, including how to convert from BPM, see the [tempo guide page](/guides/
 
 ### Dividing the cycle 
 
-Enter the following pattern in your text editor and evaluate it:
+Enter the following line in your text editor and evaluate it:
 
 ```haskell
 d1 $ s "bd hh bd hh"
