@@ -88,13 +88,13 @@ You might get something that looks like this:
 
 ## Patterns
 
-### Declaring patterns
+### Playing patterns
 
-Patterns are always declared using `p` (for "pattern") and a specific name or identifier, followed by the content of the pattern.
-These patterns are "connections" to the SuperDirt synthesiser that you can use to play audio samples, synthesisers, and so on.
-Each pattern is associated with an `orbit`, a track for effects and audio output.
+Patterns are always played using `p` (for "player") and a specific name or identifier, followed by the content of the pattern.
+These players are "connections" to the SuperDirt synthesiser that you can use to play audio samples, synthesisers, and so on.
+Each player is associated with an `orbit`, a track for effects and audio output.
 
-Patterns can be numbered:
+Players can be numbered:
 
 ```haskell
 p 1234 $ s "bd bd"
@@ -110,9 +110,9 @@ p "romeo" $ s "bd bd"
 p "juliet" $ s "hh*4"
 ```
 
-`d1` to `d16` are considered, historically, to be the classic pattern names, and are kept for convenience.
+`d1` to `d16` are considered, historically, to be the classic player names, and are kept for convenience.
 
-The following example uses four different patterns:
+The following example uses four different players and patterns:
 
 ```haskell
 -- a bass drum
@@ -128,47 +128,47 @@ d3 $ s "numbers:1"
 d4 $ s "cp cp cp"
 ```
 
-Sometimes, you don't really want a pattern but something that will only play `once`.
+Sometimes, you don't really want a player but something that will only play `once`.
 Use the `once` function to make a special "once" pattern:
 
 ```haskell
 once $ s "trump"
 ```
 
-### Stopping patterns
+### Stopping players
 
-There are some very convenient commands you can use to stop patterns.
+There are some very convenient commands you can use to stop players.
 
-To stop a specific pattern at the next cycle, you can use the `silence` function:
+To stop a specific player at the next cycle, you can use the `silence` function:
 
 ```haskell
 p "loudpattern" $ silence
 ```
 
-You can also control whether a pattern makes sound by muting or soloing them:
+You can also control whether a player makes sound by muting or soloing them:
 
 ```haskell
 d1 $ sound "arpy cp arpy:2"
 d2 $ sound "sn sn:2 bd sn"
 
 solo 2
--- now only the second pattern will be playing
+-- now only the second player will be playing
 
 unsolo 2
 -- now both will be playing, again
 
 mute 2
--- now only the first pattern will be playing
+-- now only the first player will be playing
 
 unmute 2 -- (or unmuteAll)
 -- now both will be playing
 ```
 
 :::tip
-The Pulsar plugin adds some key shortcuts for this common operations, like `Ctrl+1` to toggle mute for the first pattern, or `Ctrl+0` to unmute all. You can see the complete list of keybindings inside Pulsar, by going to `Edit > Preferences > Packages`, selecting tidalcycles, and scrolling down to the `Keybindings` section.
+The Pulsar plugin adds some key shortcuts for this common operations, like `Ctrl+1` to toggle mute for the first player, or `Ctrl+0` to unmute all players. You can see the complete list of keybindings inside Pulsar, by going to `Edit > Preferences > Packages`, selecting tidalcycles, and scrolling down to the `Keybindings` section.
 :::
 
-`hush` will stop all the patterns currently running:
+`hush` will stop all the players currently playing:
 
 ```haskell
 hush
