@@ -2,101 +2,11 @@
 title: Add samples
 ---
 
-Adding and using your own custom samples in **Tidal Cycles** is relatively easy. You don't actually add samples, but instead add them into **SuperCollider** and the **SuperDirt** quark. To do this, you will need to customize your **SuperDirt** startup code.
-
-## SuperDirt
-
-When you open **SuperCollider**, instead of the normal `SuperDirt.start`
-code, you will need to write a longer script that tells **SuperDirt** where
-to find your samples. The startup script will look like this:
-
-``` c
-(
-s.waitForBoot {
-    ~dirt = SuperDirt(2, s); // two output channels
-    ~dirt.loadSoundFiles("/Users/myUserName/Dirt/samples/*"); // specify sample folder to load
-    s.sync; // wait for supercollider to finish booting up
-    ~dirt.start(57120, 0 ! 12); // start superdirt, listening on port 57120, create twelve orbits each sending audio to channel 0
-};
-);
-```
-
-To run the above code, place the cursor anywhere inside that code block,
-then press `Ctrl+Enter` (or `Command+Enter` on MacOS) to evaluate the
-whole block.
-
-The above code will boot the SuperCollider server, then start up
-**SuperDirt** with some samples located at `/Users/myUserName/Dirt/samples`. You can find a more complete [startup file](https://github.com/musikinformatik/SuperDirt/blob/develop/superdirt_startup.scd) in the SuperDirt code repository.
-
-### Windows Paths
-
-If you are running Windows, you will need to escape the backslash characters in Windows paths:
-
-```c
-~dirt.loadSoundFiles("c:\\Users\\myUserName\\Dirt\\samples\\*")
-```
-
-### Specifying Multiple Folders
-
-If you have samples located in many folders, you can import them all:
-
-``` c
-(
-s.waitForBoot {
-    ~dirt = SuperDirt(2, s); // two output channels
-
-        <!--T:20-->
-// load samples from multiple folders:
-    ~dirt.loadSoundFiles("/Users/myUserName/Dirt/samples/*"); 
-    ~dirt.loadSoundFiles("/Users/myUserName/sounds/*"); 
-    ~dirt.loadSoundFiles("/Users/myUserName/recordings/chaska-sessions/*");
-    ~dirt.loadSoundFiles("/Users/myUserName/recordings/super-duper-experiments/*"); 
-
-    <!--T:21-->
-s.sync; // wait for supercollider to finish booting up
-    ~dirt.start(57120, [0, 0]); // start superdirt, listening on port 57120, create two orbits each sending audio to channel 0
-};
-);
-```
-
-
-## Folder Structure
-
-In the above example, we have imported a folder at the path `/Users/myUserName/Dirt/samples`. In order for SuperDirt to recognize the sound names that Tidal sends, the `/Users/myUserName/Dirt/samples` folder will need to have sub-folders for each sound name, and each sound name folder will need to have sample files:
-
-```plaintext
-Users/
-|-- myUserName/
-    |-- Dirt/
-        |-- samples/
-            |-- myBass/
-            |   |-- bass1.wav
-            |   |-- bass2.wav
-            |   |-- bass3.wav
-            |-- hits/
-            |   |-- hit1.wav
-            |   |-- hit2.wav
-            |   |-- hit3.wav
-            |-- field/
-            |   |-- bridge.wav
-            |   |-- mountains1.wav
-            |   |-- mountains2.wav
-            |   |-- plains.wav
-            |   |-- river.wav
-```
-
-
-# Tidal Code
-
-Given the folder structure above, you can now use the `myBass`, `hits`,
-and `field` sounds in your Tidal patterns:
-
-```c
-d1 $ s "mybass hits*4" # n (slow 2 $ run 3)
-d2 $ n "<0 2 1>" # s "field" # cut 1
-```
+Adding and using your own custom samples in **Tidal Cycles** is relatively easy. You don't actually add samples to **Tidal**, but instead reference them into the **SuperDirt** startup file inside of **SuperCollider**.
 
 ## Where to find samples
+
+If you don't have custom samples but would like to find some, this is the section for you.
 
 You'll find tons of websites selling audio samples for music production, ranging from the less expensive to the most priciest thing you've ever seen. However, there are good ways to find free and high-quality audio samples for **Tidal**.
 
@@ -115,3 +25,63 @@ Here is a small list of websites for free samples you could check:
 * [Looperman](https://www.looperman.com/): community-made bank of loops, accapellas.
 * [SampleSwap](https://sampleswap.org/) : 16-bit wav samples, huge library.
 * [99 Sounds](https://99sounds.org/) : More than 99 samples.
+
+## Folder structure
+
+Once you have your samples, you need to organize them in a specific way. In order for SuperDirt to recognize the sound names that Tidal sends, your samples folder (e.g. `mySamples`) will need to have sub-folders for each sound name, and each sound name folder will need to have one or more sample files:
+
+```plaintext
+mySamples/
+  |-- myBass/
+  |   |-- bass1.wav
+  |   |-- bass2.wav
+  |   |-- bass3.wav
+  |-- myHits/
+  |   |-- hit1.wav
+  |   |-- hit2.wav
+  |   |-- hit3.wav
+  |-- myField/
+  |   |-- bridge.wav
+  |   |-- mountains1.wav
+  |   |-- mountains2.wav
+  |   |-- plains.wav
+  |   |-- river.wav
+```
+
+Given the folder structure above, after finishing this guide you will be able to use the samples in your Tidal code in the following way:
+
+```haskell
+once $ sound "myField:3" --will play 'plains.wav'
+```
+
+## Reference the samples in SuperDirt
+
+In the [SuperDirt startup file](../../reference/config/superdirt/), you'll find a line for loading the default samples: `dirt.loadSoundFiles;`. Below it, you need to add a line with the `~dirt.loadSoundFiles()` function. Inside the parentheses will go the path of your custom samples folder, followed by `/*`, to refer to its contents. Were the path to be `/Users/myUserName/mySamples`, the code should look like this:
+
+```c
+// there will be more code above
+~dirt.loadSoundFiles;
+~dirt.loadSoundFiles("/Users/myUserName/mySamples/*")
+// there will also be more code below
+```
+
+You can check whether everything is correct by placing the cursor anywhere inside that code block and then pressing `Ctrl+Enter` (or `Command+Enter` on MacOS) to evaluate the whole block. In the **SuperCollider** *Post window* it will appear information about the boot of the SuperCollider server, after which it will inform about the loading of the sound names (there called *sample banks*). You should see a number after each one, telling how many samples were loaded for the name.
+
+Note that you can import more than one custom folder by using more import functions:
+
+```c
+// there will be more code above
+~dirt.loadSoundFiles;
+~dirt.loadSoundFiles("/Users/myUserName/mySamples/*")
+~dirt.loadSoundFiles("/Users/myUserName/sounds/*"); 
+~dirt.loadSoundFiles("/Users/myUserName/recordings/chaska-sessions/*");
+~dirt.loadSoundFiles("/Users/myUserName/recordings/super-duper-experiments/*"); 
+// there will also be more code below
+```
+
+:::caution
+If you are running Windows, you will need to change the path address. You can either escape the backslash character with another backslash, or reemplace it with a forward slash. For example:
+```c
+~dirt.loadSoundFiles("c:\\Users\\myUserName\\mySamples\\*")
+```
+:::
