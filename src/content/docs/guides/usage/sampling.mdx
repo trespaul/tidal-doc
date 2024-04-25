@@ -99,14 +99,6 @@ d1 $ s "mybass hits*4" # n (slow 2 $ run 3)
 d2 $ n "<0 2 1>" # s "field" # cut 1
 ```
 
-### Lazy-loading
-
-If you are working with large sample libraries or if you use an old computer, you can turn on *lazy loading* in SuperDirt as mentionned [here](https://club.tidalcycles.org/t/superdirt-lazy-samples-loading/3148).
-
-Instead of loading all your audio samples in the RAM as usual, SuperDirt will load audio samples *on request*. This is better for people working with a limited amount of memory.
-
-To enable it, update SuperDirt to the last commit (go into the downloaded-quarks/SuperDirt folder then `git pull`) then, in the SuperDirt startup code, before any `~dirt.loadSoundFiles` call, put a `~dirt.doNotReadYet = true;`.
-
 ## Finding samples
 
 The *default samples library* is full of surprises. You will have a lot of fun exploring it but at some point, you might want to download new audio samples. You'll find tons of websites selling audio samples for music production, ranging from the less expensive to the most priciest thing you've ever seen. However, there are good ways to find free and high-quality audio samples for Tidal.
