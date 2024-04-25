@@ -107,29 +107,6 @@ Instead of loading all your audio samples in the RAM as usual, SuperDirt will lo
 
 To enable it, update SuperDirt to the last commit (go into the downloaded-quarks/SuperDirt folder then `git pull`) then, in the SuperDirt startup code, before any `~dirt.loadSoundFiles` call, put a `~dirt.doNotReadYet = true;`.
 
-
-## Pitched sample playback with `metatune`
-
-By default, SuperDirt treats all samples as having a pitch of C4 (MIDI note 60).
-Playing a sample tonally is simple as long the sound is indeed a C. But what if not?
-
-It is possible to embed pitch metadata in WAV files in the form of a [`smpl` chunk](https://www.recordingblogs.com/wiki/sample-chunk-of-a-wave-file).
-This is used by some samplers to automatically map samples to MIDI notes.
-SuperDirt also reads the pitch metadata for all loaded samples, allowing them to be pitched correctly (assuming the metadata is correct) by setting the `metatune` parameter to 1.
-
-For example, the sample `bass1:18` from Dirt-Samples is an F2 (MIDI note 41) and is tagged with the appropriate pitch metadata.
-With `metatune`, we can easily play it in tune with a superpiano chord:
-
-```haskell
-d1 $ stack
-  [ note "<d4 c4 a3 bf3>" # s "bass1:18" # legato 1 # metatune 1
-  , note "[~ d5'min'o]*4" # s "superpiano" # release 0.4
-  ] # cps 0.35
-```
-
-`smpl` chunk metadata can be edited with various tools such as [pitcheon](https://github.com/ahihi/pitcheon) or [LoopAuditioneer](https://loopauditioneer.sourceforge.io/).
-
-
 ## Finding samples
 
 The *default samples library* is full of surprises. You will have a lot of fun exploring it but at some point, you might want to download new audio samples. You'll find tons of websites selling audio samples for music production, ranging from the less expensive to the most priciest thing you've ever seen. However, there are good ways to find free and high-quality audio samples for Tidal.
