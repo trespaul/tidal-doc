@@ -2,76 +2,52 @@
 title: Modulate parameters with signals
 ---
 
-Signals are continuously varying patterns. Unless otherwise stated, signals give minimum values of `0` and maximum values of `1`, and repeat once per cycle.
+Signals are continuously varying patterns without structure. Unless otherwise stated, signals give minimum values of `0` and maximum values of `1`, and repeat once per cycle.
 
-## What is a signal?
-
-Signal are continuous patterns, which means they don't have any structure, and must be used with a pattern that does. For example `d1 $ sound "bd*8" >| pan sine` won't work well, because the `>|` operator instructs Tidal to take structure from the right, and `sine` doesn't have any structure, so Tidal will simply trigger events at a fixed rate (depending on your configuration, this might be very fast). `d1 $ sound "bd*8" |> pan sine` is better, because `|>` takes structure from the left, so eight kick drums will play, with pan values sampled from the sine wave for each of the eight events. Where a pattern has the type `Fractional a => Pattern a`, that means that they can be used both as floating point numbers or (rational) time values.
-
-## Using signals
+## Using the built-in signals
 
 ### Periodic signals: oscillators
-#### Sine
 
-`sine` is a sinusoidal wave. Playing this example, you should hear the sound slowly moving from your left to your right speaker:
+#### `saw`
 
-```haskell
-d1 $ sound "bd*8" # pan sine
-```
-
-#### Cosine
-
-A `cosine` wave, is a `sine` shifted in time by a quarter of a cycle. It sounds similar to the `sine` above:
+A sawtooth wave starts at 0 and rises with a linear ramp to end in 1. It then jumps back to 0 for the next cycle:
 
 ```haskell
-d1 $ sound "bd*8" # pan cosine # speed (sine + 0.5)
+d1 $ sound "bd*8" # pan saw
 ```
+:::tip
+If you want to have an inverted sawtooth that starts at 1 and ends at 0, you can use `(1 - saw)`, or its alias `isaw`.
+:::
 
-#### Square
+#### `tri`
 
-A Square wave, starting at 0, then going up to 1 halfway through a cycle.
-
-```haskell
-d1 $ sound "bd*8" # pan (cat [square, sine])
-```
-
-#### Tri
-
-A triangle wave, starting at 0, then linearly rising to 1 halfway through a cycle, then down again:
+A triangle wave is like a sawtooth and an inverted sawtooth that were smooshed together. It starts at 0, rises and arrives to 1 halfway through, and then falls back to return to 0:
 
 ```haskell
 d1 $ sound "bd*16" # speed (slow 2 $ range 0.5 2 tri)
 ```
 
-#### Saw
+#### `sine`
 
-A sawtooth wave starting at 0, then linearly rising to 1 over one cycle, then jumping back to 0:
-
-```haskell
-d1 $ sound "bd*8" # pan (slow 2 saw)
-```
-
-#### Isaw
-
-An inverted sawtooth, starting at 1, then linearly falling to 0 over one cycle, then jumping back to 1:
+A sinusoidal wave is like a triangle wave but "smoothed out", so that the change is slower in the peaks and faster in the in-between values. Compare these two lines that move the sound from your left to your right speaker and back:
 
 ```haskell
-d1 $ sound "bd*8" # pan (slow 2 isaw)
+d1 $ sound "bd*8" # pan sine
+
+d1 $ sound "bd*8" # pan tri
 ```
 
-#### Smooth
+#### `square`
 
-`Smooth` receives a pattern of numbers and linearly goes from one to the next, passing through all of them. As time is cycle-based, after reaching the last number in the pattern, it will smoothly go to the first one again.
+A square wave starts at 0 and jumps to 1 halfway through a cycle. It then jumps back to 0 for the next cycle:
 
 ```haskell
-d1 $ sound "bd*4" # pan (slow 4 $ smooth "0 1 0.5 1")
+d1 $ sound "bd*8" # pan (cat [square, sine])
 ```
 
-Note how the sound goes gradually from left to right, then to the center, then to the right again, and finally comes back to the left.
+### Some non-periodic signals
 
-### Non-periodic signals
-
-#### Rand
+#### `rand`
 
 An infinitely detailed stream of (pseudo-)random numbers.
 
@@ -79,12 +55,32 @@ An infinitely detailed stream of (pseudo-)random numbers.
 d1 $ sound "bd*8" # pan rand
 ```
 
-#### Irand
+#### `perlin`
+
+A function that smoothly interpolates between a value and a randomly chosen destination. In the next cycle, the destination becomes the starting point and another destination is randomly chosen:
+
+```haskell
+d1 $ sound "bd*8" # pan rand
+```
+
+#### `irand`
 
 A function from an integer (giving the maximum) to a stream of (pseudo-)random integer numbers.
 
 ```haskell
 d1 $ sound "drum*8" # n (irand 8)
+```
+
+## Signals and structure
+
+Signal are continuous patterns, which means they don't have any structure, and must be used with a pattern that does. For example `d1 $ n (irand 8) # s "drums"` won't work, because the `#` operator instructs Tidal to take structure from the left, and `irand` doesn't have any structure, so Tidal won't trigger any events. One possible solution is to reverse the order: `d1 $ s "drums" # n (irand 8)`.
+
+### Sampling signals with `segment`
+
+Another option is to use `segment`, which 'samples' any pattern at  a rate of `n` events per cycle, and so turns a continuous pattern into a discrete one:
+
+```haskell
+d1 $ n (slow 2 $ segment 16 $ range 0 32 $ sine) # sound "amencutup"
 ```
 
 ## Scaling signals
@@ -95,12 +91,45 @@ By default, the signals will output values scaled between `0` and `1`. You might
 d1 $ s "bass:5*8" # lpf (range 200 5000 $ sine)
 ```
 
-## Speeding up/down signals
+:::tip
+A lot of signals have *bipolar* counterparts, where the amplitude goes from `-1` to `1`. Those are `sine2`, `cosine2`, `saw2`, `isaw2`, `tri2` and `square2`.
+:::
 
-Signals are patterns! It means that you can speed them up or down using the same function as usual (`fast`, `slow`, etc..):
+## Phase-shifting signals
+
+You can shift signals inside the cycle (i.e. their phase) using the `<~` and `~>` functions. For example, a `cosine` wave is a `sine` shifted in time by a quarter of a cycle. That is equivalent to `0.25 ~> sine`:
+
+```haskell
+d1 $ sound "bd*8" # pan cosine # speed (sine + 0.5)
+```
+
+## Changing the speed of signals
+
+Signals are patterns! It means that you can speed them up or down using the same functions as usual (`fast`, `slow`, etc..):
+
 ```haskell
 d1 $ s "bass:5*8" # lpf (slow 4 $ range 200 5000 $ sine)
 ```
 :::tip
 Notice that most of the time, the speed up/down will be in sync with your pattern. How convenient!
 :::
+
+## Generating your own signals
+
+### via `smooth`
+
+`smooth` receives a pattern of numbers and linearly goes from one to the next, passing through all of them. As time is cycle-based, after reaching the last number in the pattern, it will smoothly go to the first one again.
+
+```haskell
+d1 $ sound "bd*4" # pan (slow 4 $ smooth "0 1 0.5 1")
+```
+
+Note how the sound goes gradually from left to right, then to the center, then to the right again, and finally comes back to the left.
+
+### via `sig`
+
+You can also create your own signals with `sig`, which takes a function of time and turns it into a continuous function. For example, `saw` is defined as
+
+```haskell
+saw = sig $ \t -> mod' (fromRational t) 1
+```
