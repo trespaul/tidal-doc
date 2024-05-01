@@ -13,10 +13,6 @@ Oscillators are continuous patterns, which means they don't have any structure, 
 ### Periodic oscillators
 #### Sine
 
-```haskell
-Type: sine :: Fractional a => Pattern a
-```
-
 `sine` is a sinusoidal wave. Playing this example, you should hear the sound slowly moving from your left to your right speaker:
 
 ```haskell
@@ -24,10 +20,6 @@ d1 $ sound "bd*8" # pan sine
 ```
 
 #### Cosine
-
-```haskell
-Type: cosine :: Fractional a => Pattern a
-```
 
 A `cosine` wave, is a `sine` shifted in time by a quarter of a cycle. It sounds similar to the `sine` above:
 
@@ -37,10 +29,6 @@ d1 $ sound "bd*8" # pan cosine # speed (sine + 0.5)
 
 #### Square
 
-```haskell
-Type: square :: Fractional a => Pattern a
-```
-
 A Square wave, starting at 0, then going up to 1 halfway through a cycle.
 
 ```haskell
@@ -48,10 +36,6 @@ d1 $ sound "bd*8" # pan (cat [square, sine])
 ```
 
 #### Tri
-
-```haskell
-Type: tri :: Fractional a => Pattern a
-```
 
 A triangle wave, starting at 0, then linearly rising to 1 halfway through a cycle, then down again:
 
@@ -61,10 +45,6 @@ d1 $ sound "bd*16" # speed (slow 2 $ range 0.5 2 tri)
 
 #### Saw
 
-```haskell
-Type: saw :: Fractional a => Pattern a
-```
-
 A sawtooth wave starting at 0, then linearly rising to 1 over one cycle, then jumping back to 0:
 
 ```haskell
@@ -73,10 +53,6 @@ d1 $ sound "bd*8" # pan (slow 2 saw)
 
 #### Isaw
 
-```haskell
-Type: isaw :: Fractional a => Pattern a
-```
-
 An inverted sawtooth, starting at 1, then linearly falling to 0 over one cycle, then jumping back to 1:
 
 ```haskell
@@ -84,10 +60,6 @@ d1 $ sound "bd*8" # pan (slow 2 isaw)
 ```
 
 #### Smooth
-
-```haskell
-Type: smooth :: Fractional a => Pattern a -> Pattern a
-```
 
 `Smooth` receives a pattern of numbers and linearly goes from one to the next, passing through all of them. As time is cycle-based, after reaching the last number in the pattern, it will smoothly go to the first one again.
 
@@ -101,10 +73,6 @@ Note how the sound goes gradually from left to right, then to the center, then t
 
 #### Rand
 
-```haskell
-Type: rand :: Fractional a => Pattern a
-```
-
 An infinitely detailed stream of (pseudo-)random numbers. See the `rand` reference page for more details.
 
 ```haskell
@@ -112,10 +80,6 @@ d1 $ sound "bd*8" # pan rand
 ```
 
 #### Irand
-
-```haskell
-Type: irand :: Num a => Pattern Int -> Pattern a
-```
 
 A function from an integer (giving the maximum) to a stream of (pseudo-)random integer numbers. For more details, head to the `rand` reference page:
 
