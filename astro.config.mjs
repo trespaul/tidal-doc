@@ -58,9 +58,18 @@ export default defineConfig({
         { label: 'Guides',
           // translations: { 'fr': 'Guides', },
           items: [
-            { label: 'Usage',
+            { label: 'Coding with Tidal',
+              items: [
+                { label: 'Create patterns', autogenerate: { directory: '/guides/tidal/create' }, collapsed: true,},
+                { label: 'Modify patterns', autogenerate: { directory: '/guides/tidal/patterns' }, collapsed: true, },
+                { label: 'Modify samples', autogenerate: { directory: '/guides/tidal/samples' }, collapsed: true, },
+                { label: 'Continuous modulators', autogenerate: { directory: '/guides/tidal/continuous' }, collapsed: true, },
+                { label: 'Shift time', autogenerate: { directory: '/guides/tidal/time' }, collapsed: true, },
+                { label: 'Combine functions', autogenerate: { directory: '/guides/tidal/combine-functions' }, collapsed: true, },
+                { label: 'Manage state', autogenerate: { directory: '/guides/tidal/state' }, collapsed: true, },
+
+              ],
               collapsed: true,
-              autogenerate: { directory: '/guides/usage' },
             },
             { label: 'Audio',
               collapsed: true,
