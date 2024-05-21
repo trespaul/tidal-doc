@@ -22,8 +22,8 @@ src/
 │  ├── explanation/...      --- explanation section
 │  ├── getting-started/...  --- getting started section
 │  ├── guides/...           --- guide section
-│  │  ├── SuperDirt/...     --- SuperDirt specific guides
-│  │  └── Tidal/...         --- Tidal-specific guides
+│  │  ├── audio/...         --- SuperDirt specific guides
+│  │  └── tidal/...         --- Tidal-specific guides
 │  ├── introduction/...     --- introduction section
 │  ├── reference/...        --- reference section
 │  │  ├── config/...        --- config reference
@@ -59,31 +59,46 @@ The specific pages are:
   - Tutorial [getting from installed to first sounds, then to sounding like something (introduce to basic usage of stuff, incl. mini-notation) (can be multiple pages)]
     - currently: cycles, patterns, controls
 - **Guides** [how to do specific things that aren't necessary to know at first; address common questions like "how do I get Tidal to do X?"; page titles should follow from "How to ..." / start with a verb; can perhaps be organised into subsections, or we can rely on search; the below are examples]
-  - Usage
-    - Write arpeggios
-    - Write chords
-    - Combine patterns
-    - Route effects with control busses
-    - Chain functions with $
-    - Compose functions with .
-    - Modulate parameters with oscillators
-    - Write rhythms
-    - Manage and play samples
+  - Coding with Tidal
+    - Create patterns
+      - Write arpeggios
+      - Write chords
+      - Write rhythms
+      - Use generative algorithms
+    - Modify patterns
+      - Combine patterns
+      - Restructure your patterns using functions
+      - Transition between patterns
+    - Combine samples
+      - Assign the actual notes to the samples
+      - Slice your samples and rearrange their contents
+      - Trim samples and deal with overlaps
+    - Continuous modulators
+      - Modify ongoing sounds with control busses
+      - Modulate parameters with signals
+    - Shift time
+      - Set tempos and global time signatures
+      - Trigger a pattern from the start
+    - Combine functions
+      - Chain functions with $
+      - Compose functions with .
     - Manage state
-    - Transition between patterns
-    - Trigger a pattern from the start
+      - Traverse through lists with state values
   - Audio
     - Add effects to SuperDirt
+    - Add samples to Tidal
     - Add synthesisers to SuperDirt
     - Add audio channels
     - Control latency
+    - Reduce sample load memory and startup time
     - Run SuperDirt in another host
-  - Connectoins
+  - Connections
     - Send control voltage out
     - Connect to a DAW
-    - Send and receive midi
+    - Send and receive MIDI
+    - Use Tidal with multiple users
     - Send OSC elsewhere
-    - Visualise events
+    - Visualise Tidal events
 - **Explanation** [more in-depth theoretical explanation of internals; Haskell stuff; these suggestions by ninioArtillero on Discord]
   - The Haskell language [left and right associativity, layout rules]
   - The Pattern data type
@@ -93,6 +108,7 @@ The specific pages are:
 - **Reference**
   - Tidal functions [technical documentation, lists of functions; autogenerate]
   - SuperDirt
+    - Default samples
     - Audio effects
     - Synthesisers
   - Configuration
