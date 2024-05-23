@@ -22,7 +22,7 @@ src/
 │  ├── explanation/...      --- explanation section
 │  ├── getting-started/...  --- getting started section
 │  ├── guides/...           --- guide section
-│  │  ├── audio/...         --- SuperDirt specific guides
+│  │  ├── audio/...         --- SuperDirt and SuperCollider specific guides
 │  │  └── tidal/...         --- Tidal-specific guides
 │  ├── introduction/...     --- introduction section
 │  ├── reference/...        --- reference section
@@ -92,6 +92,7 @@ The specific pages are:
     - Control latency
     - Reduce sample load memory and startup time
     - Run SuperDirt in another host
+    - Protect everyone's ears with a limiter
   - Connections
     - Send control voltage out
     - Connect to a DAW
