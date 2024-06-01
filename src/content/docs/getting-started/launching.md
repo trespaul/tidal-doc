@@ -43,7 +43,7 @@ In Pulsar, for example, the process is as follows:
 2. Create a new file and save it with a file name that ends in `.tidal`, (e.g. `test.tidal`).
 3. Open the Packages menu and select `TidalCycles -> Boot TidalCycles`. A small window will open at the bottom of the Pulsar window containing the `t>` prompt (and hopefully no error messages).
 
-Let's try it! Type the following pattern in the text editor and press `Shift+Enter` to evaluate it (`Ctrl+Enter` will evaluate multiple lines):
+Let's try it! Type the following line in the text editor and press `Shift+Enter` to evaluate it (`Ctrl+Enter` will evaluate multiple lines):
 
 ```haskell
 d1 $ sound "bd sn"
