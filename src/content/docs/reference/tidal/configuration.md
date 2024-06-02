@@ -1,5 +1,5 @@
 ---
-title: Tidal configuration
+title: "Configuration: The boot file"
 ---
 
 Everytime you start Tidal, the software is reading from a configuration file usually named `BootTidal.hs`, which specifies the configuration to use. Generally, this file will be attached to your text editor (check the plugin you are using). Save this file somewhere safe, you will have to tweak it sometimes: changing options, adding new functionality, etc...
