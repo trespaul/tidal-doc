@@ -1,8 +1,6 @@
 ---
-title: "mi-UGens: Plaits"
+title: "Plaits engines"
 ---
-
-# Plaits engines
 
 This list was adapted from the original [Plaits manual](https://pichenettes.github.io/mutable-instruments-documentation/modules/plaits/manual/), with some edits to match Tidal's parameter implementation.
 

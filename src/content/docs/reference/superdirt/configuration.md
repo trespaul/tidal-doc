@@ -1,5 +1,5 @@
 ---
-title: SuperDirt configuration
+title: "Configuration: The startup file"
 ---
 
 This SuperCollider script,
