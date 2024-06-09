@@ -12,33 +12,26 @@ npm run build  # build production site into dist/ folder
 ## Structure
 
 ```
-public/                         --- files copied directly to build
+public/                     --- files copied directly to build
 src/
-├── assets/                     --- general assets
-├── content/docs/               --- collection for all site content
-│  ├── blog/                    --- files for blog section
-│  │  ├── assets/...            --- assets for blog posts
-│  │  └── profile/...           --- individual profiles
-│  ├── explanation/...          --- explanation section
-│  ├── getting-started/...      --- getting started section
-│  ├── guides/...               --- guide section
-│  │  ├── audio/...             --- SuperDirt specific guides
-│  │  └── tidal/...             --- Tidal-specific guides
-│  ├── introduction/...         --- introduction section
-│  ├── reference/...            --- reference section
-│  │  ├── superdirt/...         --- SuperDirt specific reference
-│  │  └── tidal/...             --- Tidal specific reference
-│  │     ├── configuration.md   --- Tidal configuration, boot file
-│  │     ├── functions/...      --- Tidal functions (autogen)
-│  │     └── mini-notation/...  --- mini-notation reference
-│  └── index.mdx                --- homepage
-├── pages/                      --- manually structured pages (not used)
-│  └── og/[...slug].ts          --- opengraph images endpoint
-├── styles/custom.css           --- custom css
-astro.config.mjs                --- all site config, sidebars, etc.
-package.json                    --- npm configuration, dependencies
-README.md                       --- this file
-tailwind.config.mjs             --- tailwind config, theming
+├── assets/                 --- general assets
+├── content/docs/           --- collection for all site content
+│  ├── blog/                --- files for blog section
+│  │  ├── assets/...        --- assets for blog posts
+│  │  └── profile/...       --- individual profiles
+│  ├── explanation/...      --- explanation section (see below)
+│  ├── getting-started/...  --- getting started section (see below)
+│  ├── guides/...           --- guide section (see below)
+│  ├── introduction/...     --- introduction section (see below)
+│  ├── reference/...        --- reference section (see below)
+│  └── index.mdx            --- homepage
+├── pages/                  --- manually structured pages (not used)
+│  └── og/[...slug].ts      --- opengraph images endpoint
+├── styles/custom.css       --- custom css
+astro.config.mjs            --- all site config, sidebars, etc.
+package.json                --- npm configuration, dependencies
+README.md                   --- this file
+tailwind.config.mjs         --- tailwind config, theming
 ```
 
 ### Purpose of different docs sections
