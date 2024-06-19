@@ -27,7 +27,7 @@ For more, including how to convert from BPM, see the [tempo guide page](/guides/
 
 ### Dividing the cycle 
 
-Enter the following pattern in your text editor and evaluate it:
+Enter the following line in your text editor and evaluate it:
 
 ```haskell
 d1 $ s "bd hh bd hh"
@@ -88,13 +88,50 @@ You might get something that looks like this:
 
 ## Patterns
 
-### Declaring patterns
+Although the word *pattern* is used interchangably for both Patterns and Control Patterns, in this section we'll look at the difference between the two. You'll see more advanced use of both as you go.
 
-Patterns are always declared using `p` (for "pattern") and a specific name or identifier, followed by the content of the pattern.
-These patterns are "connections" to the SuperDirt synthesiser that you can use to play audio samples, synthesisers, and so on.
-Each pattern is associated with an `orbit`, a track for effects and audio output.
+### The Pattern pattern
 
-Patterns can be numbered:
+Pattern, with uppercase P, is a collection where each element or value is associated with a moment of the cycle.
+
+For example,
+
+```haskell
+"bd ~ hh" -- a Pattern made out of strings ('characters')
+"0 1 3 2" -- a Pattern made out of numbers
+```
+
+are both Patterns. These Patterns are somewhat abstract, and their elements don't refer to any parameter until you pair them with a *control function*, which will transform a Pattern into a Control Pattern.
+
+
+### The ControlPattern pattern
+
+A Control Pattern is a Pattern where each value has been mapped to a *control*. Controls indicate SuperDirt what to do with the values of a Pattern. Some controls, like `sound`, let us choose a sample or a synth sound, while others, like `gain`, `pan`, or `delay`, let us modify it. Everything is patternable!
+
+Below, `sound` is used to asign a piano synth to a pattern of notes:
+
+```haskell
+d1 $ note "c d e f g a"
+   # sound "superpiano"
+```
+
+Most of the controls, however, relate to effects. For instance, this drum pattern will be filtered:
+
+```haskell
+d1 $ s "bd hh bd hh*2"
+   # lpf "500 1000 1500"
+   # lpq 0.5
+```
+
+## Making the patterns sound
+
+### Pattern players
+
+Control Patterns are always played using `p` (for "player") and a specific name or identifier, followed by the content of the pattern.
+These players are "connections" to the SuperDirt synthesiser that you can use to play audio samples, synthesisers, and so on.
+Each player is associated with an `orbit`, a track for effects and audio output.
+
+Players can be numbered:
 
 ```haskell
 p 1234 $ s "bd bd"
@@ -110,9 +147,9 @@ p "romeo" $ s "bd bd"
 p "juliet" $ s "hh*4"
 ```
 
-`d1` to `d16` are considered, historically, to be the classic pattern names, and are kept for convenience.
+`d1` to `d16` are considered, historically, to be the classic player names, and are kept for convenience.
 
-The following example uses four different patterns:
+The following example uses four different players and patterns:
 
 ```haskell
 -- a bass drum
@@ -128,47 +165,49 @@ d3 $ s "numbers:1"
 d4 $ s "cp cp cp"
 ```
 
-Sometimes, you don't really want a pattern but something that will only play `once`.
+Sometimes, you don't really want a player but something that will only play `once`.
 Use the `once` function to make a special "once" pattern:
 
 ```haskell
 once $ s "trump"
 ```
 
-### Stopping patterns
+If you want to learn how to connect Tidal to other programs or devices, read the guides in the section **Connections**, such as the one on [sending and receiving MIDI](/guides/connections/midi/).
 
-There are some very convenient commands you can use to stop patterns.
+### Stopping players
 
-To stop a specific pattern at the next cycle, you can use the `silence` function:
+There are some very convenient commands you can use to stop players.
+
+To stop a specific player at the next cycle, you can use the `silence` function:
 
 ```haskell
 p "loudpattern" $ silence
 ```
 
-You can also control whether a pattern makes sound by muting or soloing them:
+You can also control whether a player makes sound by muting or soloing them:
 
 ```haskell
 d1 $ sound "arpy cp arpy:2"
 d2 $ sound "sn sn:2 bd sn"
 
 solo 2
--- now only the second pattern will be playing
+-- now only the second player will be playing
 
 unsolo 2
 -- now both will be playing, again
 
 mute 2
--- now only the first pattern will be playing
+-- now only the first player will be playing
 
 unmute 2 -- (or unmuteAll)
 -- now both will be playing
 ```
 
 :::tip
-The Pulsar plugin adds some key shortcuts for this common operations, like `Ctrl+1` to toggle mute for the first pattern, or `Ctrl+0` to unmute all. You can see the complete list of keybindings inside Pulsar, by going to `Edit > Preferences > Packages`, selecting tidalcycles, and scrolling down to the `Keybindings` section.
+The Pulsar plugin adds some key shortcuts for this common operations, like `Ctrl+1` to toggle mute for the first player, or `Ctrl+0` to unmute all players. You can see the complete list of keybindings inside Pulsar, by going to `Edit > Preferences > Packages`, selecting tidalcycles, and scrolling down to the `Keybindings` section.
 :::
 
-`hush` will stop all the patterns currently running:
+`hush` will stop all the players currently playing:
 
 ```haskell
 hush
@@ -183,33 +222,6 @@ panic
 
 It behaves just like `hush`, but will also stop all the synthesisers and audio samples currently running on the SuperDirt side.
 You should be back to total silence in no time.
-
-
-### Control patterns
-
-Control functions are used to turn patterns of strings (words) or numbers into control patterns.
-A control pattern is a pattern that will determine how sounds are made in SuperDirt.
-This includes audio control functions such as `gain` and `pan`, sample manipulation functions such as `begin` and `end`, and effect functions such as `delay` and `shape`.
-
-Everything is patternable!
-
-The default synthesisers, or any SuperDirt synthesiser, can be activated using the `sound` control pattern. Below, `sound` is used to assign a piano synth to a pattern of notes:
-
-```haskell
-d1 $ note "c d e f g a"
-   # sound "superpiano"
-```
-
-Most of the time, however, you will use control patterns to use effects on your patterns. For instance, this drum pattern will be filtered:
-
-```haskell
-d1 $ s "bd hh bd hh*2"
-   # lpf "500 1000 1500"
-   # lpq 0.5
-```
-
-You'll see more advanced use of control patterns as you go.
-
 
 ## Writing Tidal code
 
@@ -251,8 +263,8 @@ d1 $ s "bd hh bd hh*2"
 
 ### Mini-notation
 
-All the patterns in quotation marks thusfar have been using "mini-notation" syntax.
-Mini-notation was created as a way to write patterns much more conveniently than straightforwardly composing functions together.
+All Patterns in quotation marks thusfar have been using "mini-notation" syntax.
+Mini-notation was created as a way to write Patterns much more conveniently than straightforwardly composing functions together.
 
 For example, in `"bd hh bd hh*2"`, the `*` means that the element should be repeated.
 On this page, we have also encountered `~`, used to indicate a rest, and `:`, used to select a specific sample from a folder.

@@ -1,5 +1,5 @@
 ---
-title: Default samples
+title: Samples
 ---
 
 

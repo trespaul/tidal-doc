@@ -94,26 +94,21 @@ export default defineConfig({
         { label: 'Reference',
           // translations: { 'fr': 'Référence', },
           items: [
-            { label: 'Tidal functions',
-              autogenerate: { directory: 'reference/tidal' },
-              collapsed: true,
-              badge: 'WIP',
+            { label: 'Tidal',
+              items: [
+                {label: 'Configuration', link: 'reference/tidal/configuration' },
+                {label: 'Functions', autogenerate: { directory: 'reference/tidal/functions' }, badge: 'WIP', collapsed: true},
+                {label: 'Mini-notation', autogenerate: {directory: 'reference/tidal/mini-notation' }, collapsed: true},
+              ],
             },
             { label: 'SuperDirt',
-              autogenerate: { directory: 'reference/superdirt' },
-              collapsed: true,
-            },
-            { label: 'Configuration',
               items: [
-                { label: 'Tidal', link: '/reference/config/tidal' },
-                { label: 'SuperDirt', link: '/reference/config/superdirt' },
-              ]
-            },
-            { label: 'Mini-notation',
-              autogenerate: { directory: '/reference/mini-notation' },
+                {label: 'Configuration', link: 'reference/superdirt/configuration'},
+                {label: 'Default library', autogenerate: { directory: 'reference/superdirt/default-library' }, collapsed: true},
+                {label: 'mi-UGens', autogenerate: {directory: 'reference/superdirt/mi-ugens' }, collapsed: true},
+              ],
             },
           ],
-
         },
       ],
       locales: {
