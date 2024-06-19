@@ -19,11 +19,17 @@ src/
 │  ├── blog/                --- files for blog section
 │  │  ├── assets/...        --- assets for blog posts
 │  │  └── profile/...       --- individual profiles
-│  ├── explanation/...      --- explanation section (see below)
-│  ├── getting-started/...  --- getting started section (see below)
-│  ├── guides/...           --- guide section (see below)
-│  ├── introduction/...     --- introduction section (see below)
-│  ├── reference/...        --- reference section (see below)
+│  ├── explanation/...      --- explanation section
+│  ├── getting-started/...  --- getting started section
+│  ├── guides/...           --- guide section
+│  │  ├── audio/...         --- SuperDirt and SuperCollider specific guides
+│  │  └── tidal/...         --- Tidal-specific guides
+│  ├── introduction/...     --- introduction section
+│  ├── reference/...        --- reference section
+│  │  ├── config/...        --- config reference
+│  │  ├── functions/...     --- Tidal functions (autogen)
+│  │  ├── mini-notation/... --- mini-notation reference
+│  │  └── superdirt/...     --- superdirt reference
 │  └── index.mdx            --- homepage
 ├── pages/                  --- manually structured pages (not used)
 │  └── og/[...slug].ts      --- opengraph images endpoint
@@ -87,6 +93,7 @@ The specific pages are:
     - Control latency
     - Reduce sample load memory and startup time
     - Run SuperDirt in another host
+    - Protect everyone's ears with a limiter
   - Connections
     - Send control voltage out
     - Connect to a DAW
