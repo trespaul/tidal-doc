@@ -1,5 +1,5 @@
 ---
-title: Mini-notation
+title: Mini-notation overview
 ---
 
 Mini-notation is the name of a special notation used for writing patterns of various sort (*notes*, *samples*, *parameters*).  To use the mini-notation, use a string delimited by quotation marks: `""`. Internally, the mini-notation is actually parsed and understood as a shortcut for a function that you could otherwise write using longer function compositions.
