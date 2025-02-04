@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* font definitions */
 
@@ -13,6 +11,43 @@
     "dlig", /* Discretionary Ligatures */
     "ss07", /* Square punctuation */
     "ss08"  /* Square quotes */
+}
+
+/* theme colours */
+
+/*
+original accent colour from tailwindcss.config.mjs:
+  const accent = { 200: '#9ed6cc', 600: '#007d71', 900: '#003b35', 950: '#002b26' };
+*/
+
+/* Dark mode colors. */
+:root {
+  --sl-color-accent-low:  #002b26; /* accent-950 */
+  --sl-color-accent:      #007d71; /* accent-600 */
+  --sl-color-accent-high: #9ed6cc; /* accent-200 */
+  --sl-color-white:       #ffffff;
+  --sl-color-gray-1:      #eeeeee;
+  --sl-color-gray-2:      #c8c8c8;
+  --sl-color-gray-3:      #a4a4a4;
+  --sl-color-gray-4:      #585858;
+  --sl-color-gray-5:      #383838;
+  --sl-color-gray-6:      #272727;
+  --sl-color-black:       #181818;
+}
+/* Light mode colors. */
+:root[data-theme='light'] {
+  --sl-color-accent-low:  #9ed6cc; /* accent-200 */
+  --sl-color-accent:      #007d71; /* accent-600 */
+  --sl-color-accent-high: #003b35; /* accent-900 */
+  --sl-color-white:       #181818;
+  --sl-color-gray-1:      #272727;
+  --sl-color-gray-2:      #383838;
+  --sl-color-gray-3:      #585858;
+  --sl-color-gray-4:      #8b8b8b;
+  --sl-color-gray-5:      #c2c2c2;
+  --sl-color-gray-6:      #eeeeee;
+  --sl-color-gray-7:      #f6f6f6;
+  --sl-color-black:       #ffffff;
 }
 
 /* prevent `<|` from becoming a triangle in `|<|` etc. */

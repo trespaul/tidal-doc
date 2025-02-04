@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightBlog from 'starlight-blog';
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from '@tailwindcss/vite';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 import rehypeSlug from 'rehype-slug';
@@ -9,6 +9,7 @@ import rehypeSlug from 'rehype-slug';
 export default defineConfig({
   // site: 'https://tidalcycles.org',
   site: 'https://tidal-doc.pages.dev',
+
   markdown: {
     rehypePlugins: [
       rehypeAccessibleEmojis,
@@ -16,7 +17,9 @@ export default defineConfig({
       [rehypeAutolinkHeadings, { behavior: 'append', }],
     ],
   },
+
   prefetch: true,
+
   integrations: [
     starlight({
       title: 'TidalCycles',
@@ -130,8 +133,9 @@ export default defineConfig({
         recentPostCount: 10
       })]
     }),
-    tailwind({
-      applyBaseStyles: false,
-    }),
   ],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
