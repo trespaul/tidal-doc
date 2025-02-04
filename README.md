@@ -11,33 +11,36 @@ npm run build  # build production site into dist/ folder
 
 ## Structure
 
+### Project layout
+
 ```
-public/                     --- files copied directly to build
+public/...                  --- files copied directly to build
 src/
-├── assets/                 --- general assets
-├── content/docs/           --- collection for all site content
-│  ├── blog/                --- files for blog section
-│  │  ├── assets/...        --- assets for blog posts
-│  │  └── profile/...       --- individual profiles
-│  ├── explanation/...      --- explanation section
-│  ├── getting-started/...  --- getting started section
-│  ├── guides/...           --- guide section
-│  │  ├── audio/...         --- SuperDirt and SuperCollider specific guides
-│  │  └── tidal/...         --- Tidal-specific guides
-│  ├── introduction/...     --- introduction section
-│  ├── reference/...        --- reference section
-│  │  ├── config/...        --- config reference
-│  │  ├── functions/...     --- Tidal functions (autogen)
-│  │  ├── mini-notation/... --- mini-notation reference
-│  │  └── superdirt/...     --- superdirt reference
-│  └── index.mdx            --- homepage
+├── assets/...              --- general assets, like the site logo
+├── components/...          --- custom component overrides
+├── content/docs/           --- all the site content
+│   ├── blog/...            --- blog entries and assets
+│   ├── explanation/...     --- and the rest ...
+│   ├── getting-started/...
+│   ├── guides/
+│   │   ├── audio/...
+│   │   ├── connections/...
+│   │   └── tidal/...
+│   ├── introduction/...
+│   ├── reference/
+│   │   ├── superdirt/...
+│   │   └── tidal/...
+│   └── index.mdx           --- the homepage
 ├── pages/                  --- manually structured pages (not used)
-│  └── og/[...slug].ts      --- opengraph images endpoint
-├── styles/custom.css       --- custom css
+│   └── og/[...slug].ts     --- opengraph images (social preview) endpoint
+├── styles/custom.css       --- all custom css
+├── content.config.ts       --- the content configuration: schema, etc.
+└── ...
 astro.config.mjs            --- all site config, sidebars, etc.
 package.json                --- npm configuration, dependencies
 README.md                   --- this file
-tailwind.config.mjs         --- tailwind config, theming
+tsconfig.json               --- typescript config
+...
 ```
 
 ### Purpose of different docs sections
@@ -57,8 +60,10 @@ The specific pages are:
   - Related projects [livecoding projects, inspired / inspired by; e.g., tidal-vis ...]
 - **Getting started**
   - Installation
-  - Tutorial [getting from installed to first sounds, then to sounding like something (introduce to basic usage of stuff, incl. mini-notation) (can be multiple pages)]
-    - currently: cycles, patterns, controls, control patterns, pattern players
+  - (Tutorial) [getting from installed to first sounds, then to sounding like something (introduce to basic usage of stuff, incl. mini-notation)]
+    - Launching Tidal
+    - The basic concepts
+    - Making music
 - **Guides** [how to do specific things that aren't necessary to know at first; address common questions like "how do I get Tidal to do X?"; page titles should follow from "How to ..." / start with a verb; can perhaps be organised into subsections, or we can rely on search; the below are examples]
   - Coding with Tidal
     - Create patterns
@@ -81,8 +86,8 @@ The specific pages are:
       - Set tempos and global time signatures
       - Trigger a pattern from the start
     - Combine functions
-      - Chain functions with $
-      - Compose functions with .
+      - Chain functions with `$`
+      - Compose functions with `.`
     - Manage state
       - Traverse through lists with state values
   - Audio
@@ -112,7 +117,7 @@ The specific pages are:
     - Configuration
     - Functions [technical documentation, lists of functions; autogenerate]
     - Mini-notation
-      - ...
+      - Mini-notation overview
       - Time shorthand
   - SuperDirt
     - Configuration
@@ -120,4 +125,4 @@ The specific pages are:
       - Samples
       - Audio effects
       - Synthesisers
-    - ...
+    - mi-UGens
