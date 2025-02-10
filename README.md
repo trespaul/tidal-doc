@@ -9,6 +9,10 @@ npm run dev    # local server for development
 npm run build  # build production site into dist/ folder
 ```
 
+Use `npm run checklinks` to run the self-links validator.
+It doesn't run on each build currently since it has false positives, but it's useful for catching incorrect links.
+When the false positives issue is sorted, we can add it to the normal build step.
+
 ## Structure
 
 ### Project layout
