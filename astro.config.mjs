@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightBlog from 'starlight-blog';
+import starlightLinksValidator from 'starlight-links-validator';
 import tailwindcss from '@tailwindcss/vite';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
@@ -129,9 +130,11 @@ export default defineConfig({
         Head: './src/components/Head.astro',
         Hero: './src/components/Hero.astro',
       },
-      plugins: [starlightBlog({
-        recentPostCount: 10
-      })]
+      plugins: [
+        starlightBlog({
+          recentPostCount: 10
+        }),
+      ].concat(process.env.CHECK_LINKS ? [starlightLinksValidator()] : []),
     }),
   ],
 

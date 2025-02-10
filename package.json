@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "checklinks": "CHECK_LINKS=true astro build"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -24,6 +25,7 @@
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "starlight-blog": "^0.16.1",
+    "starlight-links-validator": "^0.14.2",
     "typescript": "^5.7.3"
   }
 }
