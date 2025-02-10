@@ -44,7 +44,7 @@ Not to be confused with `sustain`, which gives playback of a sample a duration i
 :::
 
 :::tip
-If you come from a classical music background, these two terms will probably sound conterintuitive, as there *legato* indicates that notes are to be played smoothly and connected, without silences, and that's what `cut` does in Tidal. You could think about the number after `legato` as the quantity of *tenuto* or each sample has. However, if it **really** bothers you, you can change your [Boot File](https://tidalcycles.org/docs/configuration/boot-tidal/) by appending the lines `tenuto = pF "legato"` and `legato = pI "cut"` in one of the `:{:}` blocks.
+If you come from a classical music background, these two terms will probably sound conterintuitive, as there *legato* indicates that notes are to be played smoothly and connected, without silences, and that's what `cut` does in Tidal. You could think about the number after `legato` as the quantity of *tenuto* or each sample has. However, if it **really** bothers you, you can change your [Boot File](/reference/tidal/configuration/) by appending the lines `tenuto = pF "legato"` and `legato = pI "cut"` in one of the `:{:}` blocks.
 :::
 
 ## Sample-relative trimming

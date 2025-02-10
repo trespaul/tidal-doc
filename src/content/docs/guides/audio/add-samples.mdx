@@ -8,7 +8,7 @@ Adding and using your own custom samples in **Tidal Cycles** is relatively easy.
 
 ## The default sample library
 
-Installing SuperDirt will also download a [library](../../reference/superdirt/default-samples/) of audio samples. This library is known as the *default* library, the one that everybody starts with.
+Installing SuperDirt will also download a [library](/reference/superdirt/default-library/samples) of audio samples. This library is known as the *default* library, the one that everybody starts with.
 
 :::tip
 The community is currently trying to come up with a new refined version of the default library, named ironically [Clean Samples](https://github.com/tidalcycles/Clean-Samples/). You can help by submitting your custom samples. This is an ongoing project.
@@ -68,7 +68,7 @@ once $ sound "myField:3" --will play 'plains.wav'
 
 ## Reference the samples in SuperDirt
 
-In the [SuperDirt startup file](../../reference/config/superdirt/), you'll find a line for loading the default samples: `dirt.loadSoundFiles;`. Below it, you need to add a line with the `~dirt.loadSoundFiles()` function. Inside the parentheses will go the path of your custom samples folder, followed by `/*`, to refer to its contents. Were the path to be `/Users/myUserName/mySamples`, the code should look like this:
+In the [SuperDirt startup file](/reference/superdirt/configuration), you'll find a line for loading the default samples: `dirt.loadSoundFiles;`. Below it, you need to add a line with the `~dirt.loadSoundFiles()` function. Inside the parentheses will go the path of your custom samples folder, followed by `/*`, to refer to its contents. Were the path to be `/Users/myUserName/mySamples`, the code should look like this:
 
 ```c
 // there will be more code above

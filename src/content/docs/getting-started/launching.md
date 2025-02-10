@@ -17,7 +17,7 @@ This command will start the engine using the default server options.
 Depending on your needs, you might want to adapt to a specific audio configuration, load different samples, or fine-tune the memory or latency of the audio server. 
 
 [This script](https://github.com/musikinformatik/SuperDirt/blob/develop/superdirt_startup.scd?plain=1) is a generic start-up script that you can customise.
-Also refer to the [SuperDirt configuration reference page](/reference/config/superdirt) for an explanation of the various options.
+Also refer to the [SuperDirt configuration reference page](/reference/superdirt/configuration) for an explanation of the various options.
 
 To execute it, load the file in the SuperCollider editor and evaluate the script by selecting the text and pressing `Ctrl/Cmd+Enter`.
 You should see the following line in the logs after a few seconds:
@@ -34,7 +34,7 @@ For more advanced users, a SuperCollider interpreter can also be launched on the
 ## Start TidalCycles
 
 The various extensions and plugins for different editors all automatically start a Tidal interpreter in your editor.
-(The start-up script for this interpreter can also be customised, like the SuperDirt start-up script. See the [Tidal configuration reference](/reference/config/tidal))
+(The start-up script for this interpreter can also be customised, like the SuperDirt start-up script. See the [Tidal configuration reference](/reference/tidal/configuration))
 For specific instructions concerning the text editor of your choice, see the [Get a text editor](/getting-started/installation#get-a-text-editor) section on the Installation page.
 
 In Pulsar, for example, the process is as follows:

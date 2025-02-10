@@ -136,7 +136,7 @@ SynthDef(\elegiac, {
 
 If you want to create any custom parameter for your `SynthDef`, it also has to be referenced in Tidal.
 To do this, you have to create a parameter in Tidal with the same name the argument has in SuperCollider.
-For example, if the arguments in SuperCollider were `| harm, pit, model |`, you should add this to your [Tidal Boot File](https://tidalcycles.org/docs/configuration/boot-tidal/):
+For example, if the arguments in SuperCollider were `| harm, pit, model |`, you should add this to your [Tidal Boot File](/reference/tidal/configuration/):
 
 ```haskell
 let harm = pF "harm"

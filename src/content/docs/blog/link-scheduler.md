@@ -103,7 +103,7 @@ The integration of Link with Tidal posed several challenges but the end result w
 
 ### Tidal Innards
 
-Let's start by exploring some Tidal Innards. For a more complete reference, please refer to [What is a pattern?](https://tidalcycles.org/docs/innards/what_is_a_pattern).
+Let's start by exploring some Tidal Innards. For a more complete reference, please refer to [What is a pattern?](/explanation/pattern).
 
 Some important concepts in Tidal innards are Arc, Part and Event:
 
@@ -284,4 +284,4 @@ To the rest of the Tidal community, you're awesome too, and I'm happy to be a pa
 * [GitHub Issue - Link support](https://github.com/tidalcycles/Tidal/issues/660)
 * [GHC Issue - Sudden exit in GHCi for FFI code - works when run as executable](https://gitlab.haskell.org/ghc/ghc/-/issues/20918)
 * [Link documentation](http://ableton.github.io/link/)
-* [What is a pattern?](https://tidalcycles.org/docs/innards/what_is_a_pattern)
+* [What is a pattern?](/explanation/pattern)

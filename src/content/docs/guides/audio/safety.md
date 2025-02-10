@@ -21,7 +21,7 @@ First, install StageMaster by evaluating the following code in SuperCollider:
 Quarks.install("https://github.com/calumgunn/StageMaster.git");
 ```
 
-Then, include the following line in your [SuperDirt startup file](/reference/config/superdirt), inside the `s.waitForBoot` block:
+Then, include the following line in your [SuperDirt startup file](/reference/superdirt/configuration), inside the `s.waitForBoot` block:
 
 ```c
 StageMaster.activate(numChannels: 2);

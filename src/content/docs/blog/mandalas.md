@@ -51,7 +51,7 @@ No doubt, the heavy workload should be handled by languages more suited
 to the task. Even Haskell animation libraries are built as thin wrappers
 on top of the C animation library [OpenGL](https://www.opengl.org/). 
 
-But [Haskell](https://tidalcycles.org/docs/innards/haskell/) is particularly well suited to representing these abstract
+But [Haskell](/explanation/haskell) is particularly well suited to representing these abstract
 patterns. Mapping its type system with simple shapes could lead to
 varying results. How could it be used to map Mandalas onto the existing
 structures of TidalCycles?
@@ -91,7 +91,7 @@ intermediate notation. Thus began the patterns.
 
 ### Mini-notation Magic
 
-Tidal's [Mini-notation](https://tidalcycles.org/docs/reference/mini_notation/) is used for writing patterns of various sorts
+Tidal's [Mini-notation](/reference/tidal/mini-notation/overview) is used for writing patterns of various sorts
 (notes, samples, parameters).
 
 Internally, the mini-notation is parsed as a *shortcut* for a function.

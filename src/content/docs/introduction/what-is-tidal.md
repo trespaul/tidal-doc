@@ -27,7 +27,7 @@ To use Tidal you need a stack of components to translate your code into sound. W
 Code is interpreted by the TidalCycles Library and sent to [SuperDirt](https://github.com/musikinformatik/SuperDirt), a synth and sampling engine, which runs in [SuperCollider](https://supercollider.github.io/), a programming language and audio server which produces the sounds.
 Tidal uses SuperDirt by default, but can send control messages to anything that understands Open Sound Control (OSC) or MIDI messages.
 
-The [guides](/guides/installation) on this website will explain how to set up and use this stack of interacting components.
+The [guides](/getting-started/installation) on this website will explain how to set up and use this stack of interacting components.
 
 
 ## Contribute
@@ -57,7 +57,7 @@ TidalCycles has been heavily inspired by the work of many others including Berna
 
 ## History
 
-Tidal was originally made by [Alex McLean](https://tidalcycles.org/User:Yaxu) (who is writing this bit right now), while a postgrad student in Goldsmiths in London.
+Tidal was originally made by [Alex McLean](https://slab.org) (who is writing this bit right now), while a postgrad student in Goldsmiths in London.
 It started around 2006, with a DSL to explore pattern rotation presented at a 'pecha kucha' inspired event organised by Tom Carden in London ([video here](http://toxi.co.uk/blog/2006/07/ask-later-not-t-k-event.htm), from 15 minute mark, [slides here](http://slab.org/archive/20/20.pdf) and videos [here](http://slab.org/archive/20/pl.avi) (for `feedback.pl` precursor) and [here](http://slab.org/archive/20/hs.avi) (for the Haskell experiment)).
 This was developed further in 2007 into a system for "computational creativity", used to analyse rhythmic continuation in sound poetry, using Kurt Schwitters' Ursonate as an example (see section 4.1 of my [MSc thesis](https://pdfs.semanticscholar.org/99ac/092d014aac16728912563975282e20039e19.pdf) for details).
 Like the Bol Processor 2 (BP2) software it was inspired by, I started off making it for analysis of rhythmic structure, but quickly switched to making it for synthesis, i.e.

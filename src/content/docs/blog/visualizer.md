@@ -24,7 +24,7 @@ To use DPV (summary):
 The GitHub source includes a detailed [installation/configuration guide](https://github.com/ivan-abreu/didacticpatternvisualizer/blob/main/installation.md). The main step is to install the Processing application and add the oscP5 library file. You also need to download the Processing runtime pde files that make up the DPV codebase.
 
 ### OSC targets
-DPV leverages the ability of Tidal to send OSC messages to multiple targets (which is covered in the Tidal [OSC docs](https://tidalcycles.org/docs/configuration/MIDIOSC/osc#multiple-targets-and-messages).) DPV listens to OSC messages on port 1818. With the dual targets, every Tidal channel that has the *"connectionN"* parameter set will display the visual representation of notes.
+DPV leverages the ability of Tidal to send OSC messages to multiple targets (which is covered in the Tidal [OSC docs](/guides/connections/osc/#multiple-targets-and-messages).) DPV listens to OSC messages on port 1818. With the dual targets, every Tidal channel that has the *"connectionN"* parameter set will display the visual representation of notes.
 
 ## Examples
 The [Readme](https://github.com/ivan-abreu/didacticpatternvisualizer/tree/main#readme) page includes an good set of examples  that include Tidal code along with mp4 files that play the audio with visualizations. There is also musical examples and code provided by the digital artist [CNDSD](https://vimeo.com/cndsd) - well know for expanding boundaries in live coding and interdisciplinary art forms.   

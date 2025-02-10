@@ -50,8 +50,7 @@ d1 $ struct "7(7,8)" $ sound "tah" # nCountTo "list" "<7 7 7 7 7 8 9>"
     # pan (slow 2 $ range 0.1 0.9 saw)
 ```
 
-Recently I started to experiment with @jwaldmann's fantastic random-not-random ideas.
-https://club.tidalcycles.org/t/random-not-random/4522
+Recently I started to experiment with [@jwaldmann's fantastic random-not-random ideas](https://club.tidalcycles.org/t/random-not-random/4522).
 
 ```haskell
 do
@@ -82,7 +81,7 @@ In this context, perhaps this could also be interesting: [Elizabeth Margulis On 
 - Basically, it's the curiosity to scratch musical boundaries and - if it goes well - to enter new musical terrain here and there.
 
 **Future perspectives**
-- Yaxu’s [Learning TidalCycles Course](https://tidalcycles.org/docs/patternlib/tutorials/course1) was my general door opener to using Tidal. Thank you so much for this wonderful introduction, @Yaxu! And since then the [Tidal Club](https://club.tidalcycles.org/) is a permanent resource of knowledge, which I receive as a great gift at any time. I hereby expressly would like to thank the entire Tidal community!
+- Yaxu’s [Learning TidalCycles Course](https://club.tidalcycles.org/c/course/14?ascending=true&order=created) was my general door opener to using Tidal. Thank you so much for this wonderful introduction, @Yaxu! And since then the [Tidal Club](https://club.tidalcycles.org/) is a permanent resource of knowledge, which I receive as a great gift at any time. I hereby expressly would like to thank the entire Tidal community!
 
 - On the other hand, many more advanced techniques and knowledge about Haskell and Tidal have remained hidden from me until now. For example, the type signatures are still a mystery to me. I can't really use them. I could imagine that I'm not the only musician who likes to work with Tidal but has no basic knowledge of programming or Haskell and would welcome the opportunity for some kind of further self-help training.
 

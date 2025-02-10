@@ -24,7 +24,7 @@ Here is a list of projects connected with TidalCycles, whether they interface wi
 ### Editor plugins
 
 - [Emacs](https://github.com/tidalcycles/Tidal/blob/master/tidal.el)
-- [Sublime text](https://tidalcycles.org/index.php/Sublime_Text)
+- [Sublime text](/getting-started/installation#sublime-text)
 - [vim](https://github.com/supercollider/scvim)
 - [VS Code](https://github.com/tidalcycles/vscode-tidalcycles)
 

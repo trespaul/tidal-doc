@@ -29,7 +29,7 @@ I’m Lina, I’m a composer and live coder, I see myself as a long-distance run
 
 If we talk about two main approaches of a live coding session: the fully pre-composed material on the one, and a from scratch/blank screen session on the other, I’m closer to the second.
 
-It was great to read the [Heavy Lifting post](https://tidalcycles.org/blog/tidal_profile_heavylifting) about this approach, it’s great to see I’m part of the blank screeners team  :).  Personally, I’m not able to craft the session the way I want if I have too many lines, I’ve tried, but I get lost in the code, I’m not able to dig deep into everything that’s happening. It’s probably because I have to control every note, every sound.  Besides, I think there’s a special beauty in writing a single line of code, that goes beyond the musical aspect, it can be performative, almost poetic. 
+It was great to read the [Heavy Lifting post](/blog/heavylifting) about this approach, it’s great to see I’m part of the blank screeners team  :).  Personally, I’m not able to craft the session the way I want if I have too many lines, I’ve tried, but I get lost in the code, I’m not able to dig deep into everything that’s happening. It’s probably because I have to control every note, every sound.  Besides, I think there’s a special beauty in writing a single line of code, that goes beyond the musical aspect, it can be performative, almost poetic. 
 
 (… but don’t get me wrong, I totally admire live coders who are able to prepare everything in advance).
 
@@ -70,7 +70,7 @@ A few years ago we created (with Iván Paz, and thanks to many enthusiastic live
 
 **What motivates you to work on Tidal?**   
 
-I like the active community that is always changing, creating new functions and developing things, for example I’ve been dreaming for years to implementing functions to use CV (control voltage), and it seems it’s already there, so [I’ll give this a try.](https://tidalcycles.org/docs/configuration/MIDIOSC/control-voltage/)
+I like the active community that is always changing, creating new functions and developing things, for example I’ve been dreaming for years to implementing functions to use CV (control voltage), and it seems it’s already there, so [I’ll give this a try.](/guides/connections/cv)
 
 ## Music  
 

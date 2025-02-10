@@ -33,7 +33,7 @@ Here is a playlist of recordings made with Tidal. This is a collection of perfor
 |  | [Solstice Stream - 2022](https://www.youtube.com/watch?v=977AbvG2s04&t=118s) |
 |  | The mixed media work of CNDSD is in a class all by itself. Enigmatic visual storytelling, haunting sounds and expressive live coding all together. Amazing. I love the morphing faces at the end of the 2022 set as the Euclidan beat takes over. |
 | Relyt R | [Album Xuixo: Track 1 - Nondegenerate (33 EDO) ](https://relytr.bandcamp.com/album/xuixo) |
-|  | Relyt R wrote an [incredible blog post](https://tidalcycles.org/blog/blog_topic_relyt_r_xuixo) about this xenharmonic music conceived in an intense techno style. Just read it and listen! |
+|  | Relyt R wrote an [incredible blog post](/blog/xuixo) about this xenharmonic music conceived in an intense techno style. Just read it and listen! |
 | digital selves | [Eurostar](https://cherche-encore.bandcamp.com/track/eurostar-2) |
 |  | From the 2022 Bandcamp EP - [error topography](https://cherche-encore.bandcamp.com/album/error-topography). Very cool groove, sharp glitchy rhythmic sounds and intense bass line. Well done! |
 | Weekly Rave | [Playlist: 3/2023 -> now ](https://www.youtube.com/watch?v=WisMIMdnQ2A) |

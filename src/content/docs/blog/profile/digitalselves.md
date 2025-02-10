@@ -42,7 +42,7 @@ I feel like I have two "modes" when it comes to live coding- testing things out 
 
 I find it hard to have more than one or two functions in my head at the same time, and tend to go through phases when perfoming live of only using the same ones because they're the ones I remember under pressure.
 
-Some of my favourites recently are using [press](https://tidalcycles.org/docs/reference/time/#press) and [fshift](https://tidalcycles.org/docs/reference/audio_effects/#frequency-shifter) on drum patterns:  
+Some of my favourites recently are using [press](/reference/tidal/functions/ui/#press) and [fshift](/reference/tidal/functions/params/#fshift) on drum patterns:  
 
 (All of the samples I use are available to download [here](https://github.com/lwlsn/Misc_Samples))
 
@@ -62,7 +62,7 @@ gain "1*8?" # s (choose  ["idmhit2", "revkit"])
 
 ```
 
-I also wrote a piece for the [posthumanist magazine](https://theposthumanist.com/) recently, as they had an issue on "rhythms", where I tried to compose some prose text embedded with TidalCycles functions, and it re-ignited my interest in the use of the [sew](https://tidalcycles.org/docs/reference/conditions/#sew) and [stitch](https://tidalcycles.org/docs/reference/conditions/#stitch) functions, which I think is a super cool way to add sonic variation to patterns. E.g.   
+I also wrote a piece for the [posthumanist magazine](https://theposthumanist.com/) recently, as they had an issue on "rhythms", where I tried to compose some prose text embedded with TidalCycles functions, and it re-ignited my interest in the use of the [sew](/reference/tidal/functions/ui/#sew) and [stitch](/reference/tidal/functions/ui/#stitch) functions, which I think is a super cool way to add sonic variation to patterns. E.g.   
 
 ```haskell
 d1
@@ -83,7 +83,7 @@ d4
   # room 0.89  # orbit 3
 
 ```
-Using the [binary](https://tidalcycles.org/docs/patternlib/tutorials/course2/#lesson-2-binary-patterns) pattern notation to calculate where the two melodic sounds counteract with each other is super fun!
+Using the [binary pattern notation](https://club.tidalcycles.org/t/week-8-lesson-2-binary-patterns-with-struct-stitch-and-sew/1423) to calculate where the two melodic sounds counteract with each other is super fun!
 
 
 **Do you use Tidal with other tools / environments?**  
@@ -127,7 +127,7 @@ Also I find myself trying to recreate a lot of rhythms I hear into TidalCycles s
 
 **What samples or instruments do you like to work with?**  
 
-I basically pick up a lot of samples here and there that I like to work with. I think Lucy's [recent post](https://tidalcycles.org/blog/tidal_profile_heavylifting) about this outlines a lot of the similarity with her practice in being a sample collector.
+I basically pick up a lot of samples here and there that I like to work with. I think Lucy's [recent post](/blog/heavylifting) about this outlines a lot of the similarity with her practice in being a sample collector.
 
 I have been using the Serum VST for some midi sounds recently too, as it's a nice tool to work with for shaping melodic sounds.
 

@@ -499,7 +499,7 @@ I also keep a template for all my SuperCollider code. It contains all the code I
 
 I don't think my approach is right for everyone. In fact, it might only be right for me and only me. The intent of this article was just to share my coding practice and open the discussion up further. If anyone found anything useful or inspiring in any capacity I think that would be wonderful.
 
-This article also came about after some forum thread posts I made in response to Heavy Lifting's blog post: [Working with samples the Heavy Lifting way](https://tidalcycles.org/blog/tidal_profile_heavylifting).
+This article also came about after some forum thread posts I made in response to Heavy Lifting's blog post: [Working with samples the Heavy Lifting way](/blog/heavylifting).
 The [discussion thread from her article](https://club.tidalcycles.org/t/blog-post-working-with-samples-the-heavy-lifting-way/4643/1) is really interesting and I was inspired to respond with my own approach.
 
 I think each coder's approach is going to be unique in some capacity and they're all valid. People change too and that's especially true with musicians, producers, and composers. The approach I take now might not be the one I take seven years from now or even between one performance to the next and I think there's room to move between approaches fluidly if it sparks your creativity and brings you joy. I would hope that we are all doing this to have fun, and ultimately we should do what is fun for us.

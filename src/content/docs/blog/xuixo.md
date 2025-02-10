@@ -53,7 +53,7 @@ A little more detail before I share the code:
 - I start with a mathematical trigonometric function of time `y(t)`
 - quantize it to a certain number of samples `{t}` with `segment`
 - map the values `{y(t)}` to an ordered cycle of pitches in a scale (embedded in a 33-note chromatic scale) with `tScale'`
-- use [state memory](https://tidalcycles.org/docs/reference/state_values/) (with `nT` derived from `nTake`) so that everytime a rhythmic onset is encountered and scheduled, the next note is taken from the cycle of pitches, creating an isorhythm.    
+- use [state memory](/guides/tidal/state/state-values/) (with `nT` derived from `nTake`) so that everytime a rhythmic onset is encountered and scheduled, the next note is taken from the cycle of pitches, creating an isorhythm.    
 
 Here is the code to make `takeArp'`:
 

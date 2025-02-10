@@ -72,7 +72,7 @@ I usually do a bit of sample editing in Ableton or Reaper next - trimming off si
 This is the bulk of how I prepare. I usually update/refresh my samples every few months, but I might reach back into the archives for some oldies too. I don't use many of the standard Tidal/SuperDirt sounds (although I used to use them almost exclusively). I do a bunch of experimenting with my new sounds, combining them with old favourites and using my favourite functions to come up with some sketches that sound good to me. This is a semi-mystical process and obviously very personal, but I find this to be extremely enjoyable and almost hypnotic sometimes.
 
 ### My favourite functions
-Over time I've come up with my 'favourite functions' - actually these haven't really changed very much from the ones I used in my early sets, which I chose by going through the entire [Tidal documentation](https://tidalcycles.org/docs/reference/cycles) and trying everything - you can do this too! It's a bit tedious at times, but for me it really helped me get my head round how Tidal thinks.
+Over time I've come up with my 'favourite functions' - actually these haven't really changed very much from the ones I used in my early sets, which I chose by going through the entire Tidal documentation and trying everything - you can do this too! It's a bit tedious at times, but for me it really helped me get my head round how Tidal thinks.
 
 I pull the new samples into Tidal, and try a few of my typical function combos to see how they feel.
 
@@ -103,7 +103,7 @@ I'll try some simple effects to manipulate the sounds
 - `vowel`/`hpf`/`lpf`
 - `shape`
 
-And honestly, those functions, plus a bit of randomness/continuous functions, make up 99% of what I do in performances. You can get so much complexity with just a very little bit of Tidal syntax! Having a limit on the functions and sounds I'm using, for me, really supports `from-scratch` improvisation! ([I actually wrote about this before on the Tidal forum](https://club.Tidalcycles.org/t/lucys-favourite-functions-aka-Tidal-the-heavy-lifting-way/479)).
+And honestly, those functions, plus a bit of randomness/continuous functions, make up 99% of what I do in performances. You can get so much complexity with just a very little bit of Tidal syntax! Having a limit on the functions and sounds I'm using, for me, really supports `from-scratch` improvisation! ([I actually wrote about this before on the Tidal forum](https://club.tidalcycles.org/t/lucys-favourite-functions-aka-Tidal-the-heavy-lifting-way/479)).
 
 While I'm experimenting I'm not worrying too much about what it sounds like, or the timings, but I'm more looking for a feel, and thinking about how something might work in a set *(my criteria: do I like it?).* Often at this stage I will discard individual samples or whole groups of samples. I might go back and edit them, or I might go hunting for similar or complementary sounds. I can spend a few hours doing this, and usually when I'm in the zone I will break into sections that would be more like what I do live (which is essentially the same as the experimentation outlined above, but with more consideration to structure and timing).
 

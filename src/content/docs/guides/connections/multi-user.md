@@ -107,7 +107,7 @@ In addition to aligning beats, Link aligns bars / loop boundaries. Quoting [Link
 
 Quantum can be set in the Tidal Boot configuration, using the option `cQuantum`. The default value of `cQuantum` is `4`.
 
-In addition to quantum, Tidal lets you configure the number of beats there should be per cycle. This is done using the option `cBeatsPerCycle`. The default value is `4`. In this case, a BPM (beats per minute) of `120` corresponds to a CPS (cycles per second) of `120 / 60 / 4`. See the [Getting Started Tutorial](/guides/tutorial) for more information on converting between BPM and CPS.
+In addition to quantum, Tidal lets you configure the number of beats there should be per cycle. This is done using the option `cBeatsPerCycle`. The default value is `4`. In this case, a BPM (beats per minute) of `120` corresponds to a CPS (cycles per second) of `120 / 60 / 4`. See the [tempo page](/guides/tidal/time/tempo) for more information on converting between BPM and CPS.
 
 It's possible to use any combination of `cQuantum` and `cBeatsPerCycle` but some combinations might produce unintuitive results.
 We advise you to start with `cQuantum = cBeatsPerCycle`, but please share findings from your experiments!
@@ -147,9 +147,9 @@ d1 $ s "cp" # nudge 0.05
 ```
 
 Once you know the right offset you can make it permanent by subtracting it from
-the [oLatency value in your configuration](/guides/tidal-config#controlling-latency). As
+the [`oLatency` value in your configuration](/guides/audio/latency). As
 long as you use the same audio device and so on, you shouldn't have to
-adjust it again. We need to use subtraction because nudge moves events later in time whereas oLatency moves events earlier in time.
+adjust it again. We need to use subtraction because nudge moves events later in time whereas `oLatency` moves events earlier in time.
 
 You might have to nudge backwards, e.g.
 
@@ -157,7 +157,7 @@ You might have to nudge backwards, e.g.
 d1 $ s "cp" # nudge (-0.05)
 ```
 
-This is equivalent to increasing oLatency. When nudging backwards a lot, or when olatency is very high, Tidal might start processing the event too late. This can be avoided by adjusting [cProcessAhead in your configuration](/guides/tidal-config#controlling-latency)
+This is equivalent to increasing `oLatency`. When nudging backwards a lot, or when `olatency` is very high, Tidal might start processing the event too late. This can be avoided by adjusting [`cProcessAhead` in your configuration](/guides/audio/latency).
 
 ### Disabling Link synchronization
 

@@ -118,7 +118,7 @@ You can find more about the custom functions I use on the Tidal Club, where I al
 ## Tidal Contributions
 
 * I moderate and structure the Discord server
-* Contribute to [Tidal documentation](https://tidalcycles.org/docs/)
+* Contribute to [Tidal documentation](/)
 * Organize [Algoraves in Buenos Aires](https://www.instagram.com/algorave_arg/)
 * I published a [very popular drum machines sample pack](https://club.tidalcycles.org/t/a-huge-drum-machine-library-for-tidal-72-drum-machines/)
 * Reporting [bugs](https://github.com/musikinformatik/SuperDirt/issues/282)

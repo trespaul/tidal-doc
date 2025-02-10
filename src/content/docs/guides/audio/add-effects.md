@@ -20,7 +20,7 @@ let tsdelay = pF "tsdelay"
     xsdelay = pI "xsdelay"
 ```
 
-If you want this the above be automatically available every time you start tidal, then add it to the definitions in your [BootTidal.hs boot file](https://tidalcycles.org/docs/configuration/boot-tidal/).
+If you want this the above be automatically available every time you start tidal, then add it to the definitions in your [BootTidal.hs boot file](reference/tidal/configuration/).
 
 ### SuperCollider Side
 

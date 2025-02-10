@@ -18,15 +18,15 @@ Templates are maintained in GitHub in the [tidalcycles/tidal-doc](https://github
 - [Tidal Blog Profile](https://github.com/tidalcycles/tidal-doc/blob/templates/templates/blog_tidal_profile.md) Intended to highlight your livecoding practices, music, and use of tidal. It contains a set of questions to respond to.
 
 - [Tidal music](https://github.com/tidalcycles/tidal-doc/blob/templates/templates/blog_tidal_music.md) Use this to describe a music project such as a new album or music release, a review of a music project, Algorave or concert, or discussion of music made with Tidal or other live coding program. Examples:
-    - [Xuixo EP by Relyt R](https://tidalcycles.org/blog/blog_topic_relyt_r_xuixo)
-    - [QBRNTHSS - making a live coding album](https://tidalcycles.org/blog/blog_topic_qbrnthss)
+    - [Xuixo EP by Relyt R](/blog/xuixo)
+    - [QBRNTHSS - making a live coding album](/blog/qbrnthss)
 
 - [Blog Topic](https://github.com/tidalcycles/tidal-doc/blob/templates/templates/blog_topic.md) Open topic. Use this for a more free-form approach. One option is to present your own approach to Tidal and live coding. Other topics could be discussion of a new release and the coding behind it, or discussion of other environments like Strudel. Examples:
-    - [Working with Samples the Heavy Lifting way](https://tidalcycles.org/blog/tidal_profile_heavylifting)
-    - [How Link became Tidal's scheduler](https://tidalcycles.org/blog/link_as_scheduler)
-    - [Visualization with Didactic Pattern Visualizer](https://tidalcycles.org/blog/blog_topic_visualizer)
+    - [Working with Samples the Heavy Lifting way](/blog/heavylifting)
+    - [How Link became Tidal's scheduler](/blog/link-scheduler)
+    - [Visualization with Didactic Pattern Visualizer](/blog/visualizer)
 
-- [Playlist](https://github.com/tidalcycles/tidal-doc/blob/templates/templates/blog_playlist.md) Use this to create a new playlist. See the [Tidal Eclectic Playlist](https://tidalcycles.org/blog/tidal_playlist-eclectic).
+- [Playlist](https://github.com/tidalcycles/tidal-doc/blob/templates/templates/blog_playlist.md) Use this to create a new playlist. See the [Tidal Eclectic Playlist](/blog/playlist-eclectic).
 
 We encourage posts to include:
 - code sections with Tidal examples

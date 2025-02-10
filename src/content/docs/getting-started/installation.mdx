@@ -583,7 +583,9 @@ TidalCycles does not provide an easy uninstaller. To uninstall Tidal, you will n
 * Uninstall SuperDirt and/or SuperCollider if you are not already using it for another purpose.
 * Uninstall the Tidal library and the GHC compiler.
 
-#### Linux
+<Tabs>
+
+<TabItem label="Linux">
 
 Uninstalling TidalCycles on Linux can be tricky. There are multiple ways of installing it depending on the distribution you are using. Here are some tips you can use to locate all the components that are part of the Tidal install.
 
@@ -617,10 +619,129 @@ rm ~/.cabal ~/.ghc
 Double-check or triple-check the `rm -rf` command. This is a powerful tool that will delete things definitively. Use it with caution as it can be quite dangerous if you mess with it.
 :::
 
-#### Windows
-For chocolatey installs, see the instructions for [Windows Chocolatey Cleanup](https://tidalcycles.org/docs/getting-started/windows-choco-cleanup). 
+</TabItem>
 
-#### MacOS
+<TabItem label="Windows">
+
+This section covers three operations:
+
+1. Clean up of Haskell components
+2. Full wipe of all Chocolatey component installs, then remove the choco application
+3. Removing individual components
+
+
+##### Background
+
+Chocolatey is package management system that is used for the Tidal Cycles automated install process. It covers the complete install of all components and dependencies needed to run Tidal. It is a good solution and works without issue much of the time. But there can also be problems and there may be a need to remove components or the whole Chocolatey environment from your computer. **This section is only a guide. Not all problems are covered.**
+
+:::note
+
+All steps in Powershell need to be done running Powershell as administrator.
+You can run this command to see what components and versions are currently installed by choco:
+
+```powershell
+choco list --local-only
+```
+
+:::
+
+##### Steps for Haskell Cleanup
+
+If you have an older install from chocolatey, there will be older versions of Haskell components that can cause conflicts after the new Haskell components are installed. In this scenario, you need to uninstall any Haskell files before running the Chocolatey Tidal installer. Note that in some cases, a full uninstall of all Chocolatey may still be needed or desired.
+
+Uninstall Haskell components
+```powershell
+choco uninstall ghc
+choco uninstall cabal
+```
+
+Remove local packages - delete these directories:
+```
+C:\Users\yourUser\AppData\Roaming\ghc
+C:\Users\yourUser\AppData\Roaming\cabal
+C:\Users\yourUser\AppData\Local\ghc
+C:\Users\yourUser\AppData\Local\cabal
+```
+
+Remove any leftover ghc / cabal directories:
+```
+C:\tools\ghc-<version>  for example: - C:\tools\ghc-8.10.0
+C:\ProgramData\chocolatey\bin\cabal.exe
+```
+
+##### Tidal install options  
+
+After you cleanup Haskell, you have two options:
+
+Run the full automated installer again.
+```powershell
+choco install tidalcycles
+```
+
+or
+
+Install just Haskell via chocolatey and manually install Tidal
+```powershell
+choco install ghc
+cabal update
+cabal v1-install tidal
+```
+
+##### Steps for full wipe of Chocolatey
+
+This will remove everything installed by Chocolatey, then remove the choco installer itself. It cleans up environment variables and directories. Note: this will remove everything in the Tidal stack: SuperCollider/SuperDirt, Pulsar, Haskell, etc. This is recommended if:
+
+- you want to switch to manual install
+- you have significant install problems and want to "start fresh"
+
+**Steps**
+
+<Steps>
+1. Uninstall chocolatey installed components
+
+   ```powershell
+   choco uninstall all -x -y
+   ```
+
+2. Remove applications - delete these directories
+
+   ```
+   C:\tools
+   C:\ProgramData\chocolatey
+   ```
+
+3. Remove local packages - delete these directories:
+   ```
+   C:\Users\yourUser\AppData\Roaming\ghc
+   C:\Users\yourUser\AppData\Roaming\cabal
+   C:\Users\yourUser\AppData\Local\ghc
+   C:\Users\yourUser \AppData\Local\cabal
+   ```
+
+4. Environment variables
+   - User variables:
+     - delete: ChocolateyLastPathUpdate, ChocolateyToolsLocation
+     - from Path, remove: C:\tools\ghc-yourVersionNumber\bin
+   - System variables:
+     - delete variables: ChocolateyInstall
+     - from Path, remove: C:\ProgramData\chocolatey\bin
+
+5. Reboot system
+</Steps>
+
+Now you can proceed with the Manual install steps, or start over from scratch with the Automated installer steps.
+
+Good luck!
+
+:::info
+
+Sometimes the Tidal install process can be complicated and take many steps. Stick with it! The good news is that once it is working, the Tidal stack is very stable and reliable.
+
+:::
+
+</TabItem>
+
+<TabItem label="MacOS">
 
 ##### Using uninstall-hs
 
@@ -644,6 +765,10 @@ rm ~/.cabal ~/.ghc
 :::caution
 Double-check or triple-check the `rm -rf` command. This is a powerful tool that will delete things definitively. Use it with caution as it can be quite dangerous if you mess with it.
 :::
+
+</TabItem>
+
+</Tabs>
 
 
 ## Getting Help

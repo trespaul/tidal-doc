@@ -33,7 +33,7 @@ I find the way Tidal allows me to approach music in a structural way fascinating
 
 **How do you approach your livecoding sessions?**
 
-When I make music on my own, I like to start out with simple rhythmic patterns and start to layer them with different versions of themselves (slower & lower / faster & higher / ..). Now apply the MI clouds effect and you can have fun for hours adjusting the parameters! *(Note: see the clouds section in the [Mi-UGens page](https://tidalcycles.org/docs/reference/mi-ugens#clouds-global) of the User docs.)*
+When I make music on my own, I like to start out with simple rhythmic patterns and start to layer them with different versions of themselves (slower & lower / faster & higher / ..). Now apply the MI clouds effect and you can have fun for hours adjusting the parameters! *(Note: see the clouds section in the [Mi-UGens page](/reference/superdirt/mi-ugens/modules/#clouds-global) of the User docs.)*
 
 I also like to use a traditional game controller and map the controls to conditional functions or effects in the code. For example, playing a drum pattern twice as fast when I press the 'A' button, or adjust the pan according to a joystick. I like the thought that I am programming the functionality of a game live, while I am also playing it.
 

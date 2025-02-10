@@ -23,7 +23,7 @@ This means that Tidal can backtrack or fast-forward in time, because you can act
 
 This also means that Tidal does not measure tempo using beats per minute (BPM), but rather *cycles per second* (CPS).
 Tempos are specified using the `setcps` function, e.g., `setcps 0.5625`.
-For more, including how to convert from BPM, see the [tempo guide page](/guides/usage/tempo/).
+For more, including how to convert from BPM, see the [tempo guide page](/guides/tidal/time/tempo/).
 
 ### Dividing the cycle 
 
@@ -239,12 +239,12 @@ d1 $ s "bd hh bd hh*2"
 
 Here, the number `0.5` is passed to the `lpq` function, the string (list of characters between quotation marks) `"500 1000 1500"` is passed to the `lpf` function, and the string `"bd hh bd hh*2"` is passed to the `s` function.
 
-These patterns are then combined with the `#` operator, which is exactly what its purpose is (for more, see the [combining patterns guide](/guides/usage/combining-patterns)).
+These patterns are then combined with the `#` operator, which is exactly what its purpose is (for more, see the [combining patterns guide](/guides/tidal/patterns/combination)).
 
-The `$` is similar to `#` ([here's a comparison](/guides/usage/dollarsign/#comparing--and-)) but comes from Haskell itself, and isn't unique to Tidal, which means it works everywhere, not just on patterns.
+The `$` is similar to `#` ([here's a comparison](/guides/tidal/combine-functions/dollarsign#comparing--and-)) but comes from Haskell itself, and isn't unique to Tidal, which means it works everywhere, not just on patterns.
 You can think of it as a "pipe": it indicates that everything to its right should be evaluated first, and then passed ("piped") to the left.
 It's mainly used to avoid a bunch of parentheses piling up.
-See the [function chaining guide](/guides/usage/dollarsign/) for more.
+See the [function chaining guide](/guides/tidal/combine-functions/dollarsign/) for more.
 
 To make a comment — to tell the interpreter to ignore something — prefix the text with `--` (two dashes) or enclose the text with `{-` and `-}`, like so:
 
@@ -269,4 +269,4 @@ Mini-notation was created as a way to write Patterns much more conveniently than
 For example, in `"bd hh bd hh*2"`, the `*` means that the element should be repeated.
 On this page, we have also encountered `~`, used to indicate a rest, and `:`, used to select a specific sample from a folder.
 
-On the next page, the notation syntax will be introduced bit-by-bit, but you can also check out the [mini-notation reference page](/reference/mini-notation/mini-notation) for a complete outline of what it can do.
+On the next page, the notation syntax will be introduced bit-by-bit, but you can also check out the [mini-notation reference page](/reference/tidal/mini-notation/overview) for a complete outline of what it can do.

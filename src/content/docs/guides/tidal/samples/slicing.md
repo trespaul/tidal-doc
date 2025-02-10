@@ -4,9 +4,9 @@ title: Slice your samples and rearrange their contents
 
 In this page you'll find guides on how to slice your samples in bits and rearrange these bits, allowing you to explore the techniques known as _granular synthesis_ (for very small bits) and _concatenative synthesis_ (for bigger bits).
 
-::: caution
+:::caution
 
-Note that these functions use the `begin` and `end` [trimming-related controls](sample-trimming) internally. This means that you probably shouldn't specify `begin` or `end` with one of them.
+Note that these functions use the `begin` and `end` [trimming-related controls](/guides/tidal/samples/trimming) internally. This means that you probably shouldn't specify `begin` or `end` with one of them.
 
 :::
 
@@ -52,11 +52,11 @@ d1 $ chop 8 $ sound "alphabet" --cool stuttering!
 d2 $ chop 32 $ sound "bev" --interesting overlap!
 ```
 
-That happens because `chop` takes each sample, divides it in the given bits, and then assigns those bits into evenly spaced events in the pattern. So, for example, if we have a sample *C* that lasts half a cycle, `chop 2 $ sound "C"` will cut *C* in two equal bits; let's call them *C1* and *C2*. *C1* will be [trimmed](sample-trimming) so that it `begin`s at the start of the sample and `end`s at its half, and *C2*, so that it `begin`s at the half of the sample and `end`s at its end. As each bit will last a quarter of a cycle, we'll hear a silence between when *C1* ends and *C2* is triggered at the middle of the cycle.
+That happens because `chop` takes each sample, divides it in the given bits, and then assigns those bits into evenly spaced events in the pattern. So, for example, if we have a sample *C* that lasts half a cycle, `chop 2 $ sound "C"` will cut *C* in two equal bits; let's call them *C1* and *C2*. *C1* will be [trimmed](/guides/tidal/samples/trimming) so that it `begin`s at the start of the sample and `end`s at its half, and *C2*, so that it `begin`s at the half of the sample and `end`s at its end. As each bit will last a quarter of a cycle, we'll hear a silence between when *C1* ends and *C2* is triggered at the middle of the cycle.
 
 ### Slice seamlessly by adding `loopAt`
 
-To get rid of those silences (or overlaps, if the sample were to last longer than a cycle), you can use `loopAt`, a [speed-related function](sample-speed) that makes samples fit a given number of cycles:
+To get rid of those silences (or overlaps, if the sample were to last longer than a cycle), you can use `loopAt`, which makes samples fit a given number of cycles:
 
 ```haskell
 d1 $ loopAt 0.27 $ chop 8 $ sound "alphabet"
@@ -150,7 +150,7 @@ d1 $ splice 8 "[<0*8 0*2> 3*4 2 4] [4 .. 7]" $ sound "breaks165"
 
 ### Make snappy grooves with `bite`
 
-`bite` is quite different from the rest of functions presented here. It does not split or trim the samples; instead, it takes the structure from the **whole pattern** and [combines](combining-patterns) it with a structure that has the same number of subdivisions as its first argument. Note how the lines below are equivalent:
+`bite` is quite different from the rest of functions presented here. It does not split or trim the samples; instead, it takes the structure from the **whole pattern** and [combines](/guides/tidal/patterns/combination) it with a structure that has the same number of subdivisions as its first argument. Note how the lines below are equivalent:
 
 ```haskell
 d1 $ "t*3" |>| sound "sax sax:1" # cut 1
@@ -220,4 +220,4 @@ d1 $ striate 16 $ sound "breaks165" # legato 1
 
 ## Go fully granular with miClouds
 
-You can also use miClouds for granulating your samples! It's a software replica of the Eurorack module *Clouds* by Mutable Instruments. For more information, check out the [mi-UGens reference](../../reference/superdirt/mi-ugens/) page.
+You can also use miClouds for granulating your samples! It's a software replica of the Eurorack module *Clouds* by Mutable Instruments. For more information, check out the [mi-UGens reference](/reference/superdirt/mi-ugens/installation) page.

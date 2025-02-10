@@ -9,7 +9,7 @@ This tutorial is adapted from a worksheet for hands-on beginner / mixed workshop
 If you prefer to follow a video course, check out Alex McLean's (the creator of Tidal) in-depth Tidal Club workshop series and accompanying forum discussions:
 
 - Weeks 1–4:
-  [Forum posts index](https://club.tidalcycles.org/t/weeks-5-8-index/1345),
+  [Forum posts index](https://club.tidalcycles.org/t/weeks-1-4-index/395),
   [YouTube playlist](https://www.youtube.com/playlist?list=PL2lW1zNIIwj3bDkh-Y3LUGDuRcoUigoDs)
 - Weeks 5–8:
   [Forum posts index](https://club.tidalcycles.org/t/weeks-5-8-index/1345),
@@ -35,7 +35,7 @@ d1 $ silence
 we can move on to explaining these patterns in a bit more depth!
 
 There are two types of sounds you can use with `sound`:
-they are either synth definitions (like `superpiano`, see the [synthesisers page](/reference/superdirt/synthesisers/)), or they are samples.
+they are either synth definitions (like `superpiano`, see the [synthesisers page](/reference/superdirt/default-library/synthesisers/)), or they are samples.
 In the latter case, you write the name of the folder that contain the sample set.
 By default, the first sample is used, but you can pick a different sample from the same set, with `:`: and a number:
 
@@ -63,10 +63,10 @@ jazz voodoo birds3 procshort blip drum jvbass psr wobble drumtraks koy
 rave bottle kurt latibro rm sax lighter lt arpy feel less stab ul
 ```
 
-You can see what other sounds there are in the [default library](/configuration/AudioSamples/default_library.md) by looking in the `Dirt-Samples` folder.
+You can see what other sounds there are in the [default library](/reference/superdirt/default-library/samples) by looking in the `Dirt-Samples` folder.
 Find it via the `SuperCollider` menu: `'File > Open user support directory > downloaded-quarks > Dirt-Samples'`.
 Additionally, you can also add your own custom samples.
-For more about sampling, see the [sampling guide page](http://localhost:4321/guides/usage/sampling/).
+For more about sampling, see the sampling guides in the sidebar.
 
 :::tip
 In the Pulsar editor, you can add a setting that will load a tab with all the Dirt-Samples (see the [Pulsar section](/getting-started/installation#pulsar) on the installation page).
@@ -238,13 +238,13 @@ d1 $ sound "numbers:1 numbers:2 numbers:3 numbers:4" # pan "0 0.5 1"
 
 ### Distortion, reverb, delay, and filters
 
-`shape` is one of several functions you can use to add [distortion](/reference/superdirt/effects/#distortion) (but be careful, it also makes the sound much louder):
+`shape` is one of several functions you can use to add [distortion](/reference/superdirt/default-library/effects/#distortion) (but be careful, it also makes the sound much louder):
 
 ```haskell
 d1 $ sound "kurt:4 kurt:4" # shape "0 0.78" # gain "0.7"
 ```
 
-[Delay](/reference/superdirt/effects#delay) is achieved using a combination of up to four functions:
+[Delay](/reference/superdirt/default-library/effects#delay) is achieved using a combination of up to four functions:
 
 ```haskell
 d1 $ sound "cp" # delay 0.8 # delaytime (1/6) # delayfeedback 0.6 # lock 1
@@ -258,13 +258,13 @@ All of them receive patterns:
 d1 $ sound "industrial:3*4" # delay "<0 0.4 0.8>" # delaytime "0.2 0.05" # delayfeedback "<0.5 0.9>" # lock 1
 ```
 
-To add a [reverb](/reference/superdirt/effects#reverb) effect, use the functions `dry`, `room` and `size`:
+To add a [reverb](/reference/superdirt/default-library/effects#reverb) effect, use the functions `dry`, `room` and `size`:
 
 ```haskell
 d1 $ sound "[~ sn]*2" # dry 0.4 # room 0.6 # size 0.8
 ```
 
-There are also several frequency [filters](/reference/superdirt/effects#filters) available: low pass, high pass, and DJ type filter, among others.
+There are also several frequency [filters](/reference/superdirt/default-library/effects#filters) available: low pass, high pass, and DJ type filter, among others.
 
 Low pass filter:
 
@@ -282,7 +282,7 @@ d1 $ sound "tabla*4" # n "0 1 2 3" # hcutoff 600 # hresonance 0.2
 
 `djf` is a more immediate filter: it receives a number between 0 and 1. With values lesser than 0.5 it is a low pass filter, and with values greater than 0.5 it is a high pass filter.
 
-You can take a look at the [effects reference page](/reference/superdirt/effects) to learn more about effects and to see the complete list of effects.
+You can take a look at the [effects reference page](/reference/superdirt/default-library/effects) to learn more about effects and to see the complete list of effects.
 
 
 ## Transforming patterns
@@ -375,7 +375,7 @@ More than one transformation is possible! You can chain them together using `.`:
 d1 $ jux (rev . (slow 1.5)) $ sound "arpy arpy:1 arpy:2 arpy:3"
 ```
 
-(See the [function composition guide page](/guides/usage/dot/) for more.)
+(See the [function composition guide page](/guides/tidal/combine-functions/dot/) for more.)
 
 Remember that (almost) everything is a pattern, so we can apply these transformations to our effects too:
 
@@ -403,7 +403,7 @@ This is fine for some parameters (like `pan`), but you can use `range` to scale 
 The previous examples trigger one oscillator value for an event.
 This is fine if there are a lot of events per cycle.
 However, if there are fewer, longer events, we need to pick several values from the oscillator in order to accomplish a smooth movement of the LFO.
-You can do this using [control busses](/guides/usage/control-busses/):
+You can do this using [control busses](/guides/tidal/continuous/control-busses/):
 
 ```haskell
 d1
@@ -606,7 +606,7 @@ d1 $ rev $ loopAt 8 $ chop 128 $ sound "bev"
 
 ## SuperDirt synthesisers
 
-So far we have used only samples, but SuperDirt also comes with many Supercollider [synthesisers](/reference/superdirt/synthesisers) like `superpiano`, `supersaw` or `superfm`.
+So far we have used only samples, but SuperDirt also comes with many Supercollider [synthesisers](/reference/superdirt/default-library/synthesisers) like `superpiano`, `supersaw` or `superfm`.
 
 Each have their own functions and parameters, but in general you can use them in a very similar way to samples:
 
@@ -670,7 +670,7 @@ This will play on the third octave:
 d1 $ note "c a f e" # s "superpiano" |- note 24
 ```
 
-To know more about how to play chords, arpeggios, and scales, see the [chords](/guides/usage/chords) and [arpeggios](/guides/usage/arpeggios) guide pages, and the [scales reference page](/reference/tidal/scales).
+To know more about how to play chords, arpeggios, and scales, see the [chords](/guides/tidal/create/chords) and [arpeggios](/guides/tidal/create/arpeggios) guide pages, and the [scales reference page](/reference/tidal/functions/scales).
 
 
 ## Where to go from here
