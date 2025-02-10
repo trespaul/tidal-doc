@@ -50,6 +50,15 @@ original accent colour from tailwindcss.config.mjs:
   --sl-color-black:       #ffffff;
 }
 
+/* fix lists */
+main ul {
+  @apply list-disc ml-4;
+}
+
+main ol {
+  @apply list-decimal ml-4;
+}
+
 /* prevent `<|` from becoming a triangle in `|<|` etc. */
 h3 code {
   font-feature-settings: "trig" off;
