@@ -73,8 +73,6 @@ d1 $ n "<[c'maj e'maj f'maj] [c'min e'min f'min]>" # s "supermandolin"
 
 ## Voicings
 
-<!-- TODO: structure page around specific "issue" (I just copied this section here from the old "harmony and melody" "reference" page) -->
-
 There are a variety of different chord modifiers available, designed to change the way a chord is "voiced" (note ordering, octave choices, etc). A significant amount of discussion on what these should be and how they should work was covered in this [forum thread](https://club.tidalcycles.org/t/rfc-working-on-making-chord-naming-chordlist-more-consistent/2717/52), and (largely) implemented by [polymorphic.engine](https://github.com/tidalcycles/Tidal/pull/931).
 
 All of the different modifiers can be patterned together.

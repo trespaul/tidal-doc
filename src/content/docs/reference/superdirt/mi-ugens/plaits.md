@@ -95,7 +95,9 @@ There are 4 interpolated banks followed by the same 4 banks, in reverse order, w
 - Bank C: wavetables from the Shruthi-1 / Ambika, sampled from classic wavetable or ROM playback synths.
 - Bank D: a joyous semi-random permutation of waveforms from the other 3 banks.
 
-(TODO: make it clearer which values of `harm` select each bank, I didn't test)
+:::note
+It's not clear which values of `harm` select each bank. If you've tested this, consider adding it to the docs!
+:::
 
 
 ## 6: Chords
