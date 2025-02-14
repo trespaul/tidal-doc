@@ -19,7 +19,9 @@ export default defineConfig({
     ],
   },
 
-  prefetch: true,
+  prefetch: {
+    prefetchAll: true
+  },
 
   integrations: [
     starlight({
